@@ -9,6 +9,8 @@ class UserVo(db.Model):
     LastName = db.Column('LastName',db.String(100))
     UserName = db.Column('UserName',db.String(50))  
     Password = db.Column('Password',db.String(200))
+    Phone = db.Column('Phone',db.String(10))
+    Dob = db.Column('Dob',db.DateTime)
     GroupOwner = db.Column('GroupOwner',db.Integer)
     InGroup = db.Column('InGroup',db.String(100))
     # 0=user

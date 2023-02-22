@@ -13,8 +13,16 @@ app.config['PORT']=8000
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SQLALCHEMY_ECHO'] = False
 app.config['SQLALCHEMY_RECORD_QUERIES'] = False
+servername = '51.81.160.154'
+port=3306
+dbname = 'rxr8071_FFTD'
+username = 'rxr8071_admin'
+password = 'c#vFH9LQnQ'
+url="mysql+pymysql://{0}:{1}@{2}:{3}/{4}".format(
+            username, password, servername, port, dbname
+        )
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost:3306/assignment3'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = url
 app.config['SQLALCHEMY_MAX_OVERFLOW'] = 0
 db = SQLAlchemy(app)
 

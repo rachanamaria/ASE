@@ -1,0 +1,7 @@
+/.vscode
+project/com/vo/__pycache__/*
+__pycache__/*
+project/__pycache__/*
+project/com/__pycache__/*
+project/com/controller/__pycache__/*
+project/com/dao/__pycache__/*
