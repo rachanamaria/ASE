@@ -1,8 +1,6 @@
 from project import db
 from project import app
-# from project.com.vo import groupVo
 
-# groupObj =groupVo()
 class PostVo(db.Model):
     __tablename__ = 'postMaster'
     PostId=db.Column('PostId', db.Integer, primary_key = True)

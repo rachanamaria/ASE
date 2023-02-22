@@ -21,7 +21,7 @@ class UserDAO:
         return user
         
     def getUserByEmailId(self,email):
-        user=UserVo.query.filter_by(EmailId = email).all()
+        user=UserVo.query.filter_by(Emaild = email).all()
         return user
     def getUnApprovedUsers(self):
         users=UserVo.query.filter_by(Status=0).all()
