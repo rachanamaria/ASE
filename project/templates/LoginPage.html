@@ -10,26 +10,6 @@
     <script src="../js/login.js"></script>
     <title>Login</title>
     <script>
-        function Login_validation() {
-            var email =
-                document.forms.RegForm.Emaild.value;
-            var password =
-                document.forms.RegForm.Password.value;
-
-            var regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g; //Javascript reGex for Email Validation.
-
-            if (email == "" || !regEmail.test(email)) {
-                window.alert("Please enter a valid e-mail address.");
-                email.focus();
-                return false;
-            }
-            if (password == "") {
-                alert("Please enter your password");
-                password.focus();
-                return false;
-            }
-        }
-
         function myFunction() {
             var x = document.getElementById("myTopnav");
             if (x.className === "topnav") {
@@ -127,19 +107,20 @@
                 </p>
                 <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Login</h2>
             </div>
-            <form class="mt-8 space-y-6" name="RegForm" onsubmit="return Login_validation()" action="/login"
+            <form class="mt-8 space-y-6" name="RegForm"  action="/login"
                 method="POST">
                 <input type="hidden" name="remember" value="true">
                 <div class="-space-y-px rounded-md shadow-sm">
                     <div class="mb-4">
                         <label for="Emaild" class="sr-only">Email</label>
                         <input type="email" name="Emaild" id="Emaild" placeholder="Email"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" required>
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
                     </div>
                     <div class="mb-4">
                         <label for="Password" class="sr-only">Password</label>
                         <input type="password" name="Password" id="Password" placeholder="Password"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" required>
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                            title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters">
                     </div>
                     {% with messages = get_flashed_messages() %}
                     {% if messages %}
@@ -170,54 +151,7 @@
             </form>
         </div>
     </div>
-    <!-- <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8" style="
-    background-image: url('/static/travel-planning-how-far-in-advance-should-i-plan-a-vacation.webp');
-    ">
-        <div class="w-full max-w-md space-y-8" style="text-align: center;">
-            <div>
-                <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Login</h2>
-                <p class="mt-2 text-center text-sm text-gray-600">
-                    FFTD
-                </p>
-            </div>
-            <form class="mt-8 space-y-6" name="RegForm" onsubmit="return Login_validation()" action="/login"
-                method="POST">
-                <input type="hidden" name="remember" value="true">
-                <div class="-space-y-px rounded-md shadow-sm">
-                    <div class="mb-4">
-                        <label for="Emaild" class="sr-only">Email</label>
-                        <input type="email" name="Emaild" id="Emaild" placeholder="Email"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
-                    </div>
-                    <div class="mb-4">
-                        <label for="Password" class="sr-only">Password</label>
-                        <input type="password" name="Password" id="Password" placeholder="Password"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
-                    </div>
-                </div>
-                <div>
-                    <button type="submit" style="background-color: #2A6F97;"
-                        class="group relative flex w-full justify-center rounded-md border border-transparent  py-2 px-4 text-sm font-medium text-white  focus:outline-none focus:ring-2  focus:ring-offset-2">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                            <svg class="h-5 w-5" viewBox="0 0 20 20"
-                                fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </span>
-                        Login
-                    </button>
-                    <a href="/loadForgetPassword" class="text-center block text-sm text-gray-600 hover:text-gray-500">
-                        Forgot password
-                    </a>
-                    <a href="/RegisterPage" class="text-center block text-sm text-gray-600 hover:text-gray-500">
-                        Don't have an account? Sign Up
-                    </a>
-                </div>
-            </form>
-        </div>
-    </div> -->
+  
 </body>
 
 </html>
