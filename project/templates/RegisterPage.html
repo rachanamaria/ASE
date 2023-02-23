@@ -1,57 +1,88 @@
+<!-- /* CSS HEX */ 
+--prussian-blue: #012a4aff;
+--indigo-dye: #013a63ff;
+--indigo-dye-2: #01497cff;
+--indigo-dye-3: #014f86ff;
+--ucla-blue: #2a6f97ff;
+--cerulean: #2c7da0ff;
+--air-force-blue: #468fafff;
+--air-superiority-blue: #61a5c2ff;
+--sky-blue: #89c2d9ff;
+--light-blue: #a9d6e5ff; -->
+<!-- use above color palette -->
+
 <html>
 <head>
     <title>Register</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.2.0/tailwind.min.css">
 </head>
 <body>
-    <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div class="w-full max-w-md space-y-8">
-          <div>
-            <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
-            <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Register</h2>
-            <p class="mt-2 text-center text-sm text-gray-600">
-              FFTD
+    <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8"  style="
+    background: rgba(169, 214, 229, 0.301);
+    ">
+        <!-- <div class="w-full max-w-md space-y-8 rounded-lg shadow-lg p-8" style="
+          background: #A9D6E5 ;
+          "> -->
+          <!-- reduce opacity of background color #A9D6E5 to  -->
+          <div class="w-full max-w-md space-y-8 rounded-lg shadow-lg p-8" style="
+          background: rgba(255, 255, 255, 0.476);
+          ">
+
+          <div class="text-center">
+            <!-- add font color for FFTD and give shadow outline for the logo title FFTD. Make it stand out using the color pallete mentioned in top of the code -->
+            <h1 class="text-5xl font-bold  mb-2"
+            style="
+            color: #2A6F97;
+            text-shadow: 2px 2px 4px #e1e1e1;
+            "
+            >FFTD</h1>
+            <p class="mt-1 text-center text-md text-gray-600">
+              Friends, Family Travel Diary
             </p>
+            <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign Up</h2>
+            
           </div>
           <form class="mt-8 space-y-6" action="/registerUser" method="POST">
             <input type="hidden" name="remember" value="true">
             <div class="-space-y-px rounded-md shadow-sm">
-             <!-- use the commented fields -->
+
              <div class="mb-4">
                 <label for="FirstName" class="sr-only">First Name</label>
-                <input type="text" name="FirstName" id="FirstName" placeholder="First Name" class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
+                <input type="text" name="FirstName" id="FirstName" placeholder="First Name" class="bg-gray-100 border-2 w-full p-2 rounded-lg" value="">
             </div>
             <div class="mb-4">
                 <label for="LastName" class="sr-only">Last Name</label>
-                <input type="text" name="LastName" id="LastName" placeholder="Last Name" class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
+                <input type="text" name="LastName" id="LastName" placeholder="Last Name" class="bg-gray-100 border-2 w-full p-2 rounded-lg" value="">
             </div>
-            <!-- add birthday, phone number fields  -->
+  
             <div class="mb-4">
                 <label for="dob" class="sr-only">DOB</label>
-                <input type="date" name="dob" id="dob" placeholder="DOB" class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
+                <input type="date" name="dob" id="dob" placeholder="DOB" class="bg-gray-100 border-2 w-full p-2 rounded-lg" value="">
             </div>
             <div class="mb-4">
                 <label for="phone" class="sr-only">Phone</label>
-                <input type="text" name="phone" id="phone" placeholder="Phone" class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
+                <input type="text" name="phone" id="phone" placeholder="Phone" class="bg-gray-100 border-2 w-full p-2 rounded-lg" value="">
             </div>
         
 
             <div class="mb-4">
                 <label for="Emaild" class="sr-only">Email</label>
-                <input type="email" name="Emaild" id="Emaild" placeholder="Email" class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
+                <input type="email" name="Emaild" id="Emaild" placeholder="Email" class="bg-gray-100 border-2 w-full p-2 rounded-lg" value="">
             </div>
             <div class="mb-4">
                 <label for="UserName" class="sr-only">Username</label>
-                <input type="text" name="UserName" id="UserName" placeholder="Username" class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
+                <input type="text" name="UserName" id="UserName" placeholder="Username" class="bg-gray-100 border-2 w-full p-2 rounded-lg" value="">
             </div>
             <div class="mb-4">
                 <label for="Password" class="sr-only">Password</label>
-                <input type="password" name="Password" id="Password" placeholder="Password" class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
+                <input type="password" name="Password" id="Password" placeholder="Password" class="bg-gray-100 border-2 w-full p-2 rounded-lg" value="">
             </div>
 
             </div>
             <div>
-              <button type="submit" class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+              <!-- <button type="submit" class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"> -->
+                <!-- for button use 468FAF and on hover use 61A5C2 color-->
+                <button type="submit" class="group relative flex w-full justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                 <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                   <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd" />
@@ -59,18 +90,15 @@
                 </span>
                 Register
               </button>
-              <!-- if already have account, login -->
                 <a href="/" class="text-center block text-sm text-gray-600 hover:text-gray-500">
                     Already have an account? Click here
                 </a>
-
-
-
-              
             </div>
           </form>
         </div>
       </div>
+
+ 
      <script src="../static/LoginValidation.js"></script>
 </body>
 
