@@ -37,34 +37,48 @@ def registerValidation():
     print(len(lName))
     print(len(password ))
                 
-    if len(fName)>32 or len(emaild)>32 or len(lName)>32 or len(userName)>32 or len(password)>32:
-        flash('The password you have entered is exceeding the limit. Please enter a smaller one.')
-        return render_template('ReloadSignInPage.html',obj=vo)
+    # if len(fName)>32 or len(emaild)>32 or len(lName)>32 or len(userName)>32 or len(password)>32:
+    #     flash('The password you have entered is exceeding the limit. Please enter a smaller one.')
+    #     return render_template('RegisterPage.html',obj=vo)
+    if len(fName)>32:
+        flash('First name exceeds lenght limit')
+        return render_template('RegisterPage.html',obj=vo)
+    if len(lName)>32:
+        flash('Last name exceeds lenght limit')
+        return render_template('RegisterPage.html',obj=vo)
+    if len(emaild)>32:
+        flash('Email id exceeds lenght limit')
+        return render_template('RegisterPage.html',obj=vo)
+
+
     vo.Role=0
     if len(password)<8:
         flash('Password should have atleast 8 charcates')
-        return render_template('ReloadSignInPage.html',obj=vo)
+        return render_template('RegisterPage.html',obj=vo)
     if bool(re.search(r"\s", password)):
         print(password)
         flash('Password should not have tab or space in between')
-        return render_template('ReloadSignInPage.html',obj=vo)
+        return render_template('RegisterPage.html',obj=vo)
     if not bool(re.search(r'\d', password)):
         flash('Password should have atleast one digit')
-        return render_template('ReloadSignInPage.html',obj=vo)
+        return render_template('RegisterPage.html',obj=vo)
     if not bool(re.search(r'[A-Z]', password)):
         flash('Password should have atleast one uper case')
-        return render_template('ReloadSignInPage.html',obj=vo)
+        return render_template('RegisterPage.html',obj=vo)
     if not bool(re.search(r'[a-z]', password)):
         flash('Password should have atleast one lower case')
-        return render_template('ReloadSignInPage.html',obj=vo)
+        return render_template('RegisterPage.html',obj=vo)
+    if len(phone)!=10:
+        flash('Phone number should be of 10 digits.')
+        return render_template('RegisterPage.html',obj=vo)
     
     vo.Status=0
     ans=dao.getUserByUserName(vo.UserName)
     
     if len(ans)>0:
         flash('Please enter a different email or username, already in use!!!')
-        return render_template('ReloadSignInPage.html',obj=vo)
-    else:   
+        return render_template('RegisterPage.html',obj=vo)
+    else:
         dao.addUser(vo)
     return render_template('LoginPage.html')
     
