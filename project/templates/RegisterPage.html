@@ -104,37 +104,37 @@
                     <div class="mb-4">
                         <label for="FirstName" class="sr-only">First Name</label>
                         <input type="text" name="FirstName" id="FirstName" placeholder="First Name"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" required>
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{%if obj%}{{obj.FirstName}} {%endif%}" required>
                     </div>
                     <div class="mb-4">
                         <label for="LastName" class="sr-only">Last Name</label>
                         <input type="text" name="LastName" id="LastName" placeholder="Last Name"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" required>
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{%if obj%}{{obj.LastName}} {%endif%}" required>
                     </div>
                     <div class="mb-4">
                         <label for="dob" class="sr-only">DOB</label>
                         <input type="date" name="dob" id="dob" placeholder="DOB"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" required>
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{%if obj%}{{obj.Dob}} {%endif%}" required>
                     </div>
                     <div class="mb-4">
                         <label for="phone" class="sr-only">Phone</label>
                         <input type="text" name="phone" id="phone" placeholder="Phone"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" required>
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{%if obj%}{{obj.Phone}} {%endif%}" required>
                     </div>
                     <div class="mb-4">
                         <label for="Emaild" class="sr-only">Email</label>
                         <input type="email" name="Emaild" id="Emaild" placeholder="Email"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" required>
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{%if obj%}{{obj.Emaild}} {%endif%}" required>
                     </div>
                     <div class="mb-4">
                         <label for="UserName" class="sr-only">Username</label>
                         <input type="text" name="UserName" id="UserName" placeholder="Username"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" required>
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{%if obj%}{{obj.UserName}} {%endif%}" required>
                     </div>
                     <div class="mb-4">
                         <label for="Password" class="sr-only">Password</label>
                         <input type="password" name="Password" id="Password" placeholder="Password"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" required>
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{%if obj%}{{obj.Password}} {%endif%}" required>
                     </div>
 
                 </div>
