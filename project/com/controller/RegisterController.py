@@ -39,45 +39,51 @@ def registerValidation():
                 
     # if len(fName)>32 or len(emaild)>32 or len(lName)>32 or len(userName)>32 or len(password)>32:
     #     flash('The password you have entered is exceeding the limit. Please enter a smaller one.')
-    #     return render_template('RegisterPage.html',obj=vo)
+    #     return render_template('RegisterPage.html',obj=vo, error=msg)
     if len(fName)>32:
-        flash('First name exceeds lenght limit')
-        return render_template('RegisterPage.html',obj=vo)
+        msg ='First name exceeds lenght limit'
+        return render_template('RegisterPage.html',obj=vo, error=msg)
     if len(lName)>32:
-        flash('Last name exceeds lenght limit')
-        return render_template('RegisterPage.html',obj=vo)
+        msg ='Last name exceeds lenght limit'
+        return render_template('RegisterPage.html',obj=vo, error=msg)
+    if len(fName.strip())<1:
+        msg ='First name is not entered'
+        return render_template('RegisterPage.html',obj=vo, error=msg)
+    if len(lName.strip())<1:
+        msg ='Last name is not entered'
+        return render_template('RegisterPage.html',obj=vo, error=msg)
     if len(emaild)>32:
-        flash('Email id exceeds lenght limit')
-        return render_template('RegisterPage.html',obj=vo)
+        msg ='Email id exceeds lenght limit'
+        return render_template('RegisterPage.html',obj=vo, error=msg)
 
 
     vo.Role=0
     if len(password)<8:
-        flash('Password should have atleast 8 charcates')
-        return render_template('RegisterPage.html',obj=vo)
+        msg ='Password should have atleast 8 charcates'
+        return render_template('RegisterPage.html',obj=vo, error=msg)
     if bool(re.search(r"\s", password)):
         print(password)
-        flash('Password should not have tab or space in between')
-        return render_template('RegisterPage.html',obj=vo)
+        msg ='Password should not have tab or space in between'
+        return render_template('RegisterPage.html',obj=vo, error=msg)
     if not bool(re.search(r'\d', password)):
-        flash('Password should have atleast one digit')
-        return render_template('RegisterPage.html',obj=vo)
+        msg ='Password should have atleast one digit'
+        return render_template('RegisterPage.html',obj=vo, error=msg)
     if not bool(re.search(r'[A-Z]', password)):
-        flash('Password should have atleast one uper case')
-        return render_template('RegisterPage.html',obj=vo)
+        msg ='Password should have atleast one uper case'
+        return render_template('RegisterPage.html',obj=vo, error=msg)
     if not bool(re.search(r'[a-z]', password)):
-        flash('Password should have atleast one lower case')
-        return render_template('RegisterPage.html',obj=vo)
+        msg ='Password should have atleast one lower case'
+        return render_template('RegisterPage.html',obj=vo, error=msg)
     if len(phone)!=10:
-        flash('Phone number should be of 10 digits.')
-        return render_template('RegisterPage.html',obj=vo)
+        msg ='Phone number should be of 10 digits.'
+        return render_template('RegisterPage.html',obj=vo, error=msg)
     
     vo.Status=0
     ans=dao.getUserByUserName(vo.UserName)
     
     if len(ans)>0:
-        flash('Please enter a different email or username, already in use!!!')
-        return render_template('RegisterPage.html',obj=vo)
+        msg ='Please enter a different email or username, already in use!!!'
+        return render_template('RegisterPage.html',obj=vo, error=msg)
     else:
         dao.addUser(vo)
     return render_template('LoginPage.html')

@@ -1,148 +1,233 @@
 <html>
+
 <head>
     <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.2.0/tailwind.min.css">
-</head>
-<body>
-    <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8"  
-    style="background: rgba(169, 214, 229, 0.301);">
-        <!-- <div class="w-full max-w-md space-y-8 rounded-lg shadow-lg p-8" style="
-          background: #A9D6E5 ;
-          "> -->
-          <!-- reduce opacity of background color #A9D6E5 to  -->
-          <div class="w-full max-w-md space-y-8 rounded-lg shadow-lg p-8" style="
-          background: rgba(255, 255, 255, 0.476);
-          ">
+    <style>
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
 
-          <div class="text-center">
-            <!-- add font color for FFTD and give shadow outline for the logo title FFTD. Make it stand out using the color pallete mentioned in top of the code -->
-            <h1 class="text-5xl font-bold  mb-2"
-            style="
+        .topnav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topnav a.active {
+            background-color: #2A6F97;
+            color: white
+        }
+
+        .topnav .icon {
+            display: none;
+        }
+
+        @media screen and (max-width: 600px) {
+            .topnav a:not(:first-child) {
+                display: none;
+            }
+
+            .topnav a.icon {
+                float: right;
+                display: block;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .topnav.responsive {
+                position: relative;
+            }
+
+            .topnav.responsive .icon {
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+
+            .topnav.responsive a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topnav" id="myTopnav">
+        <a href="/" class="active">Login</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8" style="
+    background-image: url('/static/travel-planning-how-far-in-advance-should-i-plan-a-vacation.webp');
+    ">
+
+        <div class="w-full max-w-md space-y-8 rounded-lg shadow-lg p-8" style="
+          background: ghostwhite;
+          ">
+            <div class="text-center">
+                <!-- add font color for FFTD and give shadow outline for the logo title FFTD. Make it stand out using the color pallete mentioned in top of the code -->
+                <h1 class="text-5xl font-bold  mb-2" style="
             color: #2A6F97;
             text-shadow: 2px 2px 4px #e1e1e1;
-            "
-            >FFTD</h1>
-            <p class="mt-1 text-center text-md text-gray-600">
-              Friends Family Travel Diary
-            </p>
-            <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign Up</h2>
-            
-          </div>
-          <form class="mt-8 space-y-6" name="RegForm" onsubmit="return Resigtration_validation()" action="/registerUser" method="POST">
-            <input type="hidden" name="remember" value="true">
-            <div class="-space-y-px rounded-md shadow-sm">
-             <div class="mb-4">
-                <label for="FirstName" class="sr-only">First Name</label>
-                <input type="text" name="FirstName" id="FirstName" placeholder="First Name" class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
+            ">FFTD</h1>
+                <p class="mt-1 text-center text-md text-gray-600">
+                    Friends Family Travel Diary
+                </p>
+                <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign Up</h2>
+                {% if error %}
+                <h1 style="color: red;">{{ error }}</h1>
+                {% endif %}
             </div>
-            <div class="mb-4">
-                <label for="LastName" class="sr-only">Last Name</label>
-                <input type="text" name="LastName" id="LastName" placeholder="Last Name" class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
-            </div>
-            <div class="mb-4">
-                <label for="dob" class="sr-only">DOB</label>
-                <input type="date" name="dob" id="dob" placeholder="DOB" class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
-            </div>
-            <div class="mb-4">
-                <label for="phone" class="sr-only">Phone</label>
-                <input type="text" name="phone" id="phone" placeholder="Phone" class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
-            </div>
-        
+            <form class="mt-8 space-y-6" name="RegForm" onsubmit="return Resigtration_validation()"
+                action="/registerUser" method="POST">
+                <input type="hidden" name="remember" value="true">
+                <div class="-space-y-px rounded-md shadow-sm">
+                    <div class="mb-4">
+                        <label for="FirstName" class="sr-only">First Name</label>
+                        <input type="text" name="FirstName" id="FirstName" placeholder="First Name"
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="LastName" class="sr-only">Last Name</label>
+                        <input type="text" name="LastName" id="LastName" placeholder="Last Name"
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="dob" class="sr-only">DOB</label>
+                        <input type="date" name="dob" id="dob" placeholder="DOB"
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="phone" class="sr-only">Phone</label>
+                        <input type="text" name="phone" id="phone" placeholder="Phone"
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="Emaild" class="sr-only">Email</label>
+                        <input type="email" name="Emaild" id="Emaild" placeholder="Email"
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="UserName" class="sr-only">Username</label>
+                        <input type="text" name="UserName" id="UserName" placeholder="Username"
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="Password" class="sr-only">Password</label>
+                        <input type="password" name="Password" id="Password" placeholder="Password"
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" required>
+                    </div>
 
-            <div class="mb-4">
-                <label for="Emaild" class="sr-only">Email</label>
-                <input type="email" name="Emaild" id="Emaild" placeholder="Email" class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
-            </div>
-            <div class="mb-4">
-                <label for="UserName" class="sr-only">Username</label>
-                <input type="text" name="UserName" id="UserName" placeholder="Username" class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
-            </div>
-            <div class="mb-4">
-                <label for="Password" class="sr-only">Password</label>
-                <input type="password" name="Password" id="Password" placeholder="Password" class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="">
-            </div>
-
-            </div>
-            <div>
-              <button type="submit"  class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                  <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd" />
-                  </svg>
-                </span>
-                Register
-              </button>
-                <a href="/" class="text-center block text-sm text-gray-600 hover:text-gray-500">
-                    Already have an account? Click here
-                </a>
-            </div>
-          </form>
+                </div>
+                <div>
+                    <button type="submit" style="background-color: #2A6F97;"
+                        class="group relative flex w-full justify-center rounded-md border border-transparent  py-2 px-4 text-sm font-medium text-white  focus:outline-none focus:ring-2  focus:ring-offset-2">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                        Register
+                    </button>
+                    <a href="/" class="text-center block text-sm text-gray-600 hover:text-gray-500">
+                        Already have an account? Click here
+                    </a>
+                </div>
+            </form>
         </div>
-      </div>
-     <script>
-      function Resigtration_validation(){
-                  var firstName =
-                    document.forms.RegForm.FirstName.value;
-                  var lastName =
-                    document.forms.RegForm.LastName.value;
-                  var email =
-                    document.forms.RegForm.Emaild.value;
-                  var phone =
-                    document.forms.RegForm.phone.value;
-                  var d_o_b =
-                    document.forms.RegForm.dob.value;
-                  var uName =
-                    document.forms.RegForm.UserName.value;
-                  var password =
-                    document.forms.RegForm.Password.value;
+    </div>
+    <script>
+        function Resigtration_validation() {
+            var firstName =
+                document.forms.RegForm.FirstName.value;
+            var lastName =
+                document.forms.RegForm.LastName.value;
+            var email =
+                document.forms.RegForm.Emaild.value;
+            var phone =
+                document.forms.RegForm.phone.value;
+            var d_o_b =
+                document.forms.RegForm.dob.value;
+            var uName =
+                document.forms.RegForm.UserName.value;
+            var password =
+                document.forms.RegForm.Password.value;
 
-                  var regEmail=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g; 
-                  var regPhone=/^\d{10}$/;									 
-                  var Name = /\d+$/g;								 
-
-                  if (firstName == "" || Name.test(firstName)) {
-                    window.alert("Please enter your firstName properly.");
-                    firstName.focus();
-                    return false;
-                  }
-                  if (lastName == "" || Name.test(lastName)) {
-                    window.alert("Please enter your lastName properly.");
-                    lastName.focus();
-                    return false;
-                  }
-                  if (uName == "") {
-                    window.alert("Please enter your User Name.");
-                    uName.focus();
-                    return false;
-                  }
-                  if (email == "" || !regEmail.test(email)) {
-                    window.alert("Please enter a valid e-mail address.");
-                    email.focus();
-                    return false;
-                  }
-                  if (password == "") {
-                    alert("Please enter your password");
-                    password.focus();
-                    return false;
-                  }
-                  if(password.length < 8){
-                    alert("Password should be atleast 8 character long");
-                    password.focus();
-                    return false;
-                  }
-                  if (phone == "" || !regPhone.test(phone)) {
-                    alert("Please enter valid phone number.");
-                    phone.focus();
-                    return false;
-                  }
-                  if (d_o_b == "") {
-                    alert("Please enter date of birth.");
-                    d_o_b.focus();
-                    return false;
-                  }                
-                  return true;
-                } 
-
-     </script>
+            var regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g;
+            var regPhone = /^\d{10}$/;
+            var Name = /\d+$/g;
+            if (firstName.trim().length < 1 || Name.test(firstName)) {
+                window.alert("Please enter your firstName properly.");
+                firstName.focus();
+                return false;
+            }
+            if (lastName.trim().length < 1 || Name.test(lastName)) {
+                window.alert("Please enter your lastName properly.");
+                lastName.focus();
+                return false;
+            }
+            if (uName.trim().length < 1) {
+                window.alert("Please enter your User Name.");
+                uName.focus();
+                return false;
+            }
+            if (email == "" || !regEmail.test(email)) {
+                window.alert("Please enter a valid e-mail address.");
+                email.focus();
+                return false;
+            }
+            if (password == "") {
+                alert("Please enter your password");
+                password.focus();
+                return false;
+            }
+            if (password.length < 8) {
+                alert("Password should be atleast 8 character long");
+                password.focus();
+                return false;
+            }
+            if (phone == "" || !regPhone.test(phone)) {
+                alert("Please enter valid phone number.");
+                phone.focus();
+                return false;
+            }
+            if (d_o_b == "") {
+                alert("Please enter date of birth.");
+                d_o_b.focus();
+                return false;
+            }
+            return true;
+        }
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
 </body>
+
 </html>
