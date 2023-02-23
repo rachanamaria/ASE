@@ -97,8 +97,8 @@
                 <h1 style="color: red;">{{ error }}</h1>
                 {% endif %}
             </div>
-            <form class="mt-8 space-y-6" name="RegForm" onsubmit="return Resigtration_validation()"
-                action="/registerUser" method="POST">
+            <form class="mt-8 space-y-6" name="RegForm"
+                onsubmit="event.preventDefault(); return Resigtration_validation()">
                 <input type="hidden" name="remember" value="true">
                 <div class="-space-y-px rounded-md shadow-sm">
                     <div class="mb-4">
@@ -217,6 +217,71 @@
                 d_o_b.focus();
                 return false;
             }
+            // fetch('/registerUser', {
+            //     method: "POST",
+            //     body: JSON.stringify({
+            //         FirstName: firstName,
+            //         Emaild: email,
+            //         LastName: lastName,
+            //         UserName: uName,
+            //         phone: phone,
+            //         Password: password,
+            //         dob: d_o_b
+            //     }),
+            //     headers: {
+            //         'Content-type': 'application/json; charset=UTF-8',
+            //     }
+            // }).then(result => {
+            //     // do something with the result
+
+            // }).catch(err => {
+            //     // if any error occured, then catch it here
+            //     console.error(err);
+            // });
+            // var xhttp = new XMLHttpRequest();
+            // xhttp.open("POST", "/registerUser", true);
+            // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            // xhttp.send();
+            var form = document.createElement("form");
+            form.method = "POST";
+            form.action = "/registerUser";
+            var element1 = document.createElement("INPUT");
+            element1.name = "FirstName"
+            element1.value = firstName;
+            element1.type = 'hidden'
+            form.appendChild(element1);
+            var element2 = document.createElement("INPUT");
+            element2.name = "LastName"
+            element2.value = lastName;
+            element2.type = 'hidden'
+            form.appendChild(element2);
+            var element3 = document.createElement("INPUT");
+            element3.name = "Emaild"
+            element3.value = email;
+            element3.type = 'hidden'
+            form.appendChild(element3);
+            var element4 = document.createElement("INPUT");
+            element4.name = "UserName"
+            element4.value = uName;
+            element4.type = 'hidden'
+            form.appendChild(element4);
+            var element5 = document.createElement("INPUT");
+            element5.name = "phone"
+            element5.value = phone;
+            element5.type = 'hidden'
+            form.appendChild(element5);
+            var element6 = document.createElement("INPUT");
+            element6.name = "dob"
+            element6.value = d_o_b;
+            element6.type = 'hidden'
+            form.appendChild(element6);
+            var element7 = document.createElement("INPUT");
+            element7.name = "Password"
+            element7.value = password;
+            element7.type = 'hidden'
+            form.appendChild(element7);
+            document.body.appendChild(form);
+            form.submit();
             return true;
         }
         function myFunction() {
