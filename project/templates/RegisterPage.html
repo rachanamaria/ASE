@@ -97,44 +97,56 @@
                 <h1 style="color: red;">{{ error }}</h1>
                 {% endif %}
             </div>
-            <form class="mt-8 space-y-6" name="RegForm"
-                onsubmit="event.preventDefault(); return Resigtration_validation()">
+            <form class="mt-8 space-y-6" name="RegForm" action="/registerUser" method="POST">
                 <input type="hidden" name="remember" value="true">
                 <div class="-space-y-px rounded-md shadow-sm">
                     <div class="mb-4">
                         <label for="FirstName" class="sr-only">First Name</label>
                         <input type="text" name="FirstName" id="FirstName" placeholder="First Name"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{%if obj%}{{obj.FirstName}} {%endif%}" required>
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg"
+                            value="{%if obj%}{{obj.FirstName}}{%endif%}" required pattern="[A-Za-z]{1,32}"
+                            title="Firstname should only contain alphabets and length should be greater then 1.">
                     </div>
                     <div class="mb-4">
                         <label for="LastName" class="sr-only">Last Name</label>
                         <input type="text" name="LastName" id="LastName" placeholder="Last Name"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{%if obj%}{{obj.LastName}} {%endif%}" required>
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg"
+                            value="{%if obj%}{{obj.LastName}}{%endif%}" required pattern="[A-Za-z]{1,32}"
+                            title="LastName should only contain alphabets and length should be greater then 1.">
                     </div>
                     <div class="mb-4">
                         <label for="dob" class="sr-only">DOB</label>
                         <input type="date" name="dob" id="dob" placeholder="DOB"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{%if obj%}{{obj.Dob}} {%endif%}" required>
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{%if obj%}{{obj.Dob}}{%endif%}"
+                            required>
                     </div>
                     <div class="mb-4">
                         <label for="phone" class="sr-only">Phone</label>
                         <input type="text" name="phone" id="phone" placeholder="Phone"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{%if obj%}{{obj.Phone}} {%endif%}" required>
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{%if obj%}{{obj.Phone}}{%endif%}"
+                            required pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                            title="phone number should only contain 10 digits.">
                     </div>
                     <div class="mb-4">
                         <label for="Emaild" class="sr-only">Email</label>
                         <input type="email" name="Emaild" id="Emaild" placeholder="Email"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{%if obj%}{{obj.Emaild}} {%endif%}" required>
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg"
+                            value="{%if obj%}{{obj.Emaild}}{%endif%}" required
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
                     </div>
                     <div class="mb-4">
                         <label for="UserName" class="sr-only">Username</label>
                         <input type="text" name="UserName" id="UserName" placeholder="Username"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{%if obj%}{{obj.UserName}} {%endif%}" required>
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg"
+                            value="{%if obj%}{{obj.UserName}}{%endif%}" required>
                     </div>
                     <div class="mb-4">
                         <label for="Password" class="sr-only">Password</label>
                         <input type="password" name="Password" id="Password" placeholder="Password"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{%if obj%}{{obj.Password}} {%endif%}" required>
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg"
+                            value="{%if obj%}{{obj.Password}}{%endif%}" required
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                            title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters">
                     </div>
 
                 </div>
@@ -158,132 +170,133 @@
         </div>
     </div>
     <script>
-        function Resigtration_validation() {
-            var firstName =
-                document.forms.RegForm.FirstName.value;
-            var lastName =
-                document.forms.RegForm.LastName.value;
-            var email =
-                document.forms.RegForm.Emaild.value;
-            var phone =
-                document.forms.RegForm.phone.value;
-            var d_o_b =
-                document.forms.RegForm.dob.value;
-            var uName =
-                document.forms.RegForm.UserName.value;
-            var password =
-                document.forms.RegForm.Password.value;
+        // function Resigtration_validation() {
+        //     var firstName =
+        //         document.forms.RegForm.FirstName.value;
+        //     var lastName =
+        //         document.forms.RegForm.LastName.value;
+        //     var email =
+        //         document.forms.RegForm.Emaild.value;
+        //     var phone =
+        //         document.forms.RegForm.phone.value;
+        //     var d_o_b =
+        //         document.forms.RegForm.dob.value;
+        //     var uName =
+        //         document.forms.RegForm.UserName.value;
+        //     var password =
+        //         document.forms.RegForm.Password.value;
 
-            var regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g;
-            var regPhone = /^\d{10}$/;
-            var Name = /\d+$/g;
-            if (firstName.trim().length < 1 || Name.test(firstName)) {
-                window.alert("Please enter your firstName properly.");
-                firstName.focus();
-                return false;
-            }
-            if (lastName.trim().length < 1 || Name.test(lastName)) {
-                window.alert("Please enter your lastName properly.");
-                lastName.focus();
-                return false;
-            }
-            if (uName.trim().length < 1) {
-                window.alert("Please enter your User Name.");
-                uName.focus();
-                return false;
-            }
-            if (email == "" || !regEmail.test(email)) {
-                window.alert("Please enter a valid e-mail address.");
-                email.focus();
-                return false;
-            }
-            if (password == "") {
-                alert("Please enter your password");
-                password.focus();
-                return false;
-            }
-            if (password.length < 8) {
-                alert("Password should be atleast 8 character long");
-                password.focus();
-                return false;
-            }
-            if (phone == "" || !regPhone.test(phone)) {
-                alert("Please enter valid phone number.");
-                phone.focus();
-                return false;
-            }
-            if (d_o_b == "") {
-                alert("Please enter date of birth.");
-                d_o_b.focus();
-                return false;
-            }
-            // fetch('/registerUser', {
-            //     method: "POST",
-            //     body: JSON.stringify({
-            //         FirstName: firstName,
-            //         Emaild: email,
-            //         LastName: lastName,
-            //         UserName: uName,
-            //         phone: phone,
-            //         Password: password,
-            //         dob: d_o_b
-            //     }),
-            //     headers: {
-            //         'Content-type': 'application/json; charset=UTF-8',
-            //     }
-            // }).then(result => {
-            //     // do something with the result
+        //     var regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g;
+        //     var regPhone = /^\d{10}$/;
+        //     var Name = /\d+$/g;
+        //     if (firstName.trim().length < 1 || Name.test(firstName)) {
+        //         window.alert("Please enter your firstName properly.");
+        //         firstName.focus();
+        //         return false;
+        //     }
+        //     if (lastName.trim().length < 1 || Name.test(lastName)) {
+        //         window.alert("Please enter your lastName properly.");
+        //         lastName.focus();
+        //         return false;
+        //     }
+        //     if (uName.trim().length < 1) {
+        //         window.alert("Please enter your User Name.");
+        //         uName.focus();
+        //         return false;
+        //     }
+        //     if (email == "" || !regEmail.test(email)) {
+        //         window.alert("Please enter a valid e-mail address.");
+        //         email.focus();
+        //         return false;
+        //     }
+        //     if (password == "") {
+        //         alert("Please enter your password");
+        //         password.focus();
+        //         return false;
+        //     }
+        //     if (password.length < 8) {
+        //         alert("Password should be atleast 8 character long");
+        //         password.focus();
+        //         return false;
+        //     }
+        //     if (phone == "" || !regPhone.test(phone)) {
+        //         alert("Please enter valid phone number.");
+        //         phone.focus();
+        //         return false;
+        //     }
+        //     if (d_o_b == "") {
+        //         alert("Please enter date of birth.");
+        //         d_o_b.focus();
+        //         return false;
+        //     }
+        //     // fetch('/registerUser', {
+        //     //     method: "POST",
+        //     //     body: JSON.stringify({
+        //     //         FirstName: firstName,
+        //     //         Emaild: email,
+        //     //         LastName: lastName,
+        //     //         UserName: uName,
+        //     //         phone: phone,
+        //     //         Password: password,
+        //     //         dob: d_o_b
+        //     //     }),
+        //     //     headers: {
+        //     //         'Content-type': 'application/json; charset=UTF-8',
+        //     //     }
+        //     // }).then(result => {
+        //     //     // do something with the result
 
-            // }).catch(err => {
-            //     // if any error occured, then catch it here
-            //     console.error(err);
-            // });
-            // var xhttp = new XMLHttpRequest();
-            // xhttp.open("POST", "/registerUser", true);
-            // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            // xhttp.send();
-            var form = document.createElement("form");
-            form.method = "POST";
-            form.action = "/registerUser";
-            var element1 = document.createElement("INPUT");
-            element1.name = "FirstName"
-            element1.value = firstName;
-            element1.type = 'hidden'
-            form.appendChild(element1);
-            var element2 = document.createElement("INPUT");
-            element2.name = "LastName"
-            element2.value = lastName;
-            element2.type = 'hidden'
-            form.appendChild(element2);
-            var element3 = document.createElement("INPUT");
-            element3.name = "Emaild"
-            element3.value = email;
-            element3.type = 'hidden'
-            form.appendChild(element3);
-            var element4 = document.createElement("INPUT");
-            element4.name = "UserName"
-            element4.value = uName;
-            element4.type = 'hidden'
-            form.appendChild(element4);
-            var element5 = document.createElement("INPUT");
-            element5.name = "phone"
-            element5.value = phone;
-            element5.type = 'hidden'
-            form.appendChild(element5);
-            var element6 = document.createElement("INPUT");
-            element6.name = "dob"
-            element6.value = d_o_b;
-            element6.type = 'hidden'
-            form.appendChild(element6);
-            var element7 = document.createElement("INPUT");
-            element7.name = "Password"
-            element7.value = password;
-            element7.type = 'hidden'
-            form.appendChild(element7);
-            document.body.appendChild(form);
-            form.submit();
-            return true;
-        }
+        //     // }).catch(err => {
+        //     //     // if any error occured, then catch it here
+        //     //     console.error(err);
+        //     // });
+        //     // var xhttp = new XMLHttpRequest();
+        //     // xhttp.open("POST", "/registerUser", true);
+        //     // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        //     // xhttp.send();
+        //     var form = document.createElement("form");
+        //     form.method = "POST";
+        //     form.action = "/registerUser";
+        //     var element1 = document.createElement("INPUT");
+        //     element1.name = "FirstName"
+        //     element1.value = firstName;
+        //     element1.type = 'hidden'
+        //     form.appendChild(element1);
+        //     var element2 = document.createElement("INPUT");
+        //     element2.name = "LastName"
+        //     element2.value = lastName;
+        //     element2.type = 'hidden'
+        //     form.appendChild(element2);
+        //     var element3 = document.createElement("INPUT");
+        //     element3.name = "Emaild"
+        //     element3.value = email;
+        //     element3.type = 'hidden'
+        //     form.appendChild(element3);
+        //     var element4 = document.createElement("INPUT");
+        //     element4.name = "UserName"
+        //     element4.value = uName;
+        //     element4.type = 'hidden'
+        //     form.appendChild(element4);
+        //     var element5 = document.createElement("INPUT");
+        //     element5.name = "phone"
+        //     element5.value = phone;
+        //     element5.type = 'hidden'
+        //     form.appendChild(element5);
+        //     var element6 = document.createElement("INPUT");
+        //     element6.name = "dob"
+        //     element6.value = d_o_b;
+        //     element6.type = 'hidden'
+        //     form.appendChild(element6);
+        //     var element7 = document.createElement("INPUT");
+        //     element7.name = "Password"
+        //     element7.value = password;
+        //     element7.type = 'hidden'
+        //     form.appendChild(element7);
+        //     document.body.appendChild(form);
+        //     form.submit();
+        //     return true;
+        // }
+        
         function myFunction() {
             var x = document.getElementById("myTopnav");
             if (x.className === "topnav") {

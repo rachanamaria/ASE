@@ -1,5 +1,5 @@
 from project import app
-from flask import Flask,url_for, render_template, request, flash
+from flask import Flask,url_for, render_template, request, flash, redirect
 from project.com.dao.UserDAO import UserDAO
 from project.com.vo.UserVo import UserVo
 import re
@@ -86,5 +86,5 @@ def registerValidation():
         return render_template('RegisterPage.html',obj=vo, error=msg)
     else:
         dao.addUser(vo)
-    return render_template('LoginPage.html')
+    return redirect('/')
     
