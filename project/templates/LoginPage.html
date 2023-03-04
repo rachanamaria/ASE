@@ -119,8 +119,7 @@
                     <div class="mb-4">
                         <label for="Password" class="sr-only">Password</label>
                         <input type="password" name="Password" id="Password" placeholder="Password"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                            title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters">
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" required>
                     </div>
                     {% with messages = get_flashed_messages() %}
                     {% if messages %}
