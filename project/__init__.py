@@ -28,4 +28,25 @@ db = SQLAlchemy(app)
 def index():
     return render_template('LoginPage.html')
 
+@app.route('/familyancestry')
+def familyancestry():
+    return render_template('FamilyAncestry.html')
+
+@app.route('/travel')
+def travel():
+    return render_template('Travel.html')
+
+@app.route('/events')
+def events():
+    return render_template('Events.html')
+
+@app.route('/friendhistory')
+def friendhistory():
+    return render_template('FriendHistory.html')
+
+@app.route('/bucketlist')
+def Bucketlist():
+    return render_template('BucketList.html')
+
+
 import project.com  
