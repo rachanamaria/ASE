@@ -32,6 +32,10 @@ def index():
 def familyancestry():
     return render_template('FamilyAncestry.html')
 
+@app.route('/home')
+def home():
+    return render_template('Home.html')
+
 @app.route('/travel')
 def travel():
     return render_template('Travel.html')
