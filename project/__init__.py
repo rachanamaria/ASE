@@ -48,5 +48,13 @@ def friendhistory():
 def Bucketlist():
     return render_template('BucketList.html')
 
+@app.route('/loadContact')
+def contact():
+    return render_template('Contact.html')
+
+@app.route('/loadAbout')
+def about():
+    return render_template('About.html')
+
 
 import project.com  

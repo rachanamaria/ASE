@@ -5,3 +5,4 @@ project/__pycache__/*
 project/com/__pycache__/*
 project/com/controller/__pycache__/*
 project/com/dao/__pycache__/*
+.DS_Store
