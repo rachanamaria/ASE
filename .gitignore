@@ -5,4 +5,8 @@ project/__pycache__/*
 project/com/__pycache__/*
 project/com/controller/__pycache__/*
 project/com/dao/__pycache__/*
+<<<<<<< HEAD
 /se
+=======
+.DS_Store
+>>>>>>> 1c24b0b756d643eef42fd9a1eb48c571f172bd12

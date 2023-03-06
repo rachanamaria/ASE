@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Register</title>
+    <title>Contact</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.2.0/tailwind.min.css">
@@ -10,8 +10,8 @@
 
 <body>
     <div class="topnav" id="myTopnav">
-        <a href="/" class="active">Login</a>
-        <a href="/loadContact">Contact</a>
+        <a href="/">Login</a>
+        <a href="/loadContact" class="active">Contact</a>
         <a href="/loadAbout">About</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
@@ -20,7 +20,6 @@
     <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8" style="
     background-image: url('/static/travel-planning-how-far-in-advance-should-i-plan-a-vacation.webp');
     ">
-
         <div class="w-full max-w-md space-y-8 rounded-lg shadow-lg p-8" style="
           background: ghostwhite;
           ">
@@ -33,12 +32,9 @@
                 <p class="mt-1 text-center text-md text-gray-600">
                     Friends Family Travel Diary
                 </p>
-                <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign Up</h2>
-                {% if error %}
-                <h1 style="color: red;">{{ error }}</h1>
-                {% endif %}
+                <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Support</h2>
             </div>
-            <form class="mt-8 space-y-6" name="RegForm" action="/registerUser" method="POST">
+            <form class="mt-8 space-y-6" name="RegForm" action="/submitContact" method="POST">
                 <input type="hidden" name="remember" value="true">
                 <div class="-space-y-px rounded-md shadow-sm">
                     <div class="mb-4">
@@ -56,12 +52,6 @@
                             title="LastName should only contain alphabets and length should be greater then 1.">
                     </div>
                     <div class="mb-4">
-                        <label for="dob" class="sr-only">DOB</label>
-                        <input type="date" name="dob" id="dob" placeholder="DOB"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{%if obj%}{{obj.Dob}}{%endif%}"
-                            required>
-                    </div>
-                    <div class="mb-4">
                         <label for="phone" class="sr-only">Phone</label>
                         <input type="text" name="phone" id="phone" placeholder="Phone"
                             class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{%if obj%}{{obj.Phone}}{%endif%}"
@@ -71,26 +61,21 @@
                     <div class="mb-4">
                         <label for="Emaild" class="sr-only">Email</label>
                         <input type="email" name="Emaild" id="Emaild" placeholder="Email"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg"
-                            value="{%if obj%}{{obj.Emaild}}{%endif%}" required
-                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                            class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="{%if obj%}{{obj.Emaild}}{%endif%}"
+                            required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
                     </div>
                     <div class="mb-4">
-                        <label for="UserName" class="sr-only">Username</label>
-                        <input type="text" name="UserName" id="UserName" placeholder="Username"
+                        <label for="Comment" class="sr-only">Comment</label>
+                        <textarea type="text" name="comment" id="comment" placeholder="comment"
                             class="bg-gray-100 border-2 w-full p-4 rounded-lg"
-                            value="{%if obj%}{{obj.UserName}}{%endif%}" required>
+                            value="{%if obj%}{{obj.Comment}}{%endif%}" required> </textarea>
                     </div>
-                    <div class="mb-4">
-                        <label for="Password" class="sr-only">Password</label>
-                        <input type="password" name="Password" id="Password" placeholder="Password"
-                            class="bg-gray-100 border-2 w-full p-4 rounded-lg"
-                            value="{%if obj%}{{obj.Password}}{%endif%}" required
-                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                            title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters">
-                    </div>
-
                 </div>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <p align="center">{{ messages[0] }}</p>
+                {% endif %}
+                {% endwith %}
                 <div>
                     <button type="submit" style="background-color: #2A6F97;"
                         class="group relative flex w-full justify-center rounded-md border border-transparent  py-2 px-4 text-sm font-medium text-white  focus:outline-none focus:ring-2  focus:ring-offset-2">
@@ -101,16 +86,13 @@
                                     clip-rule="evenodd" />
                             </svg>
                         </span>
-                        Register
+                        Submit
                     </button>
-                    <a href="/" class="text-center block text-sm text-gray-600 hover:text-gray-500">
-                        Already have an account? Click here
-                    </a>
                 </div>
             </form>
         </div>
     </div>
-    <script> 
+    <script>
         function myFunction() {
             var x = document.getElementById("myTopnav");
             if (x.className === "topnav") {
