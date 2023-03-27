@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template, session
 from flask_sqlalchemy import SQLAlchemy
 import os
 
@@ -26,7 +26,17 @@ db = SQLAlchemy(app)
 
 @app.route('/')
 def index():
-    return render_template('LoginPage.html')
+    if 'isLoggedIn' not in session:
+        session['isLoggedIn'] = False
+    else:
+        if 'role' in session and session['role'] == 1:
+            isAdmin = True
+        elif 'role' in session and session['role'] == 0:
+            isAdmin = False
+        else:
+            isAdmin = False
+        isUserLoggedIn = session['isLoggedIn']
+    return render_template('LoginPage.html', isUser=isUserLoggedIn, isAdmin = isAdmin)
 
 @app.route('/familyancestry')
 def familyancestry():
@@ -54,11 +64,31 @@ def Bucketlist():
 
 @app.route('/loadContact')
 def contact():
-    return render_template('Contact.html')
+    if 'role' in session and session['role'] == 1:
+        isAdmin = True
+    elif 'role' in session and session['role'] == 0:
+        isAdmin = False
+    else:
+        isAdmin = False
+    isUserLoggedIn = session['isLoggedIn']
+    return render_template('Contact.html', isUser=isUserLoggedIn, isAdmin = isAdmin)
 
 @app.route('/loadAbout')
 def about():
-    return render_template('About.html')
+    if 'role' in session and session['role'] == 1:
+        isAdmin = True
+    elif 'role' in session and session['role'] == 0:
+        isAdmin = False
+    else:
+        isAdmin = False
+    isUserLoggedIn = session['isLoggedIn']
+    return render_template('About.html', isUser=isUserLoggedIn, isAdmin = isAdmin)
 
+@app.route('/logout')
+def logOut():
+    session.pop('username')
+    session['isLoggedIn'] = False
+    session.pop('role')
+    return index()
 
 import project.com  
