@@ -26,6 +26,8 @@ db = SQLAlchemy(app)
 
 @app.route('/')
 def index():
+    isUserLoggedIn = False
+    isAdmin = False
     if 'isLoggedIn' not in session:
         session['isLoggedIn'] = False
     else:
