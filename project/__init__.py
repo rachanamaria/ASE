@@ -47,6 +47,21 @@ def familyancestry():
 @app.route('/home')
 def home():
     return render_template('Home.html')
+@app.route('/allfriends')
+def allfriends():
+    return render_template('AllFriends.html')
+
+@app.route('/friendsaddpost')
+def friendsaddpost():
+    return render_template('FriendsAddPost.html')
+
+@app.route('/individualperson/<id>')
+def individualperson(id):
+    return render_template('IndividualFriend.html', data=id)
+
+@app.route('/home2')
+def home2():
+    return render_template('Home2.html')
 
 @app.route('/travel')
 def travel():

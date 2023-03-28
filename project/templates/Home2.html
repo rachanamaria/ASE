@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.2.0/tailwind.min.css">
+        <link rel="stylesheet" href="../static/css/main.css">
+        <title>Home</title>
+        <script>
+            function myFunction() {
+                var x = document.getElementById("myTopnav");
+                if (x.className === "topnav") {
+                    x.className += " responsive";
+                } else {
+                    x.className = "topnav";
+                }
+            }
+    
+        </script>
+        <style>
+            div#imh {
+                display: block;
+                position: relative;
+            }
+    
+            div#imh::after {
+                content: "";
+                background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+                opacity: 0.5;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1;
+            }
+    
+            .leftContent {
+                float:left;
+                width: 40%;
+                font-weight: bold;
+            }
+    
+            .rightContent {
+                float:right;
+                width: 60%;
+            }
+        </style>
+    </head>
+    
+    <body style="height: 100%;">
+        <div class="topnav" id="myTopnav">
+            <a href="/home"  class="active">Home</a>
+            <a href="/loadContact">Contact</a>
+            <a href="/loadAbout">About</a>
+            <!-- show logout button at the right end -->
+            <a href="/" style="float:right">Logout</a>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+        <header class="bg-white shadow">
+            <div class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
+             
+
+
+
+          
+
+            <ul role="list" class="grid grid-cols-1 md:grid-cols-6">
+              <li class="pb-3">
+                <div class="flex items-center gap-x-6 ">
+                  <img class="h-20 w-20 rounded-full" src="../static/family-history.png" alt="">
+                  <div>
+                    <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900 pl-2">Family</h3>
+                    
+                  </div>
+                </div>
+              </li>
+              <li class="pb-3">
+                  <div class="flex items-center gap-x-6">
+                    <img class="h-20 w-20 rounded-full" src="../static/friends-history.png" alt="">
+                    <div>
+                      <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900 pl-2">Friends</h3>
+                     
+                    </div>
+                  </div>
+                </li>
+                <li class="pb-3" >
+                  <div class="flex items-center gap-x-6">
+                    <img class="h-20 w-20 rounded-full" src="../static/event-history.png" alt="">
+                    <div>
+                      <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900 pl-2">Event</h3>
+                     
+                  </div>
+                </li>
+                <li class="pb-3">
+                  <div class="flex items-center gap-x-6">
+                    <img class="h-20 w-20 rounded-full" src="../static/travel.png" alt="">
+                    <div>
+                      <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900 pl-2">Travel</h3>
+                  
+                    </div>
+                  </div>
+                </li>
+                <li class="pb-3">
+                  <div class="flex items-center gap-x-6">
+                    <img class="h-20 w-20 rounded-full" src="../static/bucketlist.png" alt="">
+                    <div>
+                      <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900 pl-2">Bucketlist</h3>
+                     
+                    </div>
+                  </div>
+                </li>
+            </ul>
+
+</div>
+</header>
+</body>
+</html>
