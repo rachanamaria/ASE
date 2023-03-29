@@ -1,5 +1,5 @@
 from project import app
-from flask import flash
+from flask import flash, session
 from project.com.dao.UserDAO import UserDAO
 from project.com.vo.UserVo import UserVo
 from project.com.controller.ProjectAdminController import  adminLogin
@@ -75,7 +75,7 @@ def loginValidation():
     vo.UserName=UserName
     vo.Password=Password
     vo.Emaild=EmailId
-
+    session['isLoggedIn'] = False
     if len(UserName)>0:
         user=dao.getUserByUserName(UserName)
     elif len(EmailId)>0:
@@ -112,8 +112,11 @@ def loginValidation():
                         if len(ps)>0:
                             groupPost.append(ps)
                 print('user role:',user.Role)
+                session['username'] = user.UserName
+                session['isLoggedIn'] = True
+                session['role'] = 0
                 if(user.Role):
-                
+                    session['role'] = 1
                     return render_template('DashBoard.html',obj=user,activeGroupUser=activeGroupUser,lenActiveGroupUser=len(activeGroupUser),lenActiveUsers=len(activeUsers),activeUsers=activeUsers,adminPost=adminPost,ldp=len(groupPost),lugu=len(unApprovedGroupUserList),lug=len(unApprovedGroup),lup=len(UnApprovedPostList),lus=len(unApprovedUserList),dailyPost=groupPost,unApprovedUserList=unApprovedUserList,UnApprovedPostList=UnApprovedPostList,unApprovedGroup=unApprovedGroup,unApprovedGroupUserList=unApprovedGroupUserList)
                 else:
                      return render_template('Home.html',obj=user,activeGroupUser=activeGroupUser,lenActiveGroupUser=len(activeGroupUser),lenActiveUsers=len(activeUsers),activeUsers=activeUsers,adminPost=adminPost,ldp=len(groupPost),lugu=len(unApprovedGroupUserList),lug=len(unApprovedGroup),lup=len(UnApprovedPostList),lus=len(unApprovedUserList),dailyPost=groupPost,unApprovedUserList=unApprovedUserList,UnApprovedPostList=UnApprovedPostList,unApprovedGroup=unApprovedGroup,unApprovedGroupUserList=unApprovedGroupUserList)
@@ -133,12 +136,6 @@ def deActivateUser():
     UserId=request.form['TargetUserId']
     UserDao.deActivateUser(UserId)
     return loadDashBoard()
-
-# LoginPage.html
-@app.route('/logOut', methods=['POST'])
-def lougOut():
-    session.clear()
-    return index()
 
 
 @app.route('/DashBoard', methods=['POST'])
@@ -164,6 +161,8 @@ def loadDashBoard():
     vo=UserVo()
     dao=UserDAO()
     if user.Status==1:
+        session['username'] = user.UserName
+        session['isLoggedIn'] = True
         adminGroups=GroupDao.getGroupsWhereAdminId(user.UserId)
         group=UserGroupDao.getApprovedGroupsByUserId(user.UserId)
         if user.Role==1:
@@ -193,6 +192,7 @@ def loadDashBoard():
                     groupPost.append(ps)
                 # ps=PostDao.getApporvedPostByGoupId(i.GroupId)
         print('user role:',user.Role)
+<<<<<<< HEAD
         return render_template('DashBoard.html',obj=user,activeGroupUser=activeGroupUser,
                                lenActiveGroupUser=len(activeGroupUser),lenActiveUsers=len(activeUsers),
                                activeUsers=activeUsers,adminPost=adminPost,ldp=len(groupPost),lugu=len(unApprovedGroupUserList),
@@ -200,5 +200,9 @@ def loadDashBoard():
                                dailyPost=groupPost,unApprovedUserList=unApprovedUserList,UnApprovedPostList=UnApprovedPostList,
                                unApprovedGroup=unApprovedGroup,
                                unApprovedGroupUserList=unApprovedGroupUserList)
+=======
+        session['role'] = user.Role
+        return render_template('DashBoard.html',obj=user,activeGroupUser=activeGroupUser,lenActiveGroupUser=len(activeGroupUser),lenActiveUsers=len(activeUsers),activeUsers=activeUsers,adminPost=adminPost,ldp=len(groupPost),lugu=len(unApprovedGroupUserList),lug=len(unApprovedGroup),lup=len(UnApprovedPostList),lus=len(unApprovedUserList),dailyPost=groupPost,unApprovedUserList=unApprovedUserList,UnApprovedPostList=UnApprovedPostList,unApprovedGroup=unApprovedGroup,unApprovedGroupUserList=unApprovedGroupUserList)
+>>>>>>> 8141d4538efc9b10bdbbb572fa787eef9f11bf30
     else:
         return render_template('LoginPage.html')

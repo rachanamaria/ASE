@@ -54,8 +54,17 @@
 <body style="height: 100%;">
     <div class="topnav" id="myTopnav">
         <a href="/">Login</a>
+        {% if isUser and isAdmin == False %}
+        <a href="/home">Home</a>
+        {%endif%}
+        {% if isUser and isAdmin %}
+        <a href="/DashBoard">dashboard</a>
+        {%endif%}
         <a href="/loadContact">Contact</a>
         <a href="/loadAbout" class="active">About</a>
+        {% if isUser %}
+        <a href="/logout" style="float:right">Logout</a>
+        {%endif%}
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
         </a>

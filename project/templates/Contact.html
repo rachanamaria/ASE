@@ -11,8 +11,17 @@
 <body>
     <div class="topnav" id="myTopnav">
         <a href="/">Login</a>
+        {% if isUser and isAdmin == False %}
+        <a href="/home">Home</a>
+        {%endif%}
+        {% if isUser and isAdmin %}
+        <a href="/DashBoard">dashboard</a>
+        {%endif%}
         <a href="/loadContact" class="active">Contact</a>
         <a href="/loadAbout">About</a>
+        {% if isUser %}
+        <a href="/logout" style="float:right">Logout</a>
+        {%endif%}
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
         </a>
@@ -66,7 +75,7 @@
                     </div>
                     <div class="mb-4">
                         <label for="Comment" class="sr-only">Comment</label>
-                        <textarea type="text" name="comment" id="comment" placeholder="comment"
+                        <textarea type="text" name="comment" id="comment" placeholder="comment" maxlength="250"
                             class="bg-gray-100 border-2 w-full p-4 rounded-lg"
                             value="{%if obj%}{{obj.Comment}}{%endif%}" required> </textarea>
                     </div>

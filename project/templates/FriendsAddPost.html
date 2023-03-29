@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.2.0/tailwind.min.css"
+    />
+    <link rel="stylesheet" href="../static/css/main.css" />
+    <title>Home</title>
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script>
+      function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+          x.className += " responsive";
+        } else {
+          x.className = "topnav";
+        }
+      }
+    </script>
+    <style>
+      div#imh {
+        display: block;
+        position: relative;
+      }
+
+      div#imh::after {
+        content: "";
+        background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+        opacity: 0.5;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        z-index: -1;
+      }
+
+      .leftContent {
+        float: left;
+        width: 40%;
+        font-weight: bold;
+      }
+
+      .rightContent {
+        float: right;
+        width: 60%;
+      }
+    </style>
+  </head>
+
+  <body style="height: 100%">
+    <div class="topnav" id="myTopnav">
+      <a href="/home" class="active">Home</a>
+      <a href="/loadContact">Contact</a>
+      <a href="/loadAbout">About</a>
+      <!-- show logout button at the right end -->
+      <a href="/" style="float: right">Logout</a>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+
+    <header class="bg-white shadow">
+      <div class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-6">
+          <div class="col-span-1 md:col-span-1">
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900">
+              POST
+            </h1>
+          </div>
+
+          <div class="col-span-1 md:col-span-5 flex flex-row-reverse">
+            <div @click.away="open = false" class="relative" x-data="{ open: false }">
+              <button @click="open = !open" class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                <span>Navigate</span>
+                <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              </button>
+              <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
+                  <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/friendhistory">Friends Page</a>
+                  <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/allfriends">All Friends</a>
+                </div>
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </header>
+ <!-- Add Post Option -->
+ <div class="heading text-center font-bold text-2xl m-5 text-gray-800">New Post</div>
+
+   <div class="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
+     <input class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellcheck="false" placeholder="description" type="text" id="postid">
+     <!-- <textarea class="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none" spellcheck="false" placeholder="Describe everything about this post here"></textarea> -->
+     <image src=""  id="post-pic"/>
+     <!-- icons -->
+     <div class="icons flex text-gray-500 m-2">
+       <input type="file" id="friendsimage" accept="image/png, image/jpg, image/jpeg" />
+      
+       <div class="count ml-auto text-gray-400 text-xs font-semibold">0/300</div>
+     </div>
+     <script>
+        let postpic = document.getElementById("post-pic");
+        let inputpic = document.getElementById("friendsimage");
+        
+        inputpic.onchange = function(){
+           
+            postpic.src = URL.createObjectURL(inputpic.files[0]);
+        }
+     </script>
+     <!-- buttons -->
+     <div class="buttons flex">
+       <div class="btn border border-gray-300 p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto" id="cancel">Cancel</div>
+       <div class="btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500" id="Post">Post</div>
+
+       <script>
+        let cancelpost = document.getElementById("cancel");
+        let Publishpost = document.getElementById("Post");
+        let Postdesc = document.getElementById("postid");
+
+        cancelpost.onclick = function(){
+            
+            postpic.src =""
+            document.getElementById("friendsimage").value = "";
+
+        }
+        var Postvalues = new Map();
+        Publishpost.onclick = function(){
+            Postvalues.set('Description',Postdesc.value);
+            Postvalues.set('Picture',inputpic.files[0]);
+            console.log(Postvalues);
+            postpic.src =""
+            document.getElementById("friendsimage").value = "";
+            document.getElementById("postid").value = "";
+            alert("post Added Successfully")
+        }
+
+       
+       </script>
+     </div>
+   </div>
+
+  </body>
+</html>
