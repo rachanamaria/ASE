@@ -62,9 +62,10 @@
             </a>
         </div>
         <!-- Test friends -->
+        <div id="imh" >
         <div class=" grid grid-cols-3 h-screen gap-x-4">
         <aside class="flex col-span-1">
-          <div class="h-screen py-8 overflow-y-auto bg-white border-l border-r sm:w-64 w-60 dark:bg-gray-900 dark:border-gray-700">
+          <div class="h-screen py-8 overflow-y-auto border-l border-r sm:w-64 w-60 dark:bg-gray-900 dark:border-gray-700">
             <h2 class="px-5 text-lg font-medium text-gray-800 dark:text-white">Friends</h2>
                 <div class="  mt-8 space-y-4" id ="displayallfriends">
                     
@@ -76,64 +77,30 @@
         var Friends = [
           {
             name: "Leslie",
+            "userid":"01",
             profilepic: "../static/friend1.png",
           },
           {
             name: "Alexander",
+            "userid":"02",
             profilepic: "../static/friend2.png",
           },
           {
             name: "Diana",
+            "userid":"03",
             profilepic: "../static/friend3.png",
           },
           {
             name: "Marcus",
+            "userid":"04",
             profilepic: "../static/friend4.png",
           },
           {
             name: "Jacqueline",
+            "userid":"05",
             profilepic: "../static/friend5.png",
           },
-          {
-            name: "Leslie",
-            profilepic: "../static/friend1.png",
-          },
-          {
-            name: "Alexander",
-            profilepic: "../static/friend2.png",
-          },
-          {
-            name: "Diana",
-            profilepic: "../static/friend3.png",
-          },
-          {
-            name: "Marcus",
-            profilepic: "../static/friend4.png",
-          },
-          {
-            name: "Jacqueline",
-            profilepic: "../static/friend5.png",
-          },
-          {
-            name: "Leslie",
-            profilepic: "../static/friend1.png",
-          },
-          {
-            name: "Alexander",
-            profilepic: "../static/friend2.png",
-          },
-          {
-            name: "Diana",
-            profilepic: "../static/friend3.png",
-          },
-          {
-            name: "Marcus",
-            profilepic: "../static/friend4.png",
-          },
-          {
-            name: "Jacqueline",
-            profilepic: "../static/friend5.png",
-          },
+          
         ];
 
         buildUL(Friends);
@@ -145,15 +112,17 @@
             console.log(data[i]);
 
             var listvalues = `
-            <a href="/individualperson/${data[i].name}">
-            <button class="flex items-center w-full px-5 py-2 transition-colors duration-200 dark:hover:bg-gray-800 gap-x-2 hover:bg-gray-100 focus:outline-none">
+            <form id ="navigatetouser" action="" method="post">
+            <a href="/individualperson/${data[i].name}" onclick="document.getElementById('navigatetouser').submit();>
+            <button id="${data[i].userid}" class="flex items-center w-full px-5 py-2 transition-colors duration-200 dark:hover:bg-gray-800 gap-x-2 hover:bg-gray-100 focus:outline-none">
                         <img class="object-cover w-8 h-8 rounded-full" src="${data[i].profilepic}" alt="">
                         <div class="text-left rtl:text-right">
                             <h1 class="text-sm font-medium text-gray-700 capitalize dark:text-white">${data[i].name}</h1>
                            
                         </div>
                     </button>
-                    </a>`;
+                    </a>
+                    </form>`;
 
                     displayallfriends.innerHTML += listvalues;
           }
@@ -163,7 +132,7 @@
         <!-- Search for friend -->
         <div class=" p-10 col-span-2 ">
             <h1 class="  block ml-2 font-bold pb-10">Add Friends</h1>
-            <form class="flex items-center grid grid-cols-1 md:grid-cols-3 " onsubmit="return false">   
+            <form  action="" method="post" class="flex items-center grid grid-cols-1 md:grid-cols-3 " onsubmit="return false">   
               <label for="voice-search" class="sr-only">Search</label>
               <div class="relative w-full md:col-span-2">
                   <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -185,6 +154,7 @@
            
             <!-- list of names present -->
             <div id="disp-friends">
+              <form class="flex" action="" method="post" >
                 <div class="bg-white font-sans mt-24 h-100 w-full flex flex-row justify-center items-center" id="FriendName" style="visibility: hidden;">
                     <div class="card w-96 mx-auto bg-white  shadow-xl hover:shadow">
                         <img class="w-32 mx-auto rounded-full -mt-20 border-8 border-white" src="../static/friend1.png" alt="">
@@ -198,12 +168,12 @@
                         <hr class="mt-8">
                         <div class="flex p-2 w-full h-full bg-indigo-500 items-center">
                             <button id="Addfriendbutton" type="submit" class="text-xl tracking-tight text-gray-900 m-2 p-1 w-full">
-                                Add
-              Friend
+                                Add Friend
                             </button>
                         </div>
                     </div>
                 </div>
+              </form>
                 <!-- end -->
             </div>
         </div>
@@ -263,5 +233,6 @@
 
     }
     </script>
+      </div>
 </body>
 </html>

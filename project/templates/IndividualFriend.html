@@ -61,7 +61,10 @@
                 <i class="fa fa-bars"></i>
             </a>
         </div>
-        <header class="bg-white shadow">
+        <div id="imh">
+
+       
+        <header class=" shadow">
           <div class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-2 md:grid-cols-6">
                     <div class="col-span-1 md:col-span-1">
@@ -79,6 +82,133 @@
                 </div>
             </div>
         </header>
-        <p></p>
+        <div id="allcomments" class=" overflow-hidden shadow-none p-12">
+      
+      
+        </div>
+        <script>
+          var Comments = [
+            {
+              "Author" : "Leslie",
+              "Description" : "Wonderful Trip",
+              "Picture": "https://images.pexels.com/photos/1450082/pexels-photo-1450082.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+              "Comments": [
+                {
+                  "Author": "Joshua",
+                  "Comment": "GoodPost"
+                }
+              ]
+          },
+          {
+              "Author" : "Epps",
+              "Description" : "Peace",
+              "Picture": "https://images.pexels.com/photos/1450082/pexels-photo-1450082.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+              "Comments": [
+                {
+                  "Author": "Garry",
+                  "Comment": "I need to visit one day"
+                }
+              ]
+          }
+        ]
+        loadComments(Comments)
+    
+        function loadComments(data) {
+          var listcomments = document.getElementById("allcomments");
+    
+              for (var i = 0; i < data.length; i++) {
+                console.log(data[i]);
+                var Postvalue = `
+                <div class="mt-10 p-25 grid grid-row-12 md:grid-cols-12">
+            <div class="row-span-6 w-full md:col-span-5">
+              <img
+                class="w-full max-w-full min-w-full"
+                src="${data[i].Picture}"
+                alt="Description"
+              />
+            </div>
+            <div class="row-span-6 md:col-span-6 relative pl-4">
+              <header class="border-b border-grey-400">
+                <div>
+                  <a
+                    href="#"
+                    class="block cursor-pointer py-4 flex items-center text-sm outline-none focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out"
+                  >
+                    <img
+                      src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+                      class="h-8 w-8 rounded-full object-cover"
+                      alt="user"
+                    />
+                    <p class="block ml-2 font-bold"> {{data}}</p>
+                  </a>
+                </div>
+                <div>
+                  <p class="block ml-2 font-bold">${data[i].Description}</p>
+                </div>
+              </header>
+              <!--All Comment section -->
+              `
+              for (var j = 0; j < data[i].Comments.length; j++) {
+                var commentValue = `
+              <div class="text-sm mb-2 flex flex-start items-center pt-1">
+                <div>
+                  <a
+                    href="#"
+                    class="cursor-pointer flex items-center text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out"
+                  >
+                    <img
+                      class="h-8 w-8 rounded-full object-cover"
+                      src="https://images.pexels.com/photos/1450082/pexels-photo-1450082.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                      alt="user"
+                    />
+                  </a>
+                </div>
+                <p class="font-bold ml-2">
+                  <a class="cursor-pointer">${data[i].Comments[j].Author}</a>
+                  <span class="text-gray-700 font-medium ml-1">${data[i].Comments[j].Comment} </span>
+                </p>
+              </div>
+    
+              <!-- End of All Comment Section -->
+    
+              <!-- Add comment text area with button -->
+                `
+                Postvalue += commentValue;
+              }
+              var addcommentsection = `
+              <div class="bottom-0 left-0 right-0 pl-4 md:absolute">
+                <div class="pt-4 pb-1 pr-3 max-w-md">
+                  <form action="" method="post" onsubmit="return false">
+                  <div class="flex items-start">
+                    <input type ="text"
+                      class="w-full resize-none outline-none appearance-none"
+                      aria-label="Agrega un comentario..."
+                      placeholder="Post your comment"
+                      autocomplete="off"
+                      autocorrect="off"
+                      style="height: 36px"
+                    />
+                    <button type="submit"
+                      class="mb-2 focus:outline-none border-none bg-transparent text-blue-600"
+                    >
+                      Comment
+                    </button>
+                  </div>
+                  </form>
+                </div>
+              </div>
+              <!-- End of Comment text area and button -->
+            </div>
+            <!-- End of Right side -->
+          </div>
+                
+              
+              `
+              Postvalue += addcommentsection;
+              listcomments.innerHTML += Postvalue;
+              }
+        }
+        </script>
+         </div>
 </body>
 </html>
