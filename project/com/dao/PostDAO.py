@@ -44,6 +44,9 @@ class PostDAO:
         # posts=[]
         comments=[]
         posts=PostVo.query.filter_by(UserId = UserId).all()
+        for post in posts:
+            coomentByPost = CommentDao.getCommentByPostId(post.PostId)
+            comments.append(coomentByPost)
         # fetch coments for each post with postId inside posts
         # store it inside a comments=[] and resturn it with post
         # posts at index 0 of posts array with have comments at index 0 of comment array
