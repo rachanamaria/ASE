@@ -192,17 +192,7 @@ def loadDashBoard():
                     groupPost.append(ps)
                 # ps=PostDao.getApporvedPostByGoupId(i.GroupId)
         print('user role:',user.Role)
-<<<<<<< HEAD
-        return render_template('DashBoard.html',obj=user,activeGroupUser=activeGroupUser,
-                               lenActiveGroupUser=len(activeGroupUser),lenActiveUsers=len(activeUsers),
-                               activeUsers=activeUsers,adminPost=adminPost,ldp=len(groupPost),lugu=len(unApprovedGroupUserList),
-                               lug=len(unApprovedGroup),lup=len(UnApprovedPostList),lus=len(unApprovedUserList),
-                               dailyPost=groupPost,unApprovedUserList=unApprovedUserList,UnApprovedPostList=UnApprovedPostList,
-                               unApprovedGroup=unApprovedGroup,
-                               unApprovedGroupUserList=unApprovedGroupUserList)
-=======
         session['role'] = user.Role
         return render_template('DashBoard.html',obj=user,activeGroupUser=activeGroupUser,lenActiveGroupUser=len(activeGroupUser),lenActiveUsers=len(activeUsers),activeUsers=activeUsers,adminPost=adminPost,ldp=len(groupPost),lugu=len(unApprovedGroupUserList),lug=len(unApprovedGroup),lup=len(UnApprovedPostList),lus=len(unApprovedUserList),dailyPost=groupPost,unApprovedUserList=unApprovedUserList,UnApprovedPostList=UnApprovedPostList,unApprovedGroup=unApprovedGroup,unApprovedGroupUserList=unApprovedGroupUserList)
->>>>>>> 8141d4538efc9b10bdbbb572fa787eef9f11bf30
     else:
         return render_template('LoginPage.html')

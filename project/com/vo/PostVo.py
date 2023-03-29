@@ -10,6 +10,7 @@ class PostVo(db.Model):
     createdTime=db.Column(db.DateTime(timezone=True))
     UserName = db.Column('UserName',db.String(50))  
     PostDescription=db.Column('PostDescription',db.String(500))
+    PostURL=db.Column('PostURL',db.String(500))
 
 with app.app_context():
     db.create_all()
