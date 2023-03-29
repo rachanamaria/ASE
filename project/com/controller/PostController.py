@@ -61,10 +61,10 @@ def addPost():
     vo.PostDescription=PostDescription
     vo.UserName=user.UserName
     post=PostDao.addPost(vo,time)
-    img=open('project/static/Posts/'+str(post.PostId)+'.'+nm[-1],'wb')
+    img=open('D:/Sem 4/ASE/Rachna repo/ASE/project/static/Posts/'+str(post.PostId)+'.'+nm[-1],'wb')
     img.write(uploaded_img.read())
     img.close()
-    vo.PostURL='project/static/Posts/'+str(post.PostId)+'.'+nm[-1]
+    vo.PostURL='D:/Sem 4/ASE/Rachna repo/ASE/project/static/Posts/'+str(post.PostId)+'.'+nm[-1]
     post=PostDao.addPost(vo,time)
 
     if vo.type=='Travel':
@@ -86,9 +86,4 @@ def userPosts():
     firendPosts=PostDao.getPostByUserId(friendId)
     return redirect ('/')
 
-# @app.route('/UserPosts', methods=['POST'])
-# def userPosts():
-#     friendId=request.form['UserId']
-#     firendPosts=PostDao.getPostByUserId(friendId)
-#     return redirect ('/')
 

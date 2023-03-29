@@ -1,11 +1,16 @@
 from project import app
 from flask import Flask,url_for, render_template, request, flash, redirect
 from project.com.dao.UserDAO import UserDAO
+from project.com.dao.RelationsDAO import RelationsDAO
+
 from project.com.dao.GroupDAO import GroupDAO
-
+import pandas as pd
 from project.com.vo.UserVo import UserVo
-import re
+from project.com.dao.UserDAO import UserDAO
 
+import re
+from project.com.vo.UserRelationsVo import UserRelationsVo
+relationsDAO=RelationsDAO()
 @app.route('/RegisterPage')
 def loadRegister():
     return render_template('RegisterPage.html')
@@ -92,4 +97,35 @@ def registerValidation():
         userDao.addUser(vo)
         groupDao.addDefaultGroups(vo)
     return redirect('/')
-    
+
+@app.route('/LoadData')
+def LoadData():
+    df=pd.read_csv('D:/Sem 4/ASE/Rachna repo/ASE/project/com/User_relations.csv')
+    df2=pd.read_csv('D:/Sem 4/ASE/Rachna repo/ASE/project/com/user.csv')
+    userDAO=UserDAO()
+    for i in range(len(df2)):
+        # print(df.iloc[i]['Relation'])
+        vo=UserVo()
+        vo.FirstName =df2.iloc[i]['FirstName']
+        vo.Emaild =df2.iloc[i]['Emaild']
+        vo.LastName =df2.iloc[i]['LastName']
+        vo.UserName =df2.iloc[i]['UserName']
+        vo.Password =df2.iloc[i]['Password']
+        vo.Phone=int(df2.iloc[i]['Phone'])
+        vo.Dob =df2.iloc[i]['Dob']
+        vo.Status=int(df2.iloc[i]['Status'])
+        vo.Role=int(df2.iloc[i]['Role'])
+        userDAO.addUser(vo)
+    for i in range(len(df)):
+        print(df.iloc[i]['Relation'])
+        userRelationsVo1=UserRelationsVo()
+        userRelationsVo1.UserId=int(df.iloc[i]['UserId'])
+        userRelationsVo1.User2Id=int(df.iloc[i]['User2Id'])
+        userRelationsVo1.Relation=df.iloc[i]['Relation']
+        relationsDAO.addRelation(userRelationsVo1)
+        # 
+        # print(i)
+    return redirect('/')
+
+    # loadData()
+# 
