@@ -20,9 +20,9 @@ dbname = 'rxr8071_FFTD'
 username = 'rxr8071_admin'
 password = 'c#vFH9LQnQ'
 # ---------------------mysql url---------------------------------------------
-url="mysql+pymysql://{0}:{1}@{2}:{3}/{4}".format(username, password, servername, port, dbname)
+# url="mysql+pymysql://{0}:{1}@{2}:{3}/{4}".format(username, password, servername, port, dbname)
 # ---------------------------In memory url-----------------------------------------
-# url='sqlite:///database.db'
+url='sqlite:///database.db'
 app.config['SQLALCHEMY_DATABASE_URI'] = url
 app.config['SQLALCHEMY_MAX_OVERFLOW'] = 0
 db = SQLAlchemy(app)
@@ -48,10 +48,6 @@ def index():
 def familyancestry():
     return render_template('FamilyAncestry.html')
 
-@app.route('/home')
-def home():
-    return render_template('Home.html')
-
 @app.route('/addPostMain')
 def addPostMain():
     return render_template('AddPostMain.html')
@@ -60,17 +56,13 @@ def addPostMain():
 def addPostEvent():
     return render_template('AddPostEvent.html')
 
-@app.route('/allfriends')
-def allfriends():
-    return render_template('AllFriends.html')
+# @app.route('')
+# def allfriends():
+#     return render_template('AllFriends.html')
 
 @app.route('/friendsaddpost')
 def friendsaddpost():
     return render_template('FriendsAddPost.html')
-
-@app.route('/individualperson/<id>')
-def individualperson(id):
-    return render_template('IndividualFriend.html', data=id)
 
 @app.route('/home2')
 def home2():

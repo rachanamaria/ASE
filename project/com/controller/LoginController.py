@@ -146,7 +146,7 @@ def loadDashBoard():
     print(UserId)
     print(user)
     # print(user[0])
-    user=user[0]
+    user=user
     # return afterApproval(user)
     unApprovedUserList=[]
     unApprovedGroupUserList=[]

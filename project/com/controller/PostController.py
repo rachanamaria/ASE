@@ -47,8 +47,7 @@ def deletePost():
 def addPost():
     UserId=request.form['UserId']
     user=UserDao.getByUserId(UserId)
-    print(user)
-    user=user[0]
+    user=user
 
     PostDescription=request.form['PostDescription']
     uploaded_img = request.files['file']
@@ -62,10 +61,10 @@ def addPost():
     vo.PostDescription=PostDescription
     vo.UserName=user.UserName
     post=PostDao.addPost(vo,time)
-    img=open('D:/Sem 4/ASE/Rachna repo/ASE/project/static/Posts/'+str(post.PostId)+'.'+nm[-1],'wb')
+    img=open('../project/static/Posts/'+str(post.PostId)+'.'+nm[-1],'wb')
     img.write(uploaded_img.read())
     img.close()
-    vo.PostURL='D:/Sem 4/ASE/Rachna repo/ASE/project/static/Posts/'+str(post.PostId)+'.'+nm[-1]
+    vo.PostURL='../static/Posts/'+str(post.PostId)+'.'+nm[-1]
     post=PostDao.addPost(vo,time)
 
     if vo.type=='Travel':
@@ -83,8 +82,12 @@ def addPost():
 
 @app.route('/UserPosts', methods=['POST'])
 def userPosts():
-    friendId=request.form['UserId']
-    firendPosts=PostDao.getPostByUserId(friendId)
-    return redirect ('/')
-
+    person=request.form['UserId']
+    friendId=request.form['User2Id']
+    firendPosts,comments=PostDao.getPostByUserId(friendId)
+    if len(firendPosts)==0:
+        fnName=''
+    else:
+        fnName=firendPosts[0].UserName
+    return render_template('IndividualFriend.html',person=person,friendName=fnName,firendPosts=firendPosts,comments=comments)
 

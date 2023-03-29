@@ -41,9 +41,8 @@ class PostDAO:
         return postComments
     
     def getPostByUserId(self, UserId):
-        # posts=[]
         comments=[]
-        posts=PostVo.query.filter_by(UserId = UserId).all()
+        posts=PostVo.query.filter_by(CreatorId = UserId).all()
         for post in posts:
             coomentByPost = CommentDao.getCommentByPostId(post.PostId)
             comments.append(coomentByPost)
