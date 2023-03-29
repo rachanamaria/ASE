@@ -71,7 +71,7 @@
             <h2 class="px-5 text-lg font-medium text-gray-800 dark:text-white">Friends</h2>
                 <div class="  mt-8 space-y-4" id ="displayallfriends">
                   {% for f in friends %}
-                    <form id ="navigatetouser" action='/UserPosts' method="post">
+                    <form id ="navigatetouser" action='/UserFriendsPosts' method="post">
       <input type="hidden" name="UserId" value='{{userId}}'>
 
                       <input type="hidden" name="User2Id" value='{{f.UserId}}'>

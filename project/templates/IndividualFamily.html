@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.2.0/tailwind.min.css">
+        <link rel="stylesheet" href="../static/css/main.css">
+        <title>Home</title>
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+        <script>
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }
+        </script>
+        <style>
+    div#imh {
+      display: block;
+      position: relative;
+    }
+
+    div#imh::after {
+      content: "";
+      background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+      opacity: 0.5;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: -1;
+    }
+
+    .leftContent {
+      float: left;
+      width: 40%;
+      font-weight: bold;
+    }
+
+    .rightContent {
+      float: right;
+      width: 60%;
+    }
+        </style>
+    </head>
+    <body style="height: 100%">
+        <div class="topnav" id="myTopnav">
+            <a href="/home" class="active">Home</a>
+            <a href="/loadContact">Contact</a>
+            <a href="/loadAbout">About</a>
+            <!-- show logout button at the right end -->
+            <a href="/" style="float: right">Logout</a>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+        <div id="imh">
+
+       
+        <header class=" shadow">
+          <div class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-6">
+                    <div class="col-span-1 md:col-span-1">
+                        <h1 class="text-3xl font-bold tracking-tight text-gray-900">
+                            {{friendName}}
+                        </h1>
+                    </div>
+                    
+                    <form action="/allfriends" method="post">
+                    <input type="hidden" name="UserId" value="{{person}}">
+                      <div class="col-span-1 md:col-span-5 flex flex-row-reverse ">
+                      <button type="submit" class="inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-blue-700 border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        All Friends</button>
+                </div>
+              </form>
+
+            </div>
+        </header>
+        <div id="allcomments" class=" overflow-hidden shadow-none p-12">
+          <!-- post -->
+
+        {% for p in firendPosts %}
+          <div class="mt-10 p-25 grid grid-row-12 md:grid-cols-12">
+            <div class="row-span-6 w-full md:col-span-5">
+              <img
+                class="w-full max-w-full min-w-full"
+                src={{p.PostURL}}
+                alt="Description"
+              />
+            </div>
+            <div class="row-span-6 md:col-span-6 relative pl-4">
+              <header class="border-b border-grey-400">
+                <div>
+                  <a
+                    href="#"
+                    class="block cursor-pointer py-4 flex items-center text-sm outline-none focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out"
+                  >
+                    <img
+                      src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+                      class="h-8 w-8 rounded-full object-cover"
+                      alt="user"
+                    />
+                    <p class="block ml-2 font-bold"> {{friendName}}</p>
+                  </a>
+                </div>
+                <div>
+                  <p class="block ml-2 font-bold">{{p.PostDescription}}</p>
+                </div>
+              </header>
+              <!-- comment part -->
+              {% for c in comments %}
+              {% for cm in c %}
+              <div class="text-sm mb-2 flex flex-start items-center pt-1">
+                <div>
+                  <a
+                    href="#"
+                    class="cursor-pointer flex items-center text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out"
+                  >
+                    <img
+                      class="h-8 w-8 rounded-full object-cover"
+                      src="https://images.pexels.com/photos/1450082/pexels-photo-1450082.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                      alt="user"
+                    />
+                  </a>
+                </div>
+                <p class="font-bold ml-2">
+                  <a class="cursor-pointer">${cm.UserName}</a>
+                  <span class="text-gray-700 font-medium ml-1">${cm.commentDescription} </span>
+                </p>
+              </div>
+              <!-- end comment part -->
+              {% endfor %}
+              {% endfor %}
+              <div class="bottom-0 left-0 right-0 pl-4 md:absolute">
+                <div class="pt-4 pb-1 pr-3 max-w-md">
+                  <form action="" method="post" onsubmit="return false">
+                  <div class="flex items-start">
+                    <input type ="text"
+                      class="w-full resize-none outline-none appearance-none"
+                      aria-label="Agrega un comentario..."
+                      placeholder="Post your comment"
+                      autocomplete="off"
+                      autocorrect="off"
+                      style="height: 36px"
+                    />
+                    <button type="submit"
+                      class="mb-2 focus:outline-none border-none bg-transparent text-blue-600"
+                    >
+                      Comment
+                    </button>
+                  </div>
+                  </form>
+                </div>
+              </div>
+              <!-- End of Comment text area and button -->
+            </div>
+            <!-- End of Right side -->
+          </div>
+              {% endfor %}
+
+      <!-- end post -->
+        </div>
+                 </div>
+</body>
+</html>
