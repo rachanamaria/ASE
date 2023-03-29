@@ -4,6 +4,8 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.1.2/tailwind.min.css">
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.2.0/tailwind.min.css">
         <link rel="stylesheet" href="../static/css/main.css">
@@ -67,9 +69,45 @@
             color: #2A6F97;
             text-shadow: 2px 2px 4px #e1e1e1;
             ">Events Page</h1>
-                <p class="text-center text-md text-gray-600">
-                    Page Will be Developed in Sprint 3
-                </p>
+            </div>
+            {% if ln>0 %}
+                {% for d in data %}
+                <main class="max-w-3xl mx-auto px-4">
+                    <section class="bg-white border border-gray-200 rounded-lg shadow-sm my-8">
+                        <div class="flex items-center px-6 py-4">
+                            <img class="h-12 w-12 rounded-full mr-4" src="samp2.jpeg" alt="Profile Picture">
+                            <input type='hidden' name='UserName' value='{{ d.post.CreatorId }}' > 
+                        </div>
+                        <p>#</p><input type='hidden' name='PostDiscription' value='{{ d.post.eventName }}' > 
+                        <div class="post-image">
+                            <img src="{{d.post.PostURL}}" alt="Post Image">
+                        </div>
+                        <input type='hidden' name='PostDiscription' value='{{ d.post.PostDescription }}' > 
+                        <input type='hidden' name='PostDate' value='{{ d.post.createdTime }}' > 
+
+                            <div class="comments">
+                                
+                                <h3 class="font-bold text-gray-700 mb-2">Comments</h3>
+                                {% if d.comments %}
+                                    {% for c in d.comments %}
+                                    <ul>
+                                        <li class="comment flex items-center mb-4">
+                                            <img class="h-10 w-10 rounded-full mr-4" src="samp1.jpeg" alt="Commenter Picture">
+                                            <p class="comment-text text-gray-700"><strong><input type="hidden" name="CommentUser" value='{{c.CommentorId}}'/></strong> <input type="hidden" name="CommentDiscription" value='{{c.commentDescription}}'/></p>
+                                        </li>
+                                    </ul>
+                                    {% endfor %}
+                                {% endif %}
+                                <form class="add-comment flex items-center">
+                                    <input class="border border-gray-200 rounded py-2 px-4" type="text" placeholder="Add a comment...">
+                                    <button class="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Post</button>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+                {% endfor %}
+            {% endif %}
             </div>
 </body>
 </html>

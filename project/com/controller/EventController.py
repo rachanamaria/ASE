@@ -25,4 +25,4 @@ def getEventPosts():
         print(i.post.PostURL)
 
 
-    return redirect('/')
+    return render_template('Events.html',ln=len(data),data=data,UserId=UserId)
