@@ -10,8 +10,19 @@ eventDAO=EventDAO()
 def getEventPosts():   
     UserId=request.form['UserId']
     data=eventDAO.fetchAllEvents(UserId)
-    print('data..',data)
+    print('data..',data)   
     for i in data:
+        print('-----data------------------')
         print(i.eventName)
+        print(i.post.PostId)
+        print(i.post.CreatorId)
+        print(i.post.MediaType)
+        print(i.post.type)
+        print(i.post.createdTime)
         print(i.post.UserName)
+        print(i.post.PostDescription)
+        print(i.comments)
+        print(i.post.PostURL)
+
+
     return redirect('/')

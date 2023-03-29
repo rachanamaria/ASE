@@ -19,9 +19,9 @@ dbname = 'rxr8071_FFTD'
 username = 'rxr8071_admin'
 password = 'c#vFH9LQnQ'
 # ---------------------mysql url---------------------------------------------
-url="mysql+pymysql://{0}:{1}@{2}:{3}/{4}".format(username, password, servername, port, dbname)
+# url="mysql+pymysql://{0}:{1}@{2}:{3}/{4}".format(username, password, servername, port, dbname)
 # ---------------------------In memory url-----------------------------------------
-# url='sqlite:///database.db'
+url='sqlite:///database.db'
 app.config['SQLALCHEMY_DATABASE_URI'] = url
 app.config['SQLALCHEMY_MAX_OVERFLOW'] = 0
 db = SQLAlchemy(app)
