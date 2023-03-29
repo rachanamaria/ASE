@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.2.0/tailwind.min.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <title>Add Event Post</title>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+
+    </script>
+    <style>
+        div#imh {
+            display: block;
+            position: relative;
+        }
+
+        div#imh::after {
+            content: "";
+            background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+            opacity: 0.5;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .leftContent {
+            float:left;
+            width: 40%;
+            font-weight: bold;
+        }
+
+        .rightContent {
+            float:right;
+            width: 60%;
+        }
+    </style>
+</head>
+
+<body style="height: 100%;">
+    <div class="topnav" id="myTopnav">
+        <a href="/">Login</a>
+        <a href="/home">Home</a>
+        <a href="/addPostMain" class="active">Add Post</a>
+        <a href="/loadContact">Contact</a>
+        <a href="/loadAbout">About</a>
+        <!-- show logout button at the right end -->
+        <a href="/logout" style="float:right">Logout</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>13wqeaszw
+        </a>
+    </div>
+    <div id="imh" class="flex min-h-full items-center justify-center py-2 px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h1 class="text-5xl font-bold  mb-1" style="
+        color: #2A6F97;
+        text-shadow: 2px 2px 4px #e1e1e1;
+        ">FFTD</h1>
+            <p class="text-center text-md text-gray-600">
+                Friends Family Travel Diary
+            </p>
+        </div>
+        <div class="flex justify-center items-center p-6">
+            <div class="w-full max-w-md bg-white shadow-lg rounded-lg">
+                <div class="px-4 py-6">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-4 text-center"><i class="fa fa-calendar-plus-o"></i> Add Event Post</h1>
+                    <form>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-bold mb-2" for="image"><i class="fa fa-image"></i> Upload an Image or Video</label>
+                            <input type="file" required name="image" id="image" class="block w-full py-2 px-3 border border-gray-300 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-bold mb-2" for="name"> Event Name</label>
+                            <input type="text" required name="name" id="name" class="block w-full py-2 px-3 border border-gray-300 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="Enter event name">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-bold mb-2" for="description"><i class="fa fa-comment"></i> Event Description</label>
+                            <textarea name="description" required id="description" rows="4" class="block w-full py-2 px-3 border border-gray-300 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="Enter event description"></textarea>
+                        </div>
+                        <div class="mb-6">
+                            <span class="block text-gray-700 font-bold mb-2"><i class="fa fa-eye"></i> Visibility(Make this visible to)</span>
+                            <label class="inline-flex items-center">
+                                <input type="radio" id="friends" name="visibility" value="friends" class="form-radio h-5 w-5 text-blue-600" required>
+                                <span class="ml-2 text-gray-700 font-bold">Friends</span>
+                            </label>
+                            <label class="inline-flex items-center ml-6">
+                                <input type="radio" id="family" name="visibility" value="family" class="form-radio h-5 w-5 text-blue-600" required>
+                                <span class="ml-2 text-gray-700 font-bold">Family</span>
+                            </label>
+                        </div>
+                        <div class="text-center">
+                            <button class=" hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg" 
+                            style="background-color: #2A6F97;"
+                            >
+                                <i class="fa fa-calendar-plus-o"></i> Add Event Post
+                            </button>
+  
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        
+          
+          
+</body>
+
+</html>

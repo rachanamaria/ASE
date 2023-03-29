@@ -51,6 +51,15 @@ def familyancestry():
 @app.route('/home')
 def home():
     return render_template('Home.html')
+
+@app.route('/addPostMain')
+def addPostMain():
+    return render_template('AddPostMain.html')
+
+@app.route('/addPostEvent')
+def addPostEvent():
+    return render_template('AddPostEvent.html')
+
 @app.route('/allfriends')
 def allfriends():
     return render_template('AllFriends.html')
