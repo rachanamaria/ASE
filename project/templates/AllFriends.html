@@ -61,36 +61,59 @@
                 <i class="fa fa-bars"></i>
             </a>
         </div>
-        <header class="bg-white shadow">
-            <div class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-2 md:grid-cols-6">
-                    <div class="col-span-1 md:col-span-1">
-                        <h1 class="text-3xl font-bold tracking-tight text-gray-900">
-                            My Friends
-                        </h1>
-                    </div>
-                    <div class="col-span-1 md:col-span-5 flex flex-row-reverse">
-                      <div @click.away="open = false" class="relative" x-data="{ open: false }">
-                        <button @click="open = !open" class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-                          <span>Navigate</span>
-                          <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                        </button>
-                        <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
-                          <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
-                            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/friendsaddpost"> Add Post</a>
-                            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/friendhistory">Friends Page</a>
-                            
-                          </div>
-                        </div>
-                    </div>
-                    </div>
+        <!-- Test friends -->
+        <div class=" grid grid-cols-3 h-screen gap-x-4">
+        <aside class="flex col-span-1">
+          <div class="h-screen py-8 overflow-y-auto bg-white border-l border-r sm:w-64 w-60 dark:bg-gray-900 dark:border-gray-700">
+            <h2 class="px-5 text-lg font-medium text-gray-800 dark:text-white">Friends</h2>
+                <div class="  mt-8 space-y-4" id ="displayallfriends">
+                    
                 </div>
             </div>
-        </header>
-        <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-            <ul role="list" class="grid grid-cols-1 md:grid-cols-6" id="friendslist">
+        </aside>
+        <!-- End Test -->
                 <script>
         var Friends = [
+          {
+            name: "Leslie",
+            profilepic: "../static/friend1.png",
+          },
+          {
+            name: "Alexander",
+            profilepic: "../static/friend2.png",
+          },
+          {
+            name: "Diana",
+            profilepic: "../static/friend3.png",
+          },
+          {
+            name: "Marcus",
+            profilepic: "../static/friend4.png",
+          },
+          {
+            name: "Jacqueline",
+            profilepic: "../static/friend5.png",
+          },
+          {
+            name: "Leslie",
+            profilepic: "../static/friend1.png",
+          },
+          {
+            name: "Alexander",
+            profilepic: "../static/friend2.png",
+          },
+          {
+            name: "Diana",
+            profilepic: "../static/friend3.png",
+          },
+          {
+            name: "Marcus",
+            profilepic: "../static/friend4.png",
+          },
+          {
+            name: "Jacqueline",
+            profilepic: "../static/friend5.png",
+          },
           {
             name: "Leslie",
             profilepic: "../static/friend1.png",
@@ -116,66 +139,76 @@
         buildUL(Friends);
 
         function buildUL(data) {
-          var list = document.getElementById("friendslist");
+          var displayallfriends = document.getElementById("displayallfriends");
 
           for (var i = 0; i < data.length; i++) {
             console.log(data[i]);
 
-            var listvalues = `<li class="pb-3">
-                <div class="flex items-center gap-x-6 ">
-                  <a href="/individualperson/${data[i].name}">
-                            <img class="h-16 w-16 rounded-full" src="${data[i].profilepic}" alt="">
-                            <div>
-                              <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900 pl-2">${data[i].name} </h3>
-                              
-                            </div>
-                            </a>
-                          </div>
-                        </li>`;
+            var listvalues = `
+            <a href="/individualperson/${data[i].name}">
+            <button class="flex items-center w-full px-5 py-2 transition-colors duration-200 dark:hover:bg-gray-800 gap-x-2 hover:bg-gray-100 focus:outline-none">
+                        <img class="object-cover w-8 h-8 rounded-full" src="${data[i].profilepic}" alt="">
+                        <div class="text-left rtl:text-right">
+                            <h1 class="text-sm font-medium text-gray-700 capitalize dark:text-white">${data[i].name}</h1>
+                           
+                        </div>
+                    </button>
+                    </a>`;
 
-            list.innerHTML += listvalues;
+                    displayallfriends.innerHTML += listvalues;
           }
 
         }
-                </script>
-            </ul>
-        </div>
+          </script>
         <!-- Search for friend -->
-        <div class=" p-10 ">
+        <div class=" p-10 col-span-2 ">
             <h1 class="  block ml-2 font-bold pb-10">Add Friends</h1>
-            <div class=" grid grid-cols-1 md:grid-cols-3 flex max-w-md gap-x-4">
-                <label for="email-address" class="sr-only ">Email address</label>
-                <input
-                    id="email-address"
-                    name="email"
-                    type="text"
-                    required
-                    class="min-w-0 flex-auto rounded-md border-0  px-3.5 py-2  shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-                    placeholder="Enter username"
-                >
-                <button id="search" type="submit" class="flex-none ml-4 w-40 rounded-md bg-indigo-500 py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Search</button>
-                <button id="CancelSearch" class="ml-10 flex-none ml-4 w-40 rounded-md bg-indigo-500 py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Cancel</button>
-            </div>
-            <!-- list of names present -->
-            <div id="disp-friends">
-              <div class="bg-white font-sans mt-24 h-100 w-full flex flex-row justify-center items-center" id="FriendName" style="visibility: hidden;">
-                <div class="card w-96 mx-auto bg-white  shadow-xl hover:shadow">
-                  <img class="w-32 mx-auto rounded-full -mt-20 border-8 border-white" src="../static/friend1.png" alt="">
-                  <div id = "addfriendname"class="text-center mt-2 text-3xl font-medium"></div>
-                  <div id = "addfriendcountry" class="text-center font-normal text-lg"></div>
-          
-                  <hr class="mt-8">
-                  <div class="flex p-2 w-full h-full bg-indigo-500 items-center">
-                    <button id="Addfriendbutton" type="submit"class="text-xl tracking-tight text-gray-900 m-2 p-1 w-full">Add Friend</button>
-          
+            <form class="flex items-center grid grid-cols-1 md:grid-cols-3 " onsubmit="return false">   
+              <label for="voice-search" class="sr-only">Search</label>
+              <div class="relative w-full md:col-span-2">
+                  <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                      <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
                   </div>
-                </div>
-              </div>
-                <!-- end -->
+                  <input type="text" id="email-address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Friends..." required>
 
               </div>
+              <div class="md\:col-span-1">
+                <button type="submit" id="search" class="inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-blue-700 border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                 Search
+              </button>
+              <button  id="CancelSearch" class="inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-blue-700 border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Cancel
+             </button>
+              </div>
+              
+          </form>
+           
+            <!-- list of names present -->
+            <div id="disp-friends">
+                <div class="bg-white font-sans mt-24 h-100 w-full flex flex-row justify-center items-center" id="FriendName" style="visibility: hidden;">
+                    <div class="card w-96 mx-auto bg-white  shadow-xl hover:shadow">
+                        <img class="w-32 mx-auto rounded-full -mt-20 border-8 border-white" src="../static/friend1.png" alt="">
+                        <div id="addfriendname" class="text-center mt-2 text-3xl font-medium"></div>
+                        <div id="addfriendcountry" class="text-center font-normal text-lg"></div>
+                        <div class="px-6 text-center mt-2 font-light text-sm">
+                          <p>
+                            Front end Developer, avid reader. Love to take a long walk, swim
+                          </p>
+                        </div>
+                        <hr class="mt-8">
+                        <div class="flex p-2 w-full h-full bg-indigo-500 items-center">
+                            <button id="Addfriendbutton" type="submit" class="text-xl tracking-tight text-gray-900 m-2 p-1 w-full">
+                                Add
+              Friend
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- end -->
+            </div>
         </div>
-    </div>
+      </div >
+
     <script>
 
 
@@ -193,11 +226,11 @@
     let addfriendname = document.getElementById("addfriendname");
     let addfriendcountry = document.getElementById("addfriendcountry");
 
-    
+
     Searchbutton.onclick = function () {
 
 
-      
+
 
 
       var wantedName = FindName.value;
@@ -207,23 +240,24 @@
           document.getElementById("addfriendcountry").innerHTML = Names[i].country;
           FriendName.style.visibility = 'visible';
           break;
-        } 
+        }
         else {
           FriendName.style.visibility = 'hidden';
         }
       }
-      document.getElementById("email-address").value = "";
+      // document.getElementById("email-address").value = "";
     }
 
     CancelSearch.onclick = function () {
-      
+
       FriendName.style.visibility = 'hidden';
+      document.getElementById("email-address").value = "";
     }
-    Addfriendbutton.onclick = function(){
+    Addfriendbutton.onclick = function () {
 
 
       BackendFetch.set('Name', addfriendname.innerHTML);
-      
+      document.getElementById("email-address").value = "";
       FriendName.style.visibility = 'hidden';
       console.log(BackendFetch);
 
