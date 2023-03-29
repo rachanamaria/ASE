@@ -51,6 +51,8 @@
         </style>
     </head>
     <body style="height: 100%">
+      <input type="hidden" name="UserId" value='{{userId}}'>
+
         <div class="topnav" id="myTopnav">
             <a href="/home" class="active">Home</a>
             <a href="/loadContact">Contact</a>
@@ -68,12 +70,25 @@
           <div class="h-screen py-8 overflow-y-auto border-l border-r sm:w-64 w-60 dark:bg-gray-900 dark:border-gray-700">
             <h2 class="px-5 text-lg font-medium text-gray-800 dark:text-white">Friends</h2>
                 <div class="  mt-8 space-y-4" id ="displayallfriends">
-                    
+                  {% for f in friends %}
+                    <form id ="navigatetouser" action='/UserPosts' method="post">
+      <input type="hidden" name="UserId" value='{{userId}}'>
+
+                      <input type="hidden" name="User2Id" value='{{f.UserId}}'>
+                  <button type="submit" class="flex items-center w-full px-5 py-2 transition-colors duration-200 dark:hover:bg-gray-800 gap-x-2 hover:bg-gray-100 focus:outline-none">
+                      <img class="object-cover w-8 h-8 rounded-full"  alt='src="${data[i].profilepic}"'>
+                      <div class="text-left rtl:text-right">
+                          <h1 class="text-sm font-medium text-gray-700 capitalize dark:text-white">{{f.UserName}}</h1>
+                      </div>
+                  </button>
+                    </a>
+                    </form>
+                  {%endfor%} 
                 </div>
             </div>
         </aside>
         <!-- End Test -->
-                <script>
+                <!-- <script>
         var Friends = [
           {
             name: "Leslie",
@@ -108,8 +123,8 @@
         function buildUL(data) {
           var displayallfriends = document.getElementById("displayallfriends");
 
-          for (var i = 0; i < data.length; i++) {
-            console.log(data[i]);
+          for (var i = 0; i < {lenFriends}; i++) {
+            // console.log(data[i]);
 
             var listvalues = `
             <form id ="navigatetouser" action="" method="post">
@@ -128,7 +143,13 @@
           }
 
         }
-          </script>
+          </script> -->
+
+
+  // console.log(data[i]);
+
+
+
         <!-- Search for friend -->
         <div class=" p-10 col-span-2 ">
             <h1 class="  block ml-2 font-bold pb-10">Add Friends</h1>
@@ -141,24 +162,28 @@
                   <input type="text" id="email-address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Friends..." required>
 
               </div>
-              <div class="md\:col-span-1">
+              <!-- <div class="md\:col-span-1">
                 <button type="submit" id="search" class="inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-blue-700 border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                 Search
+                  
               </button>
               <button  id="CancelSearch" class="inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-blue-700 border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Cancel
              </button>
-              </div>
-              
+              </div> -->
+            {% for s in users%}
           </form>
            
             <!-- list of names present -->
             <div id="disp-friends">
-              <form class="flex" action="" method="post" >
-                <div class="bg-white font-sans mt-24 h-100 w-full flex flex-row justify-center items-center" id="FriendName" style="visibility: hidden;">
+              <form class="flex" action="/addRelations" method="post" >
+                <div class="bg-white font-sans mt-24 h-100 w-full flex flex-row justify-center items-center" id="FriendName" >
                     <div class="card w-96 mx-auto bg-white  shadow-xl hover:shadow">
                         <img class="w-32 mx-auto rounded-full -mt-20 border-8 border-white" src="../static/friend1.png" alt="">
-                        <div id="addfriendname" class="text-center mt-2 text-3xl font-medium"></div>
+                        <div id="addfriendname" class="text-center mt-2 text-3xl font-medium">{{s.UserName}}</div>
+                        <input type="hidden" value="{{s.UserId}}" name="UserId2">
+                        <input type="hidden" name="UserId" value='{{userId}}'>
+                        <input type="hidden" name="Relation" value='Friend'>
+                        
                         <div id="addfriendcountry" class="text-center font-normal text-lg"></div>
                         <div class="px-6 text-center mt-2 font-light text-sm">
                           <p>
@@ -167,7 +192,7 @@
                         </div>
                         <hr class="mt-8">
                         <div class="flex p-2 w-full h-full bg-indigo-500 items-center">
-                            <button id="Addfriendbutton" type="submit" class="text-xl tracking-tight text-gray-900 m-2 p-1 w-full">
+                            <button type="submit" id="Addfriendbutton" type="submit" class="text-xl tracking-tight text-gray-900 m-2 p-1 w-full">
                                 Add Friend
                             </button>
                         </div>
@@ -176,6 +201,8 @@
               </form>
                 <!-- end -->
             </div>
+      {%endfor%}
+
         </div>
       </div >
 

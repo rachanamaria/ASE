@@ -13,7 +13,7 @@ class UserDAO:
         db.session.commit()
     
     def getByUserId(self, userId):
-        user=UserVo.query.filter_by(UserId = userId).all()
+        user=UserVo.query.filter_by(UserId = userId).one()
         return user
 
     def getUserByUserName(self,name):

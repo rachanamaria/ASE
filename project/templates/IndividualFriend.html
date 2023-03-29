@@ -69,61 +69,29 @@
                 <div class="grid grid-cols-2 md:grid-cols-6">
                     <div class="col-span-1 md:col-span-1">
                         <h1 class="text-3xl font-bold tracking-tight text-gray-900">
-                            {{data}}
+                            {{friendName}}
                         </h1>
                     </div>
                     
-                   
-                    <div class="col-span-1 md:col-span-5 flex flex-row-reverse ">
-                      <button class="inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-blue-700 border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        <a href="/allfriends">
-                        All Friends
-                      </a></button>
+                    <form action="/allfriends" method="post">
+                    <input type="hidden" name="UserId" value="{{person}}">
+                      <div class="col-span-1 md:col-span-5 flex flex-row-reverse ">
+                      <button type="submit" class="inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-blue-700 border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        All Friends</button>
                 </div>
+              </form>
+
             </div>
         </header>
         <div id="allcomments" class=" overflow-hidden shadow-none p-12">
-      
-      
-        </div>
-        <script>
-          var Comments = [
-            {
-              "Author" : "Leslie",
-              "Description" : "Wonderful Trip",
-              "Picture": "https://images.pexels.com/photos/1450082/pexels-photo-1450082.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
-              "Comments": [
-                {
-                  "Author": "Joshua",
-                  "Comment": "GoodPost"
-                }
-              ]
-          },
-          {
-              "Author" : "Epps",
-              "Description" : "Peace",
-              "Picture": "https://images.pexels.com/photos/1450082/pexels-photo-1450082.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
-              "Comments": [
-                {
-                  "Author": "Garry",
-                  "Comment": "I need to visit one day"
-                }
-              ]
-          }
-        ]
-        loadComments(Comments)
-    
-        function loadComments(data) {
-          var listcomments = document.getElementById("allcomments");
-    
-              for (var i = 0; i < data.length; i++) {
-                console.log(data[i]);
-                var Postvalue = `
-                <div class="mt-10 p-25 grid grid-row-12 md:grid-cols-12">
+          <!-- post -->
+
+        {% for p in firendPosts %}
+          <div class="mt-10 p-25 grid grid-row-12 md:grid-cols-12">
             <div class="row-span-6 w-full md:col-span-5">
               <img
                 class="w-full max-w-full min-w-full"
-                src="${data[i].Picture}"
+                src={{p.PostURL}}
                 alt="Description"
               />
             </div>
@@ -139,17 +107,16 @@
                       class="h-8 w-8 rounded-full object-cover"
                       alt="user"
                     />
-                    <p class="block ml-2 font-bold"> {{data}}</p>
+                    <p class="block ml-2 font-bold"> {{friendName}}</p>
                   </a>
                 </div>
                 <div>
-                  <p class="block ml-2 font-bold">${data[i].Description}</p>
+                  <p class="block ml-2 font-bold">{{p.PostDescription}}</p>
                 </div>
               </header>
-              <!--All Comment section -->
-              `
-              for (var j = 0; j < data[i].Comments.length; j++) {
-                var commentValue = `
+              <!-- comment part -->
+              {% for c in comments %}
+              {% for cm in c %}
               <div class="text-sm mb-2 flex flex-start items-center pt-1">
                 <div>
                   <a
@@ -164,18 +131,13 @@
                   </a>
                 </div>
                 <p class="font-bold ml-2">
-                  <a class="cursor-pointer">${data[i].Comments[j].Author}</a>
-                  <span class="text-gray-700 font-medium ml-1">${data[i].Comments[j].Comment} </span>
+                  <a class="cursor-pointer">${cm.UserName}</a>
+                  <span class="text-gray-700 font-medium ml-1">${cm.commentDescription} </span>
                 </p>
               </div>
-    
-              <!-- End of All Comment Section -->
-    
-              <!-- Add comment text area with button -->
-                `
-                Postvalue += commentValue;
-              }
-              var addcommentsection = `
+              <!-- end comment part -->
+              {% endfor %}
+              {% endfor %}
               <div class="bottom-0 left-0 right-0 pl-4 md:absolute">
                 <div class="pt-4 pb-1 pr-3 max-w-md">
                   <form action="" method="post" onsubmit="return false">
@@ -201,14 +163,10 @@
             </div>
             <!-- End of Right side -->
           </div>
-                
-              
-              `
-              Postvalue += addcommentsection;
-              listcomments.innerHTML += Postvalue;
-              }
-        }
-        </script>
-         </div>
+              {% endfor %}
+
+      <!-- end post -->
+        </div>
+                 </div>
 </body>
 </html>
