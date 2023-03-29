@@ -4,13 +4,10 @@ from project import app
 class PostVo(db.Model):
     __tablename__ = 'postMaster'
     PostId=db.Column('PostId', db.Integer, primary_key = True)
-    GroupId = db.Column('GroupId', db.Integer,nullable=False)
-    GroupName = db.Column('GroupName', db.Integer,nullable=False)
     CreatorId = db.Column(db.Integer,nullable=False)
+    MediaType=db.Column('MediaType',db.String(100))
     type=db.Column('type',db.String(100))
     createdTime=db.Column(db.DateTime(timezone=True))
-    Status=db.Column('Status',db.Boolean)
-    AdminId = db.Column('AdminId',db.Integer,nullable=False)
     UserName = db.Column('UserName',db.String(50))  
     PostDescription=db.Column('PostDescription',db.String(500))
 

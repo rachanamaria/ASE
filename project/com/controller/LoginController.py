@@ -172,10 +172,11 @@ def loadDashBoard():
             unApprovedUserList=adminLogin()
             activeGroupUser=GroupDao.activeGroups()
             unApprovedGroup=GroupDao.UnApporvedGroup()
+            unApprovedGroupUser=[]
             UnApprovedPostList=PostDao.getUnapporvedPost()
             unApprovedGroupUserList=UserGroupDao.getUnapporvedUser()
             adminPost=PostDao.getApporvedPost()
-            print('admin post....',adminPost)
+            # print('admin post....',adminPost)
         # check if user is admin of any group
         elif len(adminGroups)>0:
             for i in adminGroups:
@@ -192,8 +193,12 @@ def loadDashBoard():
                     groupPost.append(ps)
                 # ps=PostDao.getApporvedPostByGoupId(i.GroupId)
         print('user role:',user.Role)
-        return render_template('DashBoard.html',obj=user,activeGroupUser=activeGroupUser,lenActiveGroupUser=len(activeGroupUser),lenActiveUsers=len(activeUsers),activeUsers=activeUsers,adminPost=adminPost,ldp=len(groupPost),lugu=len(unApprovedGroupUserList),lug=len(unApprovedGroup),lup=len(UnApprovedPostList),lus=len(unApprovedUserList),dailyPost=groupPost,unApprovedUserList=unApprovedUserList,UnApprovedPostList=UnApprovedPostList,unApprovedGroup=unApprovedGroup,unApprovedGroupUserList=unApprovedGroupUserList)
-        return render_template('DashBoard.html',obj=user,activeGroup=activeGroup,lenActiveGroup=len(activeGroup),lenActiveUsers=len(activeUsers),activeUsers=activeUsers,adminPost=adminPost,ldp=len(groupPost),lugu=len(unApprovedGroupUserList),lug=len(unApprovedGroup),lup=len(UnApprovedPostList),lus=len(unApprovedUserList),dailyPost=groupPost,unApprovedUserList=unApprovedUserList,UnApprovedPostList=UnApprovedPostList,unApprovedGroup=unApprovedGroup,unApprovedGroupUserList=unApprovedGroupUserList)
-        
+        return render_template('DashBoard.html',obj=user,activeGroupUser=activeGroupUser,
+                               lenActiveGroupUser=len(activeGroupUser),lenActiveUsers=len(activeUsers),
+                               activeUsers=activeUsers,adminPost=adminPost,ldp=len(groupPost),lugu=len(unApprovedGroupUserList),
+                               lug=len(unApprovedGroup),lup=len(UnApprovedPostList),lus=len(unApprovedUserList),
+                               dailyPost=groupPost,unApprovedUserList=unApprovedUserList,UnApprovedPostList=UnApprovedPostList,
+                               unApprovedGroup=unApprovedGroup,
+                               unApprovedGroupUserList=unApprovedGroupUserList)
     else:
         return render_template('LoginPage.html')

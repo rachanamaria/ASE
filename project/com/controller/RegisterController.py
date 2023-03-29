@@ -1,6 +1,8 @@
 from project import app
 from flask import Flask,url_for, render_template, request, flash, redirect
 from project.com.dao.UserDAO import UserDAO
+from project.com.dao.GroupDAO import GroupDAO
+
 from project.com.vo.UserVo import UserVo
 import re
 
@@ -11,7 +13,9 @@ def loadRegister():
 @app.route('/registerUser',methods=['POST'])
 def registerValidation():
     vo=UserVo()
-    dao=UserDAO()
+    userDao=UserDAO()
+    groupDao=GroupDAO()
+
     fName=request.form['FirstName']
     emaild=request.form['Emaild']
     lName =request.form['LastName']
@@ -79,12 +83,13 @@ def registerValidation():
         return render_template('RegisterPage.html',obj=vo, error=msg)
     
     vo.Status=0
-    ans=dao.getUserByUserName(vo.UserName)
+    ans=userDao.getUserByUserName(vo.UserName)
     
     if len(ans)>0:
         msg ='Please enter a different email or username, already in use!!!'
         return render_template('RegisterPage.html',obj=vo, error=msg)
     else:
-        dao.addUser(vo)
+        userDao.addUser(vo)
+        groupDao.addDefaultGroups(vo)
     return redirect('/')
     

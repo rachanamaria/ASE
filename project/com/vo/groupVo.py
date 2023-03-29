@@ -8,5 +8,7 @@ class GroupVo(db.Model):
     AdminId = db.Column(db.Integer,nullable=False)
     Status=db.Column('Status',db.Boolean)
     AdminName= db.Column('AdminName',db.String(50))
+    GroupType= db.Column('GroupType',db.String(50))
+
 with app.app_context():
     db.create_all()

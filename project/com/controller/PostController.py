@@ -4,14 +4,21 @@ from project.com.dao.PostDAO import PostDAO
 from project.com.dao.UserGroupDAO import UserGroupDAO
 from project.com.dao.UserDAO import UserDAO
 from project.com.dao.GroupDAO import GroupDAO
+from flask import Flask,url_for, render_template, request, flash, redirect
 from project.com.controller.LoginController import afterApproval,loadDashBoard
 from flask import render_template, request
 from datetime import datetime as dt
+from project.com.vo.EventVo import EventVo
+from project.com.dao.EventDAO import EventDAO
+import re
+
 
 PostDao=PostDAO()
 UserGroupDao=UserGroupDAO()
 UserDao=UserDAO()
 GroupDao=GroupDAO()
+eventVo=EventVo()
+eventDAO=EventDAO()
 
 @app.route('/LoadAddPost', methods=['POST'])
 def LoadAddPost():
@@ -39,8 +46,6 @@ def deletePost():
 @app.route('/AddPost', methods=['POST'])
 def addPost():
     UserId=request.form['UserId']
-    GroupId=request.form['GroupId']
-    group=GroupDao.getGroupsByGroupId(GroupId)[0]
     user=UserDao.getByUserId(UserId)
     user=user[0]
 
@@ -48,29 +53,41 @@ def addPost():
     uploaded_img = request.files['file']
     nm=uploaded_img.filename.split('.')
     time=dt.now()
-    AdminId=group.AdminId
     vo=PostVo()
     vo.createdTime=time
     vo.CreatorId=UserId
-    vo.GroupId=GroupId
-    vo.GroupName=group.GroupName
-    vo.type=nm[-1]
-    vo.Status=0
+    vo.MediaType=nm[-1]
+    vo.type=request.form['Type']
     vo.PostDescription=PostDescription
-    vo.AdminId=AdminId
     vo.UserName=user.UserName
     post=PostDao.addPost(vo,time)
-    img=open('../assi3/project/static/'+str(post.PostId)+'.'+nm[-1],'wb')
+    img=open('project/static/Posts/'+str(post.PostId)+'.'+nm[-1],'wb')
     img.write(uploaded_img.read())
     img.close()
-
+    if vo.type=='Travel':
+        objVo=EventVo()
+    elif vo.type=='BucketList':
+        objVo=EventVo()
+    elif vo.type=='Event':
+        objVo=EventVo()
+        objVo.EventName=request.form['EventName']
+    objVo.PostId=post.PostId
+    objVo.Visibility= request.form['Visibility']
+    objVo.UserId =UserId
+    eventDAO.add(objVo)
     return loadDashBoard()
 
-@app.route('/ApprovePost', methods=['POST'])
-def approvePost():
-    PostId=request.form['PostId']
-    # currentUserId=request.form['currentUserId']
-    # user=UserDao.getByUserId(currentUserId)
-    # user=user[0]
-    PostDao.apporvePost(PostId)
-    return loadDashBoard() 
+@app.route('/UserPosts', methods=['POST'])
+def userPosts():
+    friendId=request.form['UserId']
+    firendPosts=PostDao.getPostByUserId(friendId)
+    return redirect ('/')
+
+
+# @app.route('/ApprovePost', methods=['POST'])
+# def approvePost():
+#     PostId=request.form['PostId']
+#     PostDao.apporvePost(PostId)
+#     return loadDashBoard() 
+
+

@@ -3,14 +3,35 @@ from project.com.vo.groupVo import GroupVo
 from project.com.vo.UserGroupVo import UserGroupVo
 
 from project.com.dao.UserGroupDAO import UserGroupDAO
+from project.com.dao.UserDAO import UserDAO
+from project.com.vo.UserVo import UserVo
 
 
 UserGroupDao=UserGroupDAO()
 userGroupVo=UserGroupVo()
-
+userDao=UserDAO()
+userVo=UserVo()
+# groupVo=GroupVo()
 class GroupDAO:
     def addGroup(self, GroupVo):
         db.session.add(GroupVo)
+        db.session.commit()
+
+    def addDefaultGroups(self, UserVo):
+        familyGroup=GroupVo()
+        familyGroup.AdminId=UserVo.UserId
+        familyGroup.Status=1
+        familyGroup.AdminName=UserVo.UserName
+        familyGroup.GroupName='Family'
+        
+        friendsGroup=GroupVo()
+        friendsGroup.AdminId=UserVo.UserId
+        friendsGroup.Status=1
+        friendsGroup.AdminName=UserVo.UserName
+        friendsGroup.GroupName='Friends'
+
+        db.session.add(familyGroup)
+        db.session.add(friendsGroup)
         db.session.commit()
         
     def getAllGroup(self):
@@ -32,7 +53,13 @@ class GroupDAO:
         return group
     
     def UnApporvedGroup(self):
+        # AdminId=UserId
+        # userId,GroupId
+        dic={}
+        user=UserVo()
         groups=GroupVo.query.filter_by(Status=0).all()
+        # for i in groups:
+            # getByUserId
         return groups
 
     def apporvedGroup(self,GroupId):

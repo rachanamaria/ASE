@@ -20,14 +20,13 @@
 </head>
 <body style="height: 100%;" >
   <div class="topnav" id="myTopnav">
-      <a href="/" >Login</a>
-      <a href="/DashBoard" class="active">dashboard</a>
-      <a href="/loadContact">Contact</a>
-      <a href="/loadAbout">About</a>
-      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-          <i class="fa fa-bars"></i>
-      </a>
-  </div>
+    <a href="/"  class="active">DashBoard</a>
+    <!-- show logout button at the right end -->
+    <a href="/" style="float:right">Logout</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
   <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8" style="
     background-image: url('/static/travel-planning-how-far-in-advance-should-i-plan-a-vacation.webp');
     ">
@@ -53,7 +52,6 @@
         </div>
         <!-- card -->
 
- {% if obj.Role==1%}
  <div class="flex min-h-content justify-left py-12 px-6 sm:px-6 lg:px-8">
         <div class="flex max-h-content justify-left py-12 px-6 sm:px-6 lg:px-8" >
           <div class=" max-w-content space-y-9 rounded-lg  shadow-lg p-8" style="
@@ -135,87 +133,45 @@
 
 
 
-{% if lug>0 %}
 <div class="flex min-h-content justify-left  py-12 px-4 sm:px-8 lg:px-8" >
   <div class=" max-w-content space-y-8 rounded-lg shadow-lg p-8" style="
     background: ghostwhite;"> 
 <table>
   <p class="text-2xl font-bold  mb-2" style="color: #2A6F97; text-shadow: 2px 2px 4px #e1e1e1;">approve create group request</p>
-<thead>
+{% if lug>0 %}
+  <thead>
   <tr></tr>
 <th>GroupName</th>
+<th>Admin Name</th>
 <th>Action</th>
 </tr>
 </thead>
-  
   {% endif %}
   {% for ug in unApprovedGroup %}
 </tr>
 <tr>
   <td>{{ ug['GroupName'] }}</td>
+  <td>{{ ug['AdminName'] }}</td>
+
   <form action='/ApproveGroup' method='post'>
     <input type='hidden' name='UserId' value='{{ obj.UserId }}' >
-    <input type='hidden' name='GroupId' value='{{ ug['GroupId'] }}' >
+    <input type='hidden' name='GroupId' value='{{ ug["GroupId"] }}' >
     <td><input class="btn" type='submit' value='approve group'></td>
   </form>
 </tr>
 {% endfor %}
 </table>
+
 </div>
 </div>
 <!-- 1st row div -->
 
 </div>
 
-<!-- approve the post request -->
-<div class="flex min-h-content justify-left  py-12 px-4 sm:px-6 " >
-<div class="flex min-h-content justify-left  py-12 px-4 sm:px-6 " >
-  <div class="w-content min-h-content max-w-content space-y-8 rounded-lg shadow-lg p-8" style="
-    background: ghostwhite;"> 
-
-
-{% if lup>0 %}
-
-
-{% endif %}
-
-<table >
-  <p class="text-2xl font-bold  mb-2" style="color: #2A6F97; text-shadow: 2px 2px 4px #e1e1e1;">approve create group request</p>
-  <thead>
-    <th>creatorId</th>
-    <th>Group Id</th>
-    <th>data</th>
-    </thead>
-  {% for up in UnApprovedPostList %}
-<tr>
-  <td>{{ up['UserName'] }}></td>
-  <td>{{ up['GroupName'] }}</td>
-  <td>{{ up['PostDescription'] }}</td>
-  <tr>
-    <td>
-    <iframe src="../static/{{up.PostId}}.{{up.type}}" width=1000 height=400 frameborder=0 ></iframe>
-    </td>
-  </tr>
-  <form action='/ApprovePost' method='post'>
-    <input type='hidden' name='UserId' value='{{ obj.UserId }}' >
-    
-    <input type='hidden' name='TargetUserId' value='{{ up['UserId']}}' >
-    <input type='hidden' name='PostId' value='{{ up['PostId']}}' >
-      <td><input class="btn" type='submit' value='approve post'></td>
-  </form>
-</tr>
-{% endfor %}
-
-
-</table>
-</div>
-</div>
-
 <div class="flex min-h-content justify-left  py-12 px-4 sm:px-6 " >
   <div class="w-content min-h-content max-w-content space-y-8 rounded-lg shadow-lg p-8" style="
     background: ghostwhite;"> 
   <p class="text-2xl font-bold  mb-2" style="color: #2A6F97; text-shadow: 2px 2px 4px #e1e1e1;">Active users</p>
-    <!-- {% if obj.Role==1%} -->
     <table>
       <thead>
         <th>Emaild</th>
@@ -236,28 +192,27 @@
         </form>
     </tr>
     {% endfor %}
-    <!-- {% endif %} -->
 </table>
     </div>
-</div>
 
 
 <div class="flex min-h-content justify-left  py-12 px-4 sm:px-6 " >
   <div class="w-content min-h-content max-w-content space-y-8 rounded-lg shadow-lg p-8" style="
     background: ghostwhite;"> 
   <p class="text-2xl font-bold  mb-2" style="color: #2A6F97; text-shadow: 2px 2px 4px #e1e1e1;">Active groups</p>
-  <!-- {% if obj.Role==1%} -->
-  {% if lenActiveGroupUser>0 %}
   <table>
+    {%if lenActiveGroupUser>0%}
     <thead>
       <th>Group name</th>
-      <th>AdminId</th>
+      <th>AdminName</th>
       <th>actions</th>
     </thead>
+    {% endif %}
+
   {% for group in activeGroupUser %}
   <tr>
       <td>{{ group[0]['GroupName'] }}</td>
-      <td>{{ group[0]['AdminId'] }}</td>
+      <td>{{ group[0]['AdminName'] }}</td>
       <form action='/DeActivateGroup' method='post'>
         <input type='hidden' name='UserId' value='{{ obj.UserId }}' >
         <input type='hidden' name='GroupId' value='{{ group[0]['GroupId']}}' >
@@ -265,7 +220,7 @@
       </form>
       </tr>
     {% for user in group[1]%}
-    <tr>
+    <!-- <tr>
       <td>{{user['UserName']}}</td>
       <td>
         <form action="/DeactivateUserFromGroup" method="post">
@@ -276,266 +231,15 @@
           " type="submit" value="deactive user from group">
         </form>
       </td>
-    </tr>
+    </tr> -->
 
     {% endfor %}
   {% endfor %}
-  <!-- {% endif %} -->
-  {% endif %}
 </table>
  </div>
  </div>
   <!-- 2nd row div -->
 </div> 
-
-
-<div class="flex min-h-content justify-center  py-12 px-4 sm:px-6 " >
-  <div class="w-content min-h-content max-w-content space-y-8 rounded-lg shadow-lg p-8" style="
-      background: ghostwhite;"> 
-      <p class="text-2xl font-bold  mb-2" style="color: #2A6F97; text-shadow: 2px 2px 4px #e1e1e1;">Unapproved Post</p>
-       <!-- {% if obj.Role==1%} -->
-       {% for j in adminPost %}
-       <table >
-        <thead>
-          <th>creatorId</th>
-          <th>action</th>
-        </thead>
-        <tr>
-         <td>
-           <h5>creator:{{j[0].CreatorId}}<h5>
-         </td>
-         <td>
-           <form action="/DeletePost" method="post">
-             <input type="hidden" name="PostId" value="{{j[0].PostId}}">
-            <input type='hidden' name='UserId' value='{{obj.UserId }}' id='UserId' >
-             <input type="submit" class="btn" value="delete post">
-             </form>
-
-           </form>
-         </td>
-       </tr>
-       <tr>
-         postDescription: {{j[0].PostDescription}}
-       </tr>
-       <tr>
-         <td>
-         <iframe src="../static/{{j[0].PostId}}.{{j[0].type}}" width=1000 height=400 frameborder=0 ></iframe>
-         </td>
-       </tr>
-       <tr>
-         <form action="/addComment" method="post">
-         <td>
-           <input type="hidden" name="UserId" value="{{obj.UserId}}">
-           <input type="text" name="comment" >
-           <input type="hidden" name="PostId" value="{{j[0].PostId}}">
-           <input type="submit" class="btn" value="comment">
-         </td>
-         </form>
-       </tr>
-
-         {% for k in j[1]%}
-       <tr>
-         <td>
-
-           <span><h6>commentor:{{k.CommentorId}}</h6><input type="text" name="comment" value="{{k.commentDescription}}"></span>
-         </td>
-
-       </tr>
-         {% endfor %}
-       
-       </table>
-
-     {% endfor%}
-
-   <!-- {% endif %} -->
-  </div>
-<!-- </div> -->
-
-  <!-- <div class="flex min-h-content justify-left  py-12 px-4 sm:px-6 " >
-    <div class="w-content min-h-content max-w-content space-y-8 rounded-lg shadow-lg p-8" style="
-        background: ghostwhite;"> 
-         <p class="text-2xl font-bold  mb-2" style="color: #2A6F97; text-shadow: 2px 2px 4px #e1e1e1;">Daily Feed</p>
-        {% if obj.Role!=1%}
-        {% for dps in dailyPost%}
-        
-        {%for dp in dps%}
-        <p class="text-2xl font-bold  mb-2" style="color: #2A6F97; text-shadow: 2px 2px 4px #e1e1e1;">group name: {{dp[1].GroupName}}</p>
-        <table border="1px">
-          <tr>  
-            <td>
-              <h5>creator:{{dp[0].CreatorId}}<h5>
-            </td>
-            <tr>
-              postDescription: {{dp[0].PostDescription}}
-            </tr>
-      
-            {% if dp[0].AdminId==obj.UserId %}
-            <td>
-              <form action="/DeletePost" method="post">
-                <input type='hidden' name='UserId' value='{{obj.UserId }}' id='UserId' >
-                <input type="hidden" name="PostId" value="{{dp[0].PostId}}">
-                <input type="submit" class="btn" value="delete post">
-                </form>
-      
-              </form>
-            {%endif%}
-            {% if dp[0].AdminId!=obj.UserId and dp[0].CreatorId==obj.UserId%}
-            <td>
-              <form action="/DeletePost" method="post">
-                <input type="hidden" name="PostId" value="{{dp[0].PostId}}">
-                <input type="hidden" name="UserId" value="{{obj.UserId}}">
-      
-                <input type="submit" class="btn" value="delete post">
-                </form>
-      
-              </form>
-            {%endif%}
-      
-          </tr>
-          <tr>
-            <td>
-            <iframe src="../static/{{dp[0].PostId}}.{{dp[0].type}}" width=1000 height=400 frameborder=0 ></iframe>
-            </td>
-            
-          </tr>
-          <tr>
-            <button><a href="../static/{{dp[0].PostId}}.{{dp[0].type}}" download>download</a></button>
-          </tr>
-          <tr>
-            <form action="/addComment" method="post">
-            <td>
-              <input type="hidden" name="UserId" value="{{obj.UserId}}">
-              <input type="text" name="comment" >
-              <input type="hidden" name="PostId" value="{{dp[0].PostId}}">
-              <input type="submit" class="btn" value="comment">
-            </td>
-            </form>
-          </tr>
-          {% for k in dp[1]%}
-              <tr>
-                <td>
-      
-                  <span><h6>commentor:{{k.CommentorId}}</h6><input type="text" name="comment" value="{{k.commentDescription}}"></span>
-                </td>
-      
-              </tr>
-                {% endfor %}
-          </table>
-      {%endfor %}
-      {%endfor %}
-      {%endif%}
-
-        
-    </div>
-  </div> -->
-
-
-<!-- 3rd row div -->
 </div>
-{%endif%}
-<!-- {% if obj.Role==0%}
-<div class="flex min-h-content justify-left  py-12 px-4 sm:px-6 " >
-  <div class="w-content min-h-content max-w-content space-y-8 rounded-lg shadow-lg p-8" style="
-    background: ghostwhite;"> 
-  <p class="text-2xl font-bold  mb-2" style="color: #2A6F97; text-shadow: 2px 2px 4px #e1e1e1;">Approve user for groups</p>-->
-  <!-- {% if lugu>0 %}
-  {% endif %}
-
-    {% if obj.Role==0%}
-      <table>
-        <p class="text-2xl font-bold  mb-2" style="color: #2A6F97; text-shadow: 2px 2px 4px #e1e1e1;">Approve user for groups</p>
-        <thead>
-          <th>group id</th>
-         <th>group name</th>
-          <th>user Id</th>
-          <th>action</th>
-        </thead>
-        {% for upg in unApprovedGroupUserList %}
-        {% for ug in upg %}
-        <tr>
-          <td>{{ ug['GroupId'] }}</td>
-          <td>{{ ug['GroupName'] }}</td>
-          <td>{{ ug['UserId'] }}</td>
-          
-            <form action='/ApproveUserForGroup' method='post'>
-              <input type='hidden' name='UserId' value='{{ obj.UserId }}' >
-                <input type='hidden' name='TargetUserId' value='{{ ug['UserId'] }}' >
-                <input type='hidden' name='GroupId' value='{{ ug['GroupId'] }}' >
-
-                <td><input class="btn" type='submit' value='add to  group'></td>
-        </form>
-        
-        </tr>
-
-        {% endfor %}
-        {% endfor %}
-        {% endif %}
-      </table>
-</div>
-<div class="flex min-h-content justify-left  py-12 px-4 sm:px-6 " >
-<div class="w-content min-h-content max-w-content space-y-8 rounded-lg shadow-lg p-8" style="
-    background: ghostwhite;"> 
-    {% if obj.Role==0%}
-    {% if lup>0 %}
-    {% endif %}
-    {% endif %}
-    <table>
-      <thead>
-      <th>creatorId</th>
-      <th>Group Id</th>
-      <th>data</th>
-      </thead>
-      {% if obj.Role==0%}
-        {% for ups in UnApprovedPostList %}
-              {% for up in ups %}
-              <tr>
-                <td>{{ up['UserName'] }}</td>
-                <td>{{ up['GroupName'] }}</td>
-                <td>{{ up['Data'] }}</td>
-                <tr>
-                  <td>
-                  <iframe src="../static/{{up.PostId}}.{{up.type}}" width=1000 height=400 frameborder=0 ></iframe>
-                  </td>
-                </tr>
-                <form action='/ApprovePost' method='post'>
-                  <input type='hidden' name='UserId' value='{{ obj.UserId }}' >
-                  
-                  <input type='hidden' name='TargetUserId' value='{{ up['UserId']}}' >
-                  <input type='hidden' name='PostId' value='{{ up['PostId']}}' >
-                    <td><input class="btn" type='submit' value='approve post'></td>
-                </form>
-            </tr>
-              {% endfor %}
-              {% endfor %}
-              {% endif %}
-    </table>
-    <table>
-      <tr>
-    <td>
-      <form action='/LoadCreateGroup' method='post'>
-        <td><input type='submit' class="btn" value='add Group'></td>
-        <td><input type='hidden' name='UserName' value='{{obj.UserName}}' id='UserName' ></td>
-        <td><input type='hidden' name='UserId' value='{{obj.UserId }}' id='UserId' > </td>
-      </form>
-    </td>
-    <td>
-      <form action='/LoadJoinGroup' method='post'>
-        <td><input type='submit' class="btn" value='Join Group'></td>
-        <td><input type='hidden' name='UserName' value='{{obj.UserName}}' id='UserName' ></td>
-        <td><input type='hidden' name='UserId' value='{{obj.UserId }}' id='UserId' > </td>
-      </form>
-    </td>
-    <td>
-      <form action='/LoadAddPost' method='post'>
-        <td><input type='submit' class="btn" value='add post'></td>
-        <td><input type='hidden' name='UserName' value='{{obj.UserName}}' id='UserName' ></td>
-        <td><input type='hidden' name='UserId' value='{{obj.UserId }}' id='UserId' > </td>
-      </form>
-    </td>
-    </tr>
-</table>
-</div>
-</div>
-{% endif %} --> 
   </body>
 </html>

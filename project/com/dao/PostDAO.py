@@ -2,6 +2,8 @@ from project import db
 from project.com.vo.PostVo import PostVo
 from project.com.dao.CommentDAO import CommentDAO
 
+
+
 CommentDao=CommentDAO()
 class PostDAO:
     def addPost(self, PostVo,time):
@@ -21,7 +23,7 @@ class PostDAO:
         return post
     
     def getPostByPostId(self, PostId):
-        post=PostVo.query.filter_by(PostId = PostId).all()
+        post=PostVo.query.filter_by(PostId = PostId).one()
         return post
 
     def getUnapporvedPostByGroupId(self, GroupId):
@@ -37,6 +39,15 @@ class PostDAO:
             postComments.append([j,comments])
         print('postComments:',postComments)
         return postComments
+    
+    def getPostByUserId(self, UserId):
+        # posts=[]
+        comments=[]
+        posts=PostVo.query.filter_by(UserId = UserId).all()
+        # fetch coments for each post with postId inside posts
+        # store it inside a comments=[] and resturn it with post
+        # posts at index 0 of posts array with have comments at index 0 of comment array
+        return posts,comments
 
     def getUnapporvedPost(self):
         unApprovedPosts=PostVo.query.filter_by(Status = 0).all()
