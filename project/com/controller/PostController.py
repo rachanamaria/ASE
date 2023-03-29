@@ -47,6 +47,7 @@ def deletePost():
 def addPost():
     UserId=request.form['UserId']
     user=UserDao.getByUserId(UserId)
+    print(user)
     user=user[0]
 
     PostDescription=request.form['PostDescription']
