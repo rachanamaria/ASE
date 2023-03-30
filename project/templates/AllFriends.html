@@ -146,41 +146,42 @@
           </script> -->
 
 
-  // console.log(data[i]);
-
 
 
         <!-- Search for friend -->
         <div class=" p-10 col-span-2 ">
             <h1 class="  block ml-2 font-bold pb-10">Add Friends</h1>
-            <form  action="" method="post" class="flex items-center grid grid-cols-1 md:grid-cols-3 " onsubmit="return false">   
+            <form  action="/searchfriend" method="post" class="flex items-center grid grid-cols-1 md:grid-cols-3 ">   
+              <input type="hidden" value="{{userId}}" name="userId">
               <label for="voice-search" class="sr-only">Search</label>
               <div class="relative w-full md:col-span-2">
                   <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                       <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
                   </div>
-                  <input type="text" id="email-address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Friends..." required>
+                  <input  type="text" name="searchFriendName" id="email-address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Friends..." required>
 
               </div>
-              <!-- <div class="md\:col-span-1">
+              <div class="md\:col-span-1">
                 <button type="submit" id="search" class="inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-blue-700 border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                  
+                  Search
               </button>
               <button  id="CancelSearch" class="inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-blue-700 border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Cancel
              </button>
-              </div> -->
-            {% for s in users%}
-          </form>
+              </div>
+              </form>
+            {% if searchuser %}
+            {% if searchuser not in friends %}
+            
            
             <!-- list of names present -->
             <div id="disp-friends">
               <form class="flex" action="/addRelations" method="post" >
                 <div class="bg-white font-sans mt-24 h-100 w-full flex flex-row justify-center items-center" id="FriendName" >
                     <div class="card w-96 mx-auto bg-white  shadow-xl hover:shadow">
-                        <img class="w-32 mx-auto rounded-full -mt-20 border-8 border-white" src="../static/friend1.png" alt="">
-                        <div id="addfriendname" class="text-center mt-2 text-3xl font-medium">{{s.UserName}}</div>
-                        <input type="hidden" value="{{s.UserId}}" name="UserId2">
+                        <img id="randompic2"class="w-32 mx-auto rounded-full -mt-20 border-8 border-white" src="../static/friend1.png" alt="">
+                        <div id="addfriendname" class="text-center mt-2 text-3xl font-medium">{{searchuser.UserName}}</div>
+                        <input type="hidden" value="{{searchuser.UserId}}" name="UserId2">
                         <input type="hidden" name="UserId" value='{{userId}}'>
                         <input type="hidden" name="Relation" value='Friend'>
                         
@@ -201,64 +202,24 @@
               </form>
                 <!-- end -->
             </div>
-      {%endfor%}
+            {%endif%}
+      {%endif%}
 
         </div>
       </div >
 
     <script>
-
-
-    var Names = [{ "id": 1, "name": "Jack", "country": "USA" },
-    { "id": 1, "name": "Peter", "country": "Canada" },
-
-    ]
-    var BackendFetch = new Map();
-    let FindName = document.getElementById("email-address");
-    let Searchbutton = document.getElementById("search");
-    let CancelSearch = document.getElementById("CancelSearch");
-    let Addfriendbutton = document.getElementById("Addfriendbutton");
+      // randompic = Math.floor(Math.random() * 4) + 1;
+      // console.log(randompic);
+      // randompic2  = document.getElementById("randompic2");
+      // randompic2.src = URL.createObjectURL(inputpic.files[0]);
+    CancelSearch  = document.getElementById("CancelSearch");
     let FriendName = document.getElementById("FriendName");
-    let dispfriends = document.getElementById("disp-friends");
-    let addfriendname = document.getElementById("addfriendname");
-    let addfriendcountry = document.getElementById("addfriendcountry");
-
-
-    Searchbutton.onclick = function () {
-
-
-
-
-
-      var wantedName = FindName.value;
-      for (var i = 0; i < Names.length; i++) {
-        if (Names[i].name === wantedName) {
-          document.getElementById("addfriendname").innerHTML = Names[i].name;
-          document.getElementById("addfriendcountry").innerHTML = Names[i].country;
-          FriendName.style.visibility = 'visible';
-          break;
-        }
-        else {
-          FriendName.style.visibility = 'hidden';
-        }
-      }
-      // document.getElementById("email-address").value = "";
-    }
-
     CancelSearch.onclick = function () {
-
       FriendName.style.visibility = 'hidden';
       document.getElementById("email-address").value = "";
     }
-    Addfriendbutton.onclick = function () {
-
-
-      BackendFetch.set('Name', addfriendname.innerHTML);
-      document.getElementById("email-address").value = "";
-      FriendName.style.visibility = 'hidden';
-      console.log(BackendFetch);
-
-    }
+    
     </script>
       </div>
 </body>
