@@ -17,7 +17,8 @@ class EventDAO:
     
     def fetchAllEvents(self,UserId):
         dic=relationsDAO.getAllRelations(UserId)
-        print('dic...',dic)
+        # print('dic...',dic)
+        selfPost=[]
         postIds=[]
         events=[]
         for i,j in dic.items():
@@ -32,4 +33,14 @@ class EventDAO:
             events[p].post=pst
             # fetch all the comments for a post using post_id postIds[p] and replace it with comments line below
             events[p].comments=commentByPost
+        selfPost=eventVo.query.filter_by(UserId = i).filter_by(Visibility = j).all()
+        for k in selfPost:
+            obj=EventPostObject(k.EventName,None,None)
+            events.append(obj)
+            postIds.append(k.PostId)
+            pst=postDao.getPostByPostId(postIds[p])
+            commentByPost = commentDao.getCommentByPostId(postIds[p])
+            events[-1].post=pst
+            # fetch all the comments for a post using post_id postIds[p] and replace it with comments line below
+            events[-1].comments=commentByPost
         return events
