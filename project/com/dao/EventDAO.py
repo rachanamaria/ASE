@@ -38,8 +38,8 @@ class EventDAO:
             obj=EventPostObject(k.EventName,None,None)
             events.append(obj)
             postIds.append(k.PostId)
-            pst=postDao.getPostByPostId(postIds[p])
-            commentByPost = commentDao.getCommentByPostId(postIds[p])
+            pst=postDao.getPostByPostId(k.PostId)
+            commentByPost = commentDao.getCommentByPostId(k.PostId)
             events[-1].post=pst
             # fetch all the comments for a post using post_id postIds[p] and replace it with comments line below
             events[-1].comments=commentByPost
