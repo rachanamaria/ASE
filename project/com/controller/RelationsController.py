@@ -40,15 +40,28 @@ def addRelations():
 def getUsersAndFriends():
     users=[]
     UserId=request.form['UserId']
+    
     friends=relationsDAO.getFriends(UserId)
     users=userDAO.getActiveUsers()
     return render_template('AllFriends.html',userId=UserId,lenFriends=len(friends),friends=friends,users=users)
 
 
-@app.route('/AllFamily',methods=['POST'])
-def getUsersAndFamily():
+@app.route('/searchfriend',methods=['POST'])
+def searchfriend():
     users=[]
-    UserId=request.form['UserId']
-    friends=relationsDAO.getFamily(UserId)
+    UserId=request.form['userId']
+    print("userid",UserId)
+    searchFriendName = request.form['searchFriendName']
+    
+    friends=relationsDAO.getFriends(UserId)
     users=userDAO.getActiveUsers()
-    return render_template('AllFamily.html',userId=UserId,lenFriends=len(friends),friends=friends,users=users)
+    
+    singleSearch= ""
+    for i in users:
+        print(i.UserName)
+        if i.UserName == searchFriendName:
+            singleSearch = i
+        
+
+        
+    return render_template('AllFriends.html',userId=UserId,lenFriends=len(friends),friends=friends,users=users,searchuser=singleSearch)

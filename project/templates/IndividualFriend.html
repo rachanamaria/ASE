@@ -73,12 +73,12 @@
                         </h1>
                     </div>
                     
-                    <form action="/allfriends" method="post">
+                    <form action="/allfriends" method="post" class="col-span-1 md:col-span-5 flex flex-row-reverse ">
                     <input type="hidden" name="UserId" value="{{person}}">
-                      <div class="col-span-1 md:col-span-5 flex flex-row-reverse ">
+                     
                       <button type="submit" class="inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-blue-700 border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         All Friends</button>
-                </div>
+
               </form>
 
             </div>
@@ -140,9 +140,12 @@
               {% endfor %}
               <div class="bottom-0 left-0 right-0 pl-4 md:absolute">
                 <div class="pt-4 pb-1 pr-3 max-w-md">
-                  <form action="" method="post" onsubmit="return false">
+                  <form action="/addComment" method="post" >
+                    <input type="hidden" name="PostId" value='{{p.PostId}}'>
+                    <input type="hidden" name="UserId" value='{{person}}'>
                   <div class="flex items-start">
                     <input type ="text"
+                      name="comment"
                       class="w-full resize-none outline-none appearance-none"
                       aria-label="Agrega un comentario..."
                       placeholder="Post your comment"
