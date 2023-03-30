@@ -1,3 +1,4 @@
+import datetime
 from project import db
 from project.com.vo.PostVo import PostVo
 from project.com.dao.CommentDAO import CommentDAO
@@ -9,7 +10,8 @@ class PostDAO:
     def addPost(self, PostVo,time):
         db.session.add(PostVo)
         db.session.commit()
-        post=self.getpostByCreatTime(time)
+        print(time.round(datetime.timedelta(seconds=1)))
+        post=self.getpostByCreatTime(time.round(datetime.timedelta(seconds=1)))
         return post[0]
     
     def deletePost(self, PostId):
@@ -19,7 +21,9 @@ class PostDAO:
         return 
 
     def getpostByCreatTime(self,time):
+        print(time)
         post=PostVo.query.filter_by(createdTime = time).all()
+        print(post)
         return post
     
     def getPostByPostId(self, PostId):

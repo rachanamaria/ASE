@@ -54,7 +54,10 @@ def addPostMain():
 
 @app.route('/addPostEvent')
 def addPostEvent():
-    return render_template('AddPostEvent.html')
+    userId=0
+    if 'isLoggedIn'in session and session['isLoggedIn']:
+        userId = session['userId']
+    return render_template('AddPostEvent.html', UserId=userId)
 
 # @app.route('')
 # def allfriends():
@@ -64,9 +67,12 @@ def addPostEvent():
 def friendsaddpost():
     return render_template('FriendsAddPost.html')
 
-@app.route('/home2')
-def home2():
-    return render_template('Home2.html')
+@app.route('/home')
+def home():
+    user = {'UserId':0,'Role': ''}
+    if 'isLoggedIn'in session and session['isLoggedIn']:
+        user['UserId'] = session['userId']
+    return render_template('Home.html', obj=user)
 
 @app.route('/travel')
 def travel():
@@ -111,6 +117,7 @@ def logOut():
     session.pop('username')
     session['isLoggedIn'] = False
     session.pop('role')
+    session.pop('userId')
     return index()
 
 
