@@ -6,11 +6,12 @@ from project.com.dao.UserDAO import UserDAO
 
 userDAO=UserDAO()
 class RelationsDAO:
-    def addRelation(self, vo):
-        user=UserRelationsVo.query.filter_by(UserId = vo.UserId).filter_by(Relation='Friend').filter_by(User2Id=vo.User2Id).all()
-        print('user:',user)
-        if len(user)==0:
-            db.session.add(vo)
+    def addRelation(self, vo1,vo2):
+        user=UserRelationsVo.query.filter_by(UserId = vo1.UserId).filter_by(User2Id=vo1.User2Id).all()
+        user2=UserRelationsVo.query.filter_by(UserId = vo1.User2Id).filter_by(User2Id=vo1.UserId).all()
+        if len(user)==0 and len(user2)==0:
+            db.session.add(vo1)
+            db.session.add(vo2)
             db.session.commit()
     
     def getAllRelations(self,UserId):

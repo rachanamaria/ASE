@@ -5,8 +5,10 @@ from flask import render_template,request,redirect
 from project.com.dao.EventDAO import EventDAO
 from project.com.dao.RelationsDAO import RelationsDAO
 from project.com.dao.UserDAO import UserDAO
+from project.com.dao.PostDAO import PostDAO
 
 
+postDAO=PostDAO()
 relationsDAO=RelationsDAO()
 userDAO=UserDAO()
 @app.route('/FamilyAncestoryTree', methods=['POSt'])
@@ -33,3 +35,34 @@ def getUsersAndFamily():
     friends=relationsDAO.getFamily(UserId)
     users=userDAO.getActiveUsers()
     return render_template('AllFamily.html',userId=UserId,lenFriends=len(friends),friends=friends,users=users)
+
+
+
+@app.route('/searchFamily',methods=['POST'])
+def searchFamily():
+    users=[]
+    UserId=request.form['userId']
+    print("userid",UserId)
+    searchFriendName = request.form['searchFriendName']
+    
+    friends=relationsDAO.getFamily(UserId)
+    users=userDAO.getActiveUsers()
+    
+    singleSearch= ""
+    for i in users:
+        print(i.UserName)
+        if i.UserName == searchFriendName:
+            singleSearch = i        
+    return render_template('AllFamily.html',userId=UserId,lenFriends=len(friends),friends=friends,users=users,searchuser=singleSearch)
+
+
+@app.route('/UserFamilyPosts', methods=['POST'])
+def userFamilyPosts():
+    person=request.form['UserId']
+    familyId=request.form['User2Id']
+    familyPosts,comments=postDAO.getPostByUserId(familyId)
+    if len(familyPosts)==0:
+        fnName=''
+    else:
+        fnName=familyPosts[0].UserName
+    return render_template('IndividualFamily.html',person=person,familyName=fnName,familyPosts=familyPosts,comments=comments)

@@ -23,8 +23,7 @@ def addRelations():
     userRelationsVo2.User2Id=request.form['UserId']
     userRelationsVo2.UserId=request.form['UserId2']
     userRelationsVo2.Relation=request.form['Relation']
-    relationsDAO.addRelation(userRelationsVo1)
-    relationsDAO.addRelation(userRelationsVo2)
+    relationsDAO.addRelation(userRelationsVo1,userRelationsVo2)
     users=[]
     UserId=request.form['UserId']
     if userRelationsVo2.Relation=='Friend':
@@ -61,24 +60,5 @@ def searchfriend():
         print(i.UserName)
         if i.UserName == searchFriendName:
             singleSearch = i
-        
-
-        
     return render_template('AllFriends.html',userId=UserId,lenFriends=len(friends),friends=friends,users=users,searchuser=singleSearch)
 
-@app.route('/searchFamily',methods=['POST'])
-def searchFamily():
-    users=[]
-    UserId=request.form['userId']
-    print("userid",UserId)
-    searchFriendName = request.form['searchFriendName']
-    
-    friends=relationsDAO.getFamily(UserId)
-    users=userDAO.getActiveUsers()
-    
-    singleSearch= ""
-    for i in users:
-        print(i.UserName)
-        if i.UserName == searchFriendName:
-            singleSearch = i        
-    return render_template('AllFamily.html',userId=UserId,lenFriends=len(friends),friends=friends,users=users,searchuser=singleSearch)
