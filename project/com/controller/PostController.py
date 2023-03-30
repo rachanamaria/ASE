@@ -79,7 +79,7 @@ def userPosts():
         fnName=''
     else:
         fnName=firendPosts[0].UserName
-    return render_template('IndividualFriend.html',person=person,friendName=fnName,firendPosts=firendPosts,comments=comments)
+    return render_template('IndividualFriend.html',person=person,friendName=fnName,firendPosts=firendPosts,comments=comments,friendid=friendId)
 
 @app.route('/UserFamilyPosts', methods=['POST'])
 def userFamilyPosts():

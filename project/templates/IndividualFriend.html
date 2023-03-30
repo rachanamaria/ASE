@@ -103,7 +103,7 @@
                     class="block cursor-pointer py-4 flex items-center text-sm outline-none focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out"
                   >
                     <img
-                      src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+                      src="../static/male2.png"
                       class="h-8 w-8 rounded-full object-cover"
                       alt="user"
                     />
@@ -115,6 +115,7 @@
                 </div>
               </header>
               <!-- comment part -->
+              <div class="md:h-40 overflow-y-scroll  ">
               {% for c in comments %}
               {% for cm in c %}
               <div class="text-sm mb-2 flex flex-start items-center pt-1">
@@ -125,7 +126,7 @@
                   >
                     <img
                       class="h-8 w-8 rounded-full object-cover"
-                      src="https://images.pexels.com/photos/1450082/pexels-photo-1450082.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                      src="../static/male1.png"
                       alt="user"
                     />
                   </a>
@@ -135,6 +136,7 @@
                   <span class="text-gray-700 font-medium ml-1">{{cm.commentDescription}}</span>
                 </p>
               </div>
+           
               <!-- end comment part -->
               {% endfor %}
               {% endfor %}
@@ -143,6 +145,8 @@
                   <form action="/addComment" method="post" >
                     <input type="hidden" name="PostId" value='{{p.PostId}}'>
                     <input type="hidden" name="UserId" value='{{person}}'>
+                    <input type="hidden" name="Friendid" value='{{friendid}}'>
+                    <input type="hidden" name="routetype" value='FriendRoute'>
                   <div class="flex items-start">
                     <input type ="text"
                       name="comment"
@@ -162,6 +166,7 @@
                   </form>
                 </div>
               </div>
+            </div>
               <!-- End of Comment text area and button -->
             </div>
             <!-- End of Right side -->
