@@ -44,6 +44,10 @@ def index():
         isUserLoggedIn = session['isLoggedIn']
     return render_template('LoginPage.html', isUser=isUserLoggedIn, isAdmin = isAdmin)
 
+@app.route('/familyancestry')
+def familyancestry():
+    return render_template('FamilyAncestry.html')
+
 @app.route('/addPostMain')
 def addPostMain():
     return render_template('AddPostMain.html')

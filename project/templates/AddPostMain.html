@@ -39,13 +39,13 @@
         }
 
         .leftContent {
-            float:left;
+            float: left;
             width: 40%;
             font-weight: bold;
         }
 
         .rightContent {
-            float:right;
+            float: right;
             width: 60%;
         }
     </style>
@@ -74,40 +74,49 @@
                 Friends Family Travel Diary
             </p>
         </div>
-                 
+
         <div class="container mx-auto mt-10">
             <div class="grid grid-cols-3 gap-4">
-              <!-- Event button -->
-              <div class="bg-white rounded-lg shadow-md p-1">
-                <a href="/addPostEvent">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold h-full w-full flex flex-col items-center justify-center rounded-lg  p-6">
-                  <i class="fa fa-calendar-plus-o mb-2"></i>
-                  <span>Add Event Post</span>
-                </button>
-                </a>
-              </div>
-              <!-- Travel button -->
-              <div class="bg-white rounded-lg shadow-md p-1">
-                <a href="#">
-                <button class="bg-green-500 hover:bg-green-700 text-white font-bold h-full w-full flex flex-col items-center justify-center rounded-lg  p-6">
-                  <i class="fa fa-plane mb-2"></i>
-                  <span>Add Travel Post</span>
-                </button>
-                </a>
-              </div>
-              <!-- BucketList button -->
-              <div class="bg-white rounded-lg shadow-md p-1">
-                <a href="#">
-                <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold h-full w-full flex flex-col items-center justify-center rounded-lg   p-6">
-                  <i class="fa fa-bookmark-o mb-2"></i>
-                  <span>Add BucketList Post</span>
-                </button>
-                </a>
-              </div>
+                <!-- Event button -->
+
+                <div class="bg-white rounded-lg shadow-md p-1">
+                    <form action="/AddPostEvent" method="post">
+                        <input type="hidden" value="{{userId}}" name="UserId">
+                        
+                    
+                    <!-- <a href="/addPostEvent"> -->
+                    <button type="submit"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold h-full w-full flex flex-col items-center justify-center rounded-lg  p-6">
+                        <i class="fa fa-calendar-plus-o mb-2"></i>
+                        <span>Add Event Post</span>
+                    </button>
+                </form>
+
+                </div>
+                <!-- Travel button -->
+                <div class="bg-white rounded-lg shadow-md p-1">
+                    <a href="#">
+                        <button
+                            class="bg-green-500 hover:bg-green-700 text-white font-bold h-full w-full flex flex-col items-center justify-center rounded-lg  p-6">
+                            <i class="fa fa-plane mb-2"></i>
+                            <span>Add Travel Post</span>
+                        </button>
+                    </a>
+                </div>
+                <!-- BucketList button -->
+                <div class="bg-white rounded-lg shadow-md p-1">
+                    <a href="#">
+                        <button
+                            class="bg-purple-500 hover:bg-purple-700 text-white font-bold h-full w-full flex flex-col items-center justify-center rounded-lg   p-6">
+                            <i class="fa fa-bookmark-o mb-2"></i>
+                            <span>Add BucketList Post</span>
+                        </button>
+                    </a>
+                </div>
             </div>
-          </div>
-          
-          
+        </div>
+
+
 </body>
 
 </html>

@@ -80,7 +80,7 @@ def addPost():
     eventDAO.add(objVo)
     return loadDashBoard()
 
-@app.route('/UserFriendsPosts', methods=['POST'])
+@app.route('/UserPosts', methods=['POST'])
 def userPosts():
     person=request.form['UserId']
     friendId=request.form['User2Id']
@@ -91,14 +91,16 @@ def userPosts():
         fnName=firendPosts[0].UserName
     return render_template('IndividualFriend.html',person=person,friendName=fnName,firendPosts=firendPosts,comments=comments)
 
-@app.route('/UserFamilyPosts', methods=['POST'])
-def userFamilyPosts():
-    person=request.form['UserId']
-    familyId=request.form['User2Id']
-    familyPosts,comments=PostDao.getPostByUserId(familyId)
-    if len(familyPosts)==0:
-        fnName=''
-    else:
-        fnName=familyPosts[0].UserName
-    return render_template('IndividualFamily.html',person=person,familyName=fnName,familyPosts=familyPosts,comments=comments)
+@app.route('/AddPostMain', methods=['POST'])
+def addPostMains():
+    UserId=request.form['UserId']
+    user=UserDao.getByUserId(UserId)
+    user=user
+    return render_template("AddPostMain.html",userId=UserId)
 
+@app.route('/AddPostEvent', methods=['POST'])
+def addPostEvents():
+    UserId=request.form['UserId']
+    user=UserDao.getByUserId(UserId)
+    user=user
+    return render_template("AddPostEvent.html",userId=UserId)
