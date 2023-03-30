@@ -116,9 +116,9 @@
           <!-- list of names present -->
           <div id="disp-friends">
             <form class="flex" action="/addRelations" method="post" >
-              <div class="bg-white font-sans mt-24 h-100 w-full flex flex-row justify-center items-center" id="FriendName" >
+              <div class=" font-sans mt-24 h-100 w-full flex flex-row justify-center items-center" id="FriendName" >
                   <div class="card w-96 mx-auto bg-white  shadow-xl hover:shadow">
-                      <img class="w-32 mx-auto rounded-full -mt-20 border-8 border-white" src="../static/friend1.png" alt="">
+                      <img id ="randompic2"class="w-32 mx-auto rounded-full -mt-20 border-8 border-white" src="../static/friend1.png" alt="">
                       <div id="addfriendname" class="text-center mt-2 text-3xl font-medium">{{searchuser.UserName}}</div>
                       <input type="hidden" value="{{searchuser.UserId}}" name="UserId2">
                       <input type="hidden" name="UserId" value='{{userId}}'>
@@ -149,7 +149,10 @@
 
     <script>
 
-
+      randompic = Math.floor(Math.random() * 5) + 1;
+      console.log(randompic);
+      randompic2  = document.getElementById("randompic2");
+      randompic2.src = "../static/friend"+randompic+".png";
 let FriendName = document.getElementById("FriendName");
     CancelSearch.onclick = function () {
       FriendName.style.visibility = 'hidden';

@@ -72,11 +72,11 @@
                 <div class="  mt-8 space-y-4" id ="displayallfriends">
                   {% for f in friends %}
                     <form id ="navigatetouser" action='/UserFriendsPosts' method="post">
-      <input type="hidden" name="UserId" value='{{userId}}'>
-
+                    <input type="hidden" name="UserId" value='{{userId}}'>
+                      
                       <input type="hidden" name="User2Id" value='{{f.UserId}}'>
                   <button type="submit" class="flex items-center w-full px-5 py-2 transition-colors duration-200 dark:hover:bg-gray-800 gap-x-2 hover:bg-gray-100 focus:outline-none">
-                      <img class="object-cover w-8 h-8 rounded-full"  alt='src="${data[i].profilepic}"'>
+                      <img  class="object-cover w-8 h-8 rounded-full" src="../static/male2.png" alt=''>
                       <div class="text-left rtl:text-right">
                           <h1 class="text-sm font-medium text-gray-700 capitalize dark:text-white">{{f.UserName}}</h1>
                       </div>
@@ -87,66 +87,6 @@
                 </div>
             </div>
         </aside>
-        <!-- End Test -->
-                <!-- <script>
-        var Friends = [
-          {
-            name: "Leslie",
-            "userid":"01",
-            profilepic: "../static/friend1.png",
-          },
-          {
-            name: "Alexander",
-            "userid":"02",
-            profilepic: "../static/friend2.png",
-          },
-          {
-            name: "Diana",
-            "userid":"03",
-            profilepic: "../static/friend3.png",
-          },
-          {
-            name: "Marcus",
-            "userid":"04",
-            profilepic: "../static/friend4.png",
-          },
-          {
-            name: "Jacqueline",
-            "userid":"05",
-            profilepic: "../static/friend5.png",
-          },
-          
-        ];
-
-        buildUL(Friends);
-
-        function buildUL(data) {
-          var displayallfriends = document.getElementById("displayallfriends");
-
-          for (var i = 0; i < {lenFriends}; i++) {
-            // console.log(data[i]);
-
-            var listvalues = `
-            <form id ="navigatetouser" action="" method="post">
-            <a href="/individualperson/${data[i].name}" onclick="document.getElementById('navigatetouser').submit();>
-            <button id="${data[i].userid}" class="flex items-center w-full px-5 py-2 transition-colors duration-200 dark:hover:bg-gray-800 gap-x-2 hover:bg-gray-100 focus:outline-none">
-                        <img class="object-cover w-8 h-8 rounded-full" src="${data[i].profilepic}" alt="">
-                        <div class="text-left rtl:text-right">
-                            <h1 class="text-sm font-medium text-gray-700 capitalize dark:text-white">${data[i].name}</h1>
-                           
-                        </div>
-                    </button>
-                    </a>
-                    </form>`;
-
-                    displayallfriends.innerHTML += listvalues;
-          }
-
-        }
-          </script> -->
-
-
-
 
         <!-- Search for friend -->
         <div class=" p-10 col-span-2 ">
@@ -177,7 +117,7 @@
             <!-- list of names present -->
             <div id="disp-friends">
               <form class="flex" action="/addRelations" method="post" >
-                <div class="bg-white font-sans mt-24 h-100 w-full flex flex-row justify-center items-center" id="FriendName" >
+                <div class=" font-sans mt-24 h-100 w-full flex flex-row justify-center items-center" id="FriendName" >
                     <div class="card w-96 mx-auto bg-white  shadow-xl hover:shadow">
                         <img id="randompic2"class="w-32 mx-auto rounded-full -mt-20 border-8 border-white" src="../static/friend1.png" alt="">
                         <div id="addfriendname" class="text-center mt-2 text-3xl font-medium">{{searchuser.UserName}}</div>
@@ -209,10 +149,11 @@
       </div >
 
     <script>
-      // randompic = Math.floor(Math.random() * 4) + 1;
-      // console.log(randompic);
-      // randompic2  = document.getElementById("randompic2");
-      // randompic2.src = URL.createObjectURL(inputpic.files[0]);
+
+    randompic2  = document.getElementById("randompic2");
+      randompic = Math.floor(Math.random() * 5) + 1;
+      randompic2.src = "../static/friend"+randompic+".png";
+     
     CancelSearch  = document.getElementById("CancelSearch");
     let FriendName = document.getElementById("FriendName");
     CancelSearch.onclick = function () {

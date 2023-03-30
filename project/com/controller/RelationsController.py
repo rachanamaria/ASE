@@ -40,8 +40,6 @@ def getUsersAndFriends():
     
     friends=relationsDAO.getFriends(UserId)
     users=userDAO.getActiveUsers()
-    # for i in users:
-    # print('friends:',friends[0].UserName)
     return render_template('AllFriends.html',userId=UserId,lenFriends=len(friends),friends=friends,users=users)
 
 
