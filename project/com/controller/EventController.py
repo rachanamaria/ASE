@@ -26,5 +26,4 @@ def getEventPosts():
         print(i.comments)
         print(i.post.PostURL)
 
-
     return render_template('Events.html',ln=len(data),data=data,UserId=userId)

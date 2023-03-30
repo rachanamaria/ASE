@@ -33,7 +33,7 @@ class EventDAO:
             events[p].post=pst
             # fetch all the comments for a post using post_id postIds[p] and replace it with comments line below
             events[p].comments=commentByPost
-        selfPost=eventVo.query.filter_by(UserId = i).filter_by(Visibility = j).all()
+        selfPost=eventVo.query.filter_by(UserId = UserId).all()
         for k in selfPost:
             obj=EventPostObject(k.EventName,None,None)
             events.append(obj)
