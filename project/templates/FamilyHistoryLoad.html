@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%;">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.2.0/tailwind.min.css">
     <link rel="stylesheet" href="../static/css/main.css">
-    
+
     <title>Document</title>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
     <style>
         div#imh {
             display: block;
@@ -28,56 +39,74 @@
         }
 
         .leftContent {
-            float:left;
-            width: 40%;
-            font-weight: bold;
+            float: left;
+            width: 50%;
+            /* font-weight: bold; */
         }
 
         .rightContent {
-            float:right;
-            width: 60%;
+            float: right;
+            width: 50%;
         }
     </style>
 </head>
-<body >
-    <form action="/FamilyAncestoryTree" method="post">
-        <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-            <article class="overflow-hidden rounded-lg shadow-lg">
-                <a href="#">
-                    <img alt="Placeholder" class="block h-auto w-full" src="../static/FamilyGraph.png">
-                </a>    
-                <header class="flex items-center justify-between leading-tight p-2 md:p-4">
-                    <h1 class="text-lg">
-                    <input type="hidden" value="{{UserId}}" name="UserId">
-                    <input type="submit" class="no-underline hover:underline font-bold" style="color: #2A6F97;" value="Ancestory Tree">
-                    </h1>
-                </header>
-                <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-                    <p class="text-grey-darker text-sm">My dynast graph.....</p>
-                </footer>
-            </article>
-        </div>
-    </form>
-<!-- family history -->
-    <form action="/AllFamily" method="post">
-        <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-            <article class="overflow-hidden rounded-lg shadow-lg">
-                <a href="#">
-                    <img alt="Placeholder" class="block h-auto w-full" src="../static/FamilyGroup.png">
-                </a>    
-                <header class="flex items-center justify-between leading-tight p-2 md:p-4">
-                    <h1 class="text-lg">
-                    <input type="hidden" value="{{UserId}}" name="UserId">
-                    <input type="submit" class="no-underline hover:underline font-bold" style="color: #2A6F97;" value="Family Group">
-                    </h1>
-                </header>
-                <input type="hidden" value="{{UserId}}" name="UserId">
-                <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-                    <p class="text-grey-darker text-sm">Our family group.......</p>
-                </footer>
-            </article>
-        </div>
 
-    </form>
+<body style="height: 100%;">
+    <div class="topnav" id="myTopnav">
+        <a href="/home" class="active">Home</a>
+        <a href="/loadContact">Contact</a>
+        <a href="/loadAbout">About</a>
+        <!-- show logout button at the right end -->
+        <a href="/" style="float: right">Logout</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    <div id="imh" align="center" class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+
+        <form action="/FamilyAncestoryTree" method="post">
+            <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+                <article class="overflow-hidden rounded-lg shadow-lg">
+                    <a href="#">
+                        <img alt="Placeholder" class="block h-auto w-full" src="../static/FamilyGraph.jpeg">
+                    </a>
+                    <header class="flex items-center justify-between leading-tight p-2 md:p-4">
+                        <h1 class="text-lg">
+                            <input type="hidden" value="{{UserId}}" name="UserId">
+                            <input type="submit" class="no-underline hover:underline font-bold" style="color: #2A6F97;"
+                                value="Ancestory Tree">
+                        </h1>
+                    </header>
+                    <footer class="flex items-center justify-between leading-none p-2 md:p-4">
+                        <p class="text-grey-darker text-sm">My dynasty graph.....</p>
+                    </footer>
+                </article>
+            </div>
+        </form>
+
+        <form action="/AllFamily" method="post">
+            <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+                <article class="overflow-hidden rounded-lg shadow-lg">
+                    <a href="#">
+                        <img alt="Placeholder" class="block h-auto w-full" src="../static/FamilyGroup.png">
+                    </a>
+                    <header class="flex items-center justify-between leading-tight p-2 md:p-4">
+                        <h1 class="text-lg">
+                            <input type="hidden" value="{{UserId}}" name="UserId">
+                            <input type="submit" class="no-underline hover:underline font-bold" style="color: #2A6F97;"
+                                value="Family Group">
+                        </h1>
+                    </header>
+                    <input type="hidden" value="{{UserId}}" name="UserId">
+                    <footer class="flex items-center justify-between leading-none p-2 md:p-4">
+                        <p class="text-grey-darker text-sm">Our family group.......</p>
+                    </footer>
+                </article>
+            </div>
+
+        </form>
+    </div>
+
 </body>
+
 </html>

@@ -42,6 +42,7 @@ def index():
         else:
             isAdmin = False
         isUserLoggedIn = session['isLoggedIn']
+    print(isUserLoggedIn)
     return render_template('LoginPage.html', isUser=isUserLoggedIn, isAdmin = isAdmin)
 
 @app.route('/familyancestry')
@@ -72,7 +73,8 @@ def home():
     user = {'UserId':0,'Role': ''}
     if 'isLoggedIn'in session and session['isLoggedIn']:
         user['UserId'] = session['userId']
-    return render_template('Home.html', obj=user)
+        return render_template('Home.html', obj=user)
+    return index()
 
 @app.route('/travel')
 def travel():
@@ -112,7 +114,7 @@ def about():
 @app.route('/logout')
 def logOut():
     session.pop('username')
-    session['isLoggedIn'] = False
+    session.pop('isLoggedIn')
     session.pop('role')
     session.pop('userId')
     return index()

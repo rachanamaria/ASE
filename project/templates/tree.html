@@ -158,7 +158,8 @@ right connector from last child*/
 
 <form action="/FamilyAncestory" method="POST">
     <input type="hidden" value="{{UserId}}" name="UserId"/>
-    <input type="submit" value="back">
+    <input type="submit" class="no-underline hover:underline font-bold"
+    style="background-color: #2A6F97;" value="Back">
 </form>
 <div class="tree">
     <form accept="/FamilyAncestory" method="post">
@@ -173,13 +174,13 @@ right connector from last child*/
             </a>
             <a href="#">
                 <div>
-                <img src = "../static/Image/Grandfather.jpeg" width="80" height="90">
+                <img src = "../static/Image/Grandmother.jpeg" width="80" height="90">
                 <br>
                 <h1> Anne</h1>
                 </div>
             </a>
             <br>
-            <a> Grand parents</a>
+            <a style="font-size: medium;"> Grand parents</a>
 
 			<ul>
 				<li>
@@ -191,7 +192,7 @@ right connector from last child*/
                     </div>
                     </a>
                     
-                    <a href="#">
+                    <a href="#" class="active">
                         <div>
                             <img src = "../static/Image/Aunt.jpeg" width="80" height="90">
                             <br>
@@ -207,7 +208,7 @@ right connector from last child*/
                             <h1> Steve</h1>
                         </div>
                         </a>
-                        <a href="#" class="active">
+                        <a href="#">
                             <div>
                                 <img src = "../static/Image/Mother.jpeg" width="80" height="90">
                                 <br>
@@ -215,7 +216,7 @@ right connector from last child*/
                             </div>
                         </a>
                         <br>
-                        <a>Parents</a>
+                        <a style="font-size: medium;">Parents</a>
 					<ul>
 						<li >
                             <a href="#">
