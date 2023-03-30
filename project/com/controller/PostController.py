@@ -20,16 +20,6 @@ GroupDao=GroupDAO()
 eventVo=EventVo()
 eventDAO=EventDAO()
 
-@app.route('/LoadAddPost', methods=['POST'])
-def LoadAddPost():
-    UserId=request.form['UserId']
-    approvedGroups=UserGroupDao.getApprovedGroupsByUserId(UserId)
-    print(UserId)
-    print(approvedGroups)
-    if len(approvedGroups)==0:
-        approvedGroups=[]
-    return render_template('LoadAddPost.html',ln=len(approvedGroups),approvedGroups=approvedGroups,UserId=UserId)
-
 @app.route('/CreatePost', methods=['POST'])
 def CreatePost():
     UserId=request.form['UserId']
@@ -48,7 +38,6 @@ def addPost():
     UserId=request.form['UserId']
     user=UserDao.getByUserId(UserId)
     user=user
-
     PostDescription=request.form['PostDescription']
     uploaded_img = request.files['file']
     nm=uploaded_img.filename.split('.')
@@ -80,7 +69,7 @@ def addPost():
     eventDAO.add(objVo)
     return loadDashBoard()
 
-@app.route('/UserPosts', methods=['POST'])
+@app.route('/UserFriendsPosts', methods=['POST'])
 def userPosts():
     person=request.form['UserId']
     friendId=request.form['User2Id']
@@ -91,6 +80,16 @@ def userPosts():
         fnName=firendPosts[0].UserName
     return render_template('IndividualFriend.html',person=person,friendName=fnName,firendPosts=firendPosts,comments=comments)
 
+@app.route('/UserFamilyPosts', methods=['POST'])
+def userFamilyPosts():
+    person=request.form['UserId']
+    familyId=request.form['User2Id']
+    familyPosts,comments=PostDao.getPostByUserId(familyId)
+    if len(familyPosts)==0:
+        fnName=''
+    else:
+        fnName=familyPosts[0].UserName
+    return render_template('IndividualFamily.html',person=person,familyName=fnName,familyPosts=familyPosts,comments=comments)
 @app.route('/AddPostMain', methods=['POST'])
 def addPostMains():
     UserId=request.form['UserId']
