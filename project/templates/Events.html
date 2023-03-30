@@ -50,6 +50,10 @@
             float: right;
             width: 60%;
         }
+        .post-image  {
+	max-width: 100%;
+	margin-bottom: 10px;
+}
     </style>
 </head>
 
@@ -73,18 +77,26 @@
         </div>
         {% if ln>0 %}
         {% for d in data %}
-        <main class="max-w-3xl mx-auto px-4">
+        <main class="max-w-2xl  mx-auto px-4">
             <section class="bg-white border border-gray-200 rounded-lg shadow-sm my-8">
                 <div class="flex items-center px-6 py-4">
                     <!-- <img class="h-12 w-12 rounded-full mr-4" src="samp2.jpeg" alt="Profile Picture"> -->
                     <input type='hidden' name='UserName' value='{{ d.post.CreatorId }}'>
+		    <div class="text-sm mb-2 flex flex-start items-center pt-1">
+                    <img class="h-10 w-10 rounded-full object-cover" src="../static/male1.png"
+                    alt="user" />
+                    <p class="text-2xl font-bold tracking-tight text-gray-900">{{ d.post.UserName}}</p>
                 </div>
-                <input type='hidden' name='PostDiscription' value='{{ d.post.eventName }}'>
+                </div>
+                <p class="text-2xl text-center font-bold tracking-tight text-gray-900">{{ d.eventName }}</p>
                 <div class="post-image">
-                    <img src="{{d.post.PostURL}}" alt="Post Image">
+                    <img class="h-1/2  " src="{{d.post.PostURL}}" alt="Post Image">
                 </div>
-                <input type='hidden' name='PostDiscription' value='{{ d.post.PostDescription }}'>
-                <input type='hidden' name='PostDate' value='{{ d.post.createdTime }}'>
+<div class="text-sm flex flex-start items-center pt-1">
+                <p class="text-xl  font-bold tracking-tight text-gray-900">{{ d.post.PostDescription }}</p>
+                
+                </div>
+                <p class="text text-sm/[12px] tracking-tight text-slate-700 ">{{ d.post.createdTime }}</p>
 
                 <div class="comments">
 
