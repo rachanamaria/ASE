@@ -78,9 +78,6 @@ def home():
 def travel():
     return render_template('Travel.html')
 
-@app.route('/events')
-def events():
-    return render_template('Events.html')
 
 @app.route('/friendhistory')
 def friendhistory():

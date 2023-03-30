@@ -42,6 +42,7 @@ def addPost():
     uploaded_img = request.files['file']
     nm=uploaded_img.filename.split('.')
     time=dt.now()
+    time = time.replace(microsecond=0)
     vo=PostVo()
     vo.createdTime=time
     vo.CreatorId=UserId
@@ -50,7 +51,7 @@ def addPost():
     vo.PostDescription=PostDescription
     vo.UserName=user.UserName
     post=PostDao.addPost(vo,time)
-    img=open('../project/static/Posts/'+str(post.PostId)+'.'+nm[-1],'wb')
+    img=open('project/static/Posts/'+str(post.PostId)+'.'+nm[-1],'wb')
     img.write(uploaded_img.read())
     img.close()
     vo.PostURL='../static/Posts/'+str(post.PostId)+'.'+nm[-1]
@@ -67,7 +68,7 @@ def addPost():
     objVo.Visibility= request.form['Visibility']
     objVo.UserId =UserId
     eventDAO.add(objVo)
-    return loadDashBoard()
+    return render_template('Home.html', obj=user)
 
 @app.route('/UserFriendsPosts', methods=['POST'])
 def userPosts():
@@ -90,6 +91,7 @@ def userFamilyPosts():
     else:
         fnName=familyPosts[0].UserName
     return render_template('IndividualFamily.html',person=person,familyName=fnName,familyPosts=familyPosts,comments=comments)
+
 @app.route('/AddPostMain', methods=['POST'])
 def addPostMains():
     UserId=request.form['UserId']
@@ -97,9 +99,9 @@ def addPostMains():
     user=user
     return render_template("AddPostMain.html",userId=UserId)
 
-@app.route('/AddPostEvent', methods=['POST'])
-def addPostEvents():
-    UserId=request.form['UserId']
-    user=UserDao.getByUserId(UserId)
-    user=user
-    return render_template("AddPostEvent.html",userId=UserId)
+# @app.route('/AddPostEvent', methods=['POST'])
+# def addPostEvents():
+#     UserId=request.form['UserId']
+#     user=UserDao.getByUserId(UserId)
+#     user=user
+#     return render_template("AddPostEvent.html",userId=UserId)

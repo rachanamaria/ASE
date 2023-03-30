@@ -10,8 +10,7 @@ class PostDAO:
     def addPost(self, PostVo,time):
         db.session.add(PostVo)
         db.session.commit()
-        print(time.round(datetime.timedelta(seconds=1)))
-        post=self.getpostByCreatTime(time.round(datetime.timedelta(seconds=1)))
+        post=self.getpostByCreatTime(time)
         return post[0]
     
     def deletePost(self, PostId):

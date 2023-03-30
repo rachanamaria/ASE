@@ -75,7 +75,7 @@
                 <main class="max-w-3xl mx-auto px-4">
                     <section class="bg-white border border-gray-200 rounded-lg shadow-sm my-8">
                         <div class="flex items-center px-6 py-4">
-                            <img class="h-12 w-12 rounded-full mr-4" src="samp2.jpeg" alt="Profile Picture">
+                            <!-- <img class="h-12 w-12 rounded-full mr-4" src="samp2.jpeg" alt="Profile Picture"> -->
                             <input type='hidden' name='UserName' value='{{ d.post.CreatorId }}' > 
                         </div>
                         <p>#</p><input type='hidden' name='PostDiscription' value='{{ d.post.eventName }}' > 
@@ -92,7 +92,7 @@
                                     {% for c in d.comments %}
                                     <ul>
                                         <li class="comment flex items-center mb-4">
-                                            <img class="h-10 w-10 rounded-full mr-4" src="samp1.jpeg" alt="Commenter Picture">
+                                            <!-- <img class="h-10 w-10 rounded-full mr-4" src="samp1.jpeg" alt="Commenter Picture"> -->
                                             <p class="comment-text text-gray-700"><strong><input type="hidden" name="CommentUser" value='{{c.CommentorId}}'/></strong> <input type="hidden" name="CommentDiscription" value='{{c.commentDescription}}'/></p>
                                         </li>
                                     </ul>
