@@ -65,3 +65,20 @@ def searchfriend():
 
         
     return render_template('AllFriends.html',userId=UserId,lenFriends=len(friends),friends=friends,users=users,searchuser=singleSearch)
+
+@app.route('/searchFamily',methods=['POST'])
+def searchFamily():
+    users=[]
+    UserId=request.form['userId']
+    print("userid",UserId)
+    searchFriendName = request.form['searchFriendName']
+    
+    friends=relationsDAO.getFamily(UserId)
+    users=userDAO.getActiveUsers()
+    
+    singleSearch= ""
+    for i in users:
+        print(i.UserName)
+        if i.UserName == searchFriendName:
+            singleSearch = i        
+    return render_template('AllFamily.html',userId=UserId,lenFriends=len(friends),friends=friends,users=users,searchuser=singleSearch)
