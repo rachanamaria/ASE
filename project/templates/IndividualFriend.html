@@ -91,7 +91,7 @@
             <div class="row-span-6 w-full md:col-span-5">
               <img
                 class="w-full max-w-full min-w-full"
-                src={{p.PostURL}}
+                src={{p.post.PostURL}}
                 alt="Description"
               />
             </div>
@@ -111,13 +111,12 @@
                   </a>
                 </div>
                 <div>
-                  <p class="block ml-2 font-bold">{{p.PostDescription}}</p>
+                  <p class="block ml-2 font-bold">{{p.post.PostDescription}}</p>
                 </div>
               </header>
               <!-- comment part -->
               <div class="md:h-40 overflow-y-scroll  ">
-              {% for c in comments %}
-              {% for cm in c %}
+              {% for cm in p.comment %}
               <div class="text-sm mb-2 flex flex-start items-center pt-1">
                 <div>
                   <a
@@ -139,13 +138,12 @@
            
               <!-- end comment part -->
               {% endfor %}
-              {% endfor %}
               <div class="bottom-0 left-0 right-0 pl-4 md:absolute">
                 <div class="pt-4 pb-1 pr-3 max-w-md">
                   <form action="/addComment" method="post" >
-                    <input type="hidden" name="PostId" value='{{p.PostId}}'>
+                    <input type="hidden" name="PostId" value='{{p.post.PostId}}'>
                     <input type="hidden" name="UserId" value='{{person}}'>
-                    <input type="hidden" name="Friendid" value='{{friendid}}'>
+                    <input type="hidden" name="id" value='{{friendid}}'>
                     <input type="hidden" name="routetype" value='FriendRoute'>
                   <div class="flex items-start">
                     <input type ="text"

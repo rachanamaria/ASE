@@ -60,9 +60,9 @@ def searchFamily():
 def userFamilyPosts():
     person=request.form['UserId']
     familyId=request.form['User2Id']
-    familyPosts,comments=postDAO.getPostByUserId(familyId)
+    familyPosts=postDAO.getPostByUserId(familyId)
     if len(familyPosts)==0:
         fnName=''
     else:
-        fnName=familyPosts[0].UserName
-    return render_template('IndividualFamily.html',person=person,familyName=fnName,familyPosts=familyPosts,comments=comments)
+        fnName=familyPosts[0]['post'].UserName
+    return render_template('IndividualFamily.html',person=person,familyName=fnName,familyPosts=familyPosts,familyId=familyId)

@@ -48,11 +48,13 @@ class PostDAO:
         posts=PostVo.query.filter_by(CreatorId = UserId).all()
         for post in posts:
             coomentByPost = CommentDao.getCommentByPostId(post.PostId)
-            comments.append(coomentByPost)
+            comments.append({'post':post,'comment':coomentByPost})
+            # comments.append(coomentByPost)
         # fetch coments for each post with postId inside posts
         # store it inside a comments=[] and resturn it with post
         # posts at index 0 of posts array with have comments at index 0 of comment array
-        return posts,comments
+        # print(comments)
+        return comments
 
     def getUnapporvedPost(self):
         unApprovedPosts=PostVo.query.filter_by(Status = 0).all()

@@ -74,12 +74,14 @@ def addPost():
 def userPosts():
     person=request.form['UserId']
     friendId=request.form['User2Id']
-    firendPosts,comments=PostDao.getPostByUserId(friendId)
+    firendPosts=PostDao.getPostByUserId(friendId)
     if len(firendPosts)==0:
         fnName=''
     else:
-        fnName=firendPosts[0].UserName
-    return render_template('IndividualFriend.html',person=person,friendName=fnName,firendPosts=firendPosts,comments=comments,friendid=friendId)
+        print(firendPosts)
+        print(firendPosts[0])
+        fnName=firendPosts[0]['post'].UserName
+    return render_template('IndividualFriend.html',person=person,friendName=fnName,firendPosts=firendPosts,friendid=friendId)
 
 
 @app.route('/AddPostMain', methods=['POST'])
