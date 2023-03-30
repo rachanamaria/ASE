@@ -68,10 +68,10 @@
         <div class=" grid grid-cols-3 h-screen gap-x-4">
         <aside class="flex col-span-1">
           <div class="h-screen py-8 overflow-y-auto border-l border-r sm:w-64 w-60 dark:bg-gray-900 dark:border-gray-700">
-            <h2 class="px-5 text-lg font-medium text-gray-800 dark:text-white">Friends</h2>
+            <h2 class="px-5 text-lg font-medium text-gray-800 dark:text-white">Family</h2>
                 <div class="  mt-8 space-y-4" id ="displayallfriends">
                   {% for f in friends %}
-                    <form id ="navigatetouser" action='/UserFamilyPosts' method="post">
+                    <form id ="navigatetouser" action='/UserFriendsPosts' method="post">
       <input type="hidden" name="UserId" value='{{userId}}'>
 
                       <input type="hidden" name="User2Id" value='{{f.UserId}}'>
@@ -152,7 +152,7 @@
 
         <!-- Search for friend -->
         <div class=" p-10 col-span-2 ">
-            <h1 class="  block ml-2 font-bold pb-10">Add Friends</h1>
+            <h1 class="  block ml-2 font-bold pb-10">Add Family member</h1>
             <form  action="" method="post" class="flex items-center grid grid-cols-1 md:grid-cols-3 " onsubmit="return false">   
               <label for="voice-search" class="sr-only">Search</label>
               <div class="relative w-full md:col-span-2">
@@ -182,7 +182,7 @@
                         <div id="addfriendname" class="text-center mt-2 text-3xl font-medium">{{s.UserName}}</div>
                         <input type="hidden" value="{{s.UserId}}" name="UserId2">
                         <input type="hidden" name="UserId" value='{{userId}}'>
-                        <input type="hidden" name="Relation" value='Friend'>
+                        <input type="hidden" name="Relation" value='Family'>
                         
                         <div id="addfriendcountry" class="text-center font-normal text-lg"></div>
                         <div class="px-6 text-center mt-2 font-light text-sm">
@@ -193,7 +193,7 @@
                         <hr class="mt-8">
                         <div class="flex p-2 w-full h-full bg-indigo-500 items-center">
                             <button type="submit" id="Addfriendbutton" type="submit" class="text-xl tracking-tight text-gray-900 m-2 p-1 w-full">
-                                Add Friend
+                                Add Family member
                             </button>
                         </div>
                     </div>

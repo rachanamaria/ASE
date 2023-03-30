@@ -8,5 +8,6 @@ import project.com.controller.ForgetPasswordController
 import project.com.controller.ContactController
 import project.com.controller.EventController
 import project.com.controller.RelationsController
+import project.com.controller.FamilyAncestorController
 
 

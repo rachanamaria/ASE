@@ -27,11 +27,14 @@ def addRelations():
     relationsDAO.addRelation(userRelationsVo2)
     users=[]
     UserId=request.form['UserId']
-    friends=relationsDAO.getFriends(UserId)
-    users=userDAO.getActiveUsers()
-    # for i in users:
-    # print('friends:',friends[0].UserName)
-    return render_template('AllFriends.html',userId=UserId,lenFriends=len(friends),friends=friends,users=users)
+    if userRelationsVo2.Relation=='Friend':
+        friends=relationsDAO.getFriends(UserId)
+        users=userDAO.getActiveUsers()
+        return render_template('AllFriends.html',userId=UserId,lenFriends=len(friends),friends=friends,users=users)
+    elif userRelationsVo2.Relation=='Family':
+        friends=relationsDAO.getFamily(UserId)
+        users=userDAO.getActiveUsers()
+        return render_template('AllFamily.html',userId=UserId,lenFriends=len(friends),friends=friends,users=users)
 
 @app.route('/allfriends',methods=['POST'])
 def getUsersAndFriends():
@@ -39,6 +42,13 @@ def getUsersAndFriends():
     UserId=request.form['UserId']
     friends=relationsDAO.getFriends(UserId)
     users=userDAO.getActiveUsers()
-    # for i in users:
-    # print('friends:',friends[0].UserName)
     return render_template('AllFriends.html',userId=UserId,lenFriends=len(friends),friends=friends,users=users)
+
+
+@app.route('/AllFamily',methods=['POST'])
+def getUsersAndFamily():
+    users=[]
+    UserId=request.form['UserId']
+    friends=relationsDAO.getFamily(UserId)
+    users=userDAO.getActiveUsers()
+    return render_template('AllFamily.html',userId=UserId,lenFriends=len(friends),friends=friends,users=users)

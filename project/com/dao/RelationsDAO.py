@@ -29,3 +29,12 @@ class RelationsDAO:
             friends.append(userDAO.getByUserId(i.User2Id))
             print(friends[-1].UserName)
         return friends
+    
+    def getFamily(self,UserId):
+        friends=[]
+        users=UserRelationsVo.query.filter_by(UserId = UserId).filter_by(Relation='Family').all()
+        for i in users: 
+            print(i.User2Id)
+            friends.append(userDAO.getByUserId(i.User2Id))
+            print(friends[-1].UserName)
+        return friends
