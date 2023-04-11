@@ -188,10 +188,12 @@
 
                         <header class="flex items-center justify-between leading-tight p-2 md:p-4">
                             <h1 class="text-lg">
-                                <a class="no-underline hover:underline font-bold" href="/events"
-                                    style="color: #2A6F97;">
-                                    Events
-                                </a>
+                                <form action="/events" method="post">
+                                    <input type="hidden" value="{{obj.UserId}}" name="UserId">
+                                    <input type="hidden" name="justhappend" value='Events'>
+                                    <input type="submit" class="no-underline hover:underline font-bold"
+                                        style="color: #2A6F97;" value="Events">
+                                </form>
                             </h1>
                         </header>
 
