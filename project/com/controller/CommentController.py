@@ -37,5 +37,7 @@ def addComment():
          return render_template('IndividualFamily.html',person=UserId,familyName=familyPosts[0]['post'].UserName,familyPosts=familyPosts,familyId=id)
     elif routetype == "EventRoute":
          return redirect('/events')
+    elif routetype == "TravelRoute":
+         return redirect('/Travels')
 
     return 'comented'

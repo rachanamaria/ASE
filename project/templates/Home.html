@@ -120,10 +120,11 @@
                         </a>
                         <header class="flex items-center justify-between leading-tight p-2 md:p-4">
                             <h1 class="text-lg">
-                                <a class="no-underline hover:underline font-bold" href="/travel"
-                                    style="color: #2A6F97;">
-                                    Travel
-                                </a>
+                                <form action="/Travels" method="post">
+                                    <input type="hidden" value="{{obj.UserId}}" name="UserId">
+                                    <input type="submit" class="no-underline hover:underline font-bold"
+                                        style="color: #2A6F97;" value="Travel">
+                                </form>
                             </h1>
                         </header>
                         <footer class="flex items-center justify-between leading-none p-2 md:p-4">

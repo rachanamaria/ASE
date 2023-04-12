@@ -76,11 +76,6 @@ def home():
         return render_template('Home.html', obj=user)
     return index()
 
-@app.route('/travel')
-def travel():
-    return render_template('Travel.html')
-
-
 @app.route('/friendhistory')
 def friendhistory():
     return render_template('FriendHistory.html')

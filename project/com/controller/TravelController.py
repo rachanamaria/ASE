@@ -6,13 +6,12 @@ from project.com.dao.TravelDAO import TravelDAO
 
 travelDAO=TravelDAO()
     
-@app.route('/Travels')
+@app.route('/Travels',methods=['POST','GET'])
 def getTravelPosts():   
-    UserId=0
-    # if 'isLoggedIn'in session and session['isLoggedIn']:
-    UserId = request.form['UserId']
-    # print(UserId)
-    data=travelDAO.fetchAllTravels(UserId)
+    userId=0
+    if 'isLoggedIn'in session and session['isLoggedIn']:
+        userId = session['userId']
+    data=travelDAO.fetchAllTravels(userId)
     print('data..',data)   
     for i in data:
         print('-----data------------------')
@@ -27,4 +26,4 @@ def getTravelPosts():
         print(i.comments)
         print(i.post.PostURL)
 
-    return render_template('Events.html',ln=len(data),data=data,UserId=UserId)
+    return render_template('Travel.html',ln=len(data),data=data,UserId=userId)

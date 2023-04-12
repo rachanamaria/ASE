@@ -14,8 +14,10 @@ userDAO=UserDAO()
 @app.route('/FamilyAncestoryTree', methods=['POSt'])
 def familyAncestory():   
     UserId=request.form['UserId']
-    if UserId == '8':
+    if UserId == '12':
         return render_template('tree1.html',UserId=UserId)
+    if UserId == '13':
+        return render_template('tree2.html',UserId=UserId)
     return render_template('tree.html',UserId=UserId)
 
 

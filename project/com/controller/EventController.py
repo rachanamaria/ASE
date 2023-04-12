@@ -7,7 +7,7 @@ from datetime import datetime
 
 eventDAO=EventDAO()
     
-@app.route('/events',methods=['POST'])
+@app.route('/events',methods=['POST','GET'])
 def getEventPosts():   
     userId=0
     if 'isLoggedIn'in session and session['isLoggedIn']:
