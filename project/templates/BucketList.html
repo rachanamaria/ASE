@@ -20,6 +20,69 @@
     
         </script>
         <style>
+            body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  main {
+    margin: 20px;
+  }
+  
+  section {
+    margin-bottom: 20px;
+  }
+  
+  h1, h2 {
+    text-align: center;
+  }
+  
+  form {
+    display: inline-block;
+  }
+  
+  input[type="text"], button {
+    font-size: 16px;
+    padding: 10px;
+  }
+  
+  button {
+    background-color: #333;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: default;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  
+  li form {
+    display: inline-block;
+  }
+  
             div#imh {
                 display: block;
                 position: relative;
@@ -67,9 +130,42 @@
             color: #2A6F97;
             text-shadow: 2px 2px 4px #e1e1e1;
             ">BucketList Page</h1>
-                <p class="text-center text-md text-gray-600">
-                    Page Will be Developed in Sprint 4
-                </p>
+            </div>
+                    <main >
+                        <section>
+                          <form action="{{ url_for('addlist') }}" method="POST">
+                            <input type="text" name="item" placeholder="Enter item" required>
+                            <button type="submit">Add</button>
+                          </form>
+                        </section>
+                        <section>
+                          <h2>Bucket List</h2>
+                          {% if bucket_list %}
+                            <ul>
+                              {% for item in bucket_list %}
+                                <li>
+                                  <form action="{{ url_for('update', id=item.BucketId) }}" method="POST">
+                                    <input type="text" name="item" value="{{ item.item }}" required>
+                                    <button type="submit">Update</button>
+                                  </form>
+                                  <form action="{{ url_for('delete', id=item.BucketId) }}" method="POST">
+                                    <button type="submit">Delete</button>
+                                  </form>
+                                  <form action="{{ url_for('completed', id=item.BucketId) }}" method="POST">
+                                    {% if item.completed %}
+                                      <button type="button" disabled>Completed</button>
+                                    {% else %}
+                                      <button type="submit">Complete</button>
+                                    {% endif %}
+                                  </form>
+                                </li>
+                              {% endfor %}
+                            </ul>
+                          {% else %}
+                            <p>Your bucket list is empty.</p>
+                          {% endif %}
+                        </section>
+                      </main>
             </div>
 </body>
 </html>
