@@ -49,21 +49,6 @@ def index():
 def familyancestry():
     return render_template('FamilyAncestry.html')
 
-@app.route('/addPostMain')
-def addPostMain():
-    return render_template('AddPostMain.html')
-
-@app.route('/addPostEvent')
-def addPostEvent():
-    userId=0
-    if 'isLoggedIn'in session and session['isLoggedIn']:
-        userId = session['userId']
-    return render_template('AddPostEvent.html', UserId=userId)
-
-# @app.route('')
-# def allfriends():
-#     return render_template('AllFriends.html')
-
 @app.route('/friendsaddpost')
 def friendsaddpost():
     return render_template('FriendsAddPost.html')

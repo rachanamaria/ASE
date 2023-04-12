@@ -77,22 +77,22 @@
         <div class="flex justify-center items-center p-6">
             <div class="w-full max-w-md bg-white shadow-lg rounded-lg">
                 <div class="px-4 py-6">
-                    <h1 class="text-3xl font-bold text-gray-800 mb-4 text-center"><i class="fa fa-calendar-plus-o"></i> Add Event Post</h1>
+                    <h1 class="text-3xl font-bold text-gray-800 mb-4 text-center"><i class="fa fa-calendar-plus-o"></i> Add Travel Post</h1>
                     <form action="/AddPost" method="POST"  enctype="multipart/form-data">
                         <!-- need to include userId while submitting the form:  <input type="hidden" name="UserId" value="{{UserId}}"> -->
-                        <input type='hidden' name='Type' value='Event'>
+                        <input type='hidden' name='Type' value='Travel'>
                         <input type="hidden" name="UserId" value="{{UserId}}">
                         <div class="mb-6">
                             <label class="block text-gray-700 font-bold mb-2" for="file"><i class="fa fa-image"></i> Upload an Image or Video</label>
                             <input type="file" required name="file" id="file" class="block w-full py-2 px-3 border border-gray-300 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                         </div>
                         <div class="mb-6">
-                            <label class="block text-gray-700 font-bold mb-2" for="EventName"> Event Name</label>
-                            <input type="text" required name="EventName" id="EventName" class="block w-full py-2 px-3 border border-gray-300 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="Enter event name">
+                            <label class="block text-gray-700 font-bold mb-2" for="EventName">Name</label>
+                            <input type="text" required name="EventName" id="EventName" class="block w-full py-2 px-3 border border-gray-300 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="Enter name">
                         </div>
                         <div class="mb-6">
-                            <label class="block text-gray-700 font-bold mb-2" for="PostDescription"><i class="fa fa-comment"></i> Event Description</label>
-                            <textarea name="PostDescription" required id="PostDescription" rows="4" class="block w-full py-2 px-3 border border-gray-300 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="Enter event description"></textarea>
+                            <label class="block text-gray-700 font-bold mb-2" for="PostDescription"><i class="fa fa-comment"></i> Description</label>
+                            <textarea name="PostDescription" required id="PostDescription" rows="4" class="block w-full py-2 px-3 border border-gray-300 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="Enter description"></textarea>
                         </div>
                         <div class="mb-6">
                             <span class="block text-gray-700 font-bold mb-2"><i class="fa fa-eye"></i> Visibility(Make this visible to)</span>
@@ -109,7 +109,7 @@
                             <button class=" hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg" 
                             style="background-color: #2A6F97;"
                             >
-                                <i class="fa fa-calendar-plus-o"></i> Add Event Post
+                                <i class="fa fa-calendar-plus-o"></i> Add Travel Post
                             </button>
   
                         </div>
