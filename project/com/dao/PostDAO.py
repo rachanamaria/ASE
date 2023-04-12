@@ -30,12 +30,12 @@ class PostDAO:
         return post
 
     def getUnapporvedPostByGroupId(self, GroupId):
-        unApprovedPosts=PostVo.query.filter_by(GroupId = GroupId).filter_by(Status = 0).all()
+        unApprovedPosts=PostVo.query.filter_by(GroupId = GroupId).all()
         return unApprovedPosts
 
     def getApporvedPostByGoupId(self, GroupId):
         print('inside.....getApporvedPostByGoupId')
-        approvedPosts=PostVo.query.filter_by(GroupId = GroupId).filter_by(Status = 1).all()
+        approvedPosts=PostVo.query.filter_by(GroupId = GroupId).all()
         postComments=[]
         for j in approvedPosts:
             comments=CommentDao.getCommentByPostId(j.PostId)
@@ -57,18 +57,19 @@ class PostDAO:
         return comments
 
     def getUnapporvedPost(self):
-        unApprovedPosts=PostVo.query.filter_by(Status = 0).all()
-        return unApprovedPosts
+        # unApprovedPosts=PostVo.query.filter_by(Status = 0).all()
+        # return unApprovedPosts
+        return []
 
     def getApporvedPost(self):
         print('inside getApprovedPost..............')
-        approvedPosts=PostVo.query.filter_by(Status = 1).all()
+        # approvedPosts=PostVo.query.filter_by(Status = 1).all()
         # get comment here append with post and then load it
         postComments=[]
-        for j in approvedPosts:
-            comments=CommentDao.getCommentByPostId(j.PostId)
-            postComments.append([j,comments])
-        print('postComments:',postComments)
+        # for j in approvedPosts:
+        #     comments=CommentDao.getCommentByPostId(j.PostId)
+        #     postComments.append([j,comments])
+        # print('postComments:',postComments)
         return postComments
 
     def apporvePost(self,PostId):

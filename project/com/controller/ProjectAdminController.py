@@ -33,7 +33,7 @@ def approveUsers():
     print(UserId)
     print(user)
     # print(user[0])
-    user=user[0]
+    # user=user[0]
     # return afterApproval(user)
     unApprovedUserList=[]
     unApprovedGroupUserList=[]

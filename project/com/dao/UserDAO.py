@@ -8,7 +8,7 @@ class UserDAO:
 
     def deActivateUser(self, UserId):
         user=self.getByUserId(UserId)
-        user[0].Status=0
+        user.Status=0
         # db.session.add(user[0])
         db.session.commit()
     
@@ -29,7 +29,7 @@ class UserDAO:
     
     def approveUser(self,UserId):
         user=self.getByUserId(UserId)
-        user[0].Status=1
+        user.Status=1
         db.session.commit()
         return 1
 

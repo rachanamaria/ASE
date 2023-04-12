@@ -6,6 +6,7 @@ class TravelVo(db.Model):
     TravelId = db.Column('TravelId', db.Integer, primary_key = True)
     UserId = db.Column('UserId',db.Integer,nullable=False)
     PostId = db.Column('PostId',db.Integer,nullable=False)
+    TravelName= db.Column('TravelName',db.String(50))
     Visibility= db.Column('Visibility',db.String(50))
 
 with app.app_context():
