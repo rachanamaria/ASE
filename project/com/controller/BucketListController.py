@@ -42,10 +42,10 @@ def addList():
         bucketlistdao.add(objVo)
         print(UserId)
         bucket_list = BucketListVo.query.filter_by(UserId = UserId).all()
-        completedcount = BucketListVo.query.filter_by(UserId = userId).filter_by(isCompleted=True).count()
-        inprogresscount = BucketListVo.query.filter_by(UserId = userId).filter_by(isCompleted=False).count()
+        completedcount = BucketListVo.query.filter_by(UserId = UserId).filter_by(isCompleted=True).count()
+        inprogresscount = BucketListVo.query.filter_by(UserId = UserId).filter_by(isCompleted=False).count()
     
-        return render_template('BucketList.html',bucket_list=bucket_list,UserId=userId,Completedcount=completedcount,Inprogresscount=inprogresscount)
+        return render_template('BucketList.html',bucket_list=bucket_list,UserId=UserId,Completedcount=completedcount,Inprogresscount=inprogresscount)
     
 
 
@@ -73,8 +73,8 @@ def completed(id):
     # bucket_list.CompletionDate=today
     bucketlistdao.UpdateComplte(bucket_list_item)
     bucket_list = BucketListVo.query.all()
-    completedcount = BucketListVo.query.filter_by(isCompleted=True).count()
-    inprogresscount = BucketListVo.query.filter_by(isCompleted=False).count()
+    completedcount = BucketListVo.query.filter_by(UserId = userId).filter_by(isCompleted=True).count()
+    inprogresscount = BucketListVo.query.filter_by(UserId = userId).filter_by(isCompleted=False).count()
     
     return render_template('BucketList.html',bucket_list=bucket_list,Completedcount=completedcount,Inprogresscount=inprogresscount)
        
