@@ -124,38 +124,47 @@
                 <i class="fa fa-bars"></i>
             </a>
         </div>
+        
         <div id="imh" class="flex min-h-full items-center justify-center py-2 px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <h1 class="text-5xl font-bold  mb-1" style="
             color: #2A6F97;
             text-shadow: 2px 2px 4px #e1e1e1;
             ">BucketList Page</h1>
+            
             </div>
-                    <main >
-                        <section>
-                          <form action="{{ url_for('addlist') }}" method="POST">
-                            <input type="text" name="item" placeholder="Enter item" required>
-                            <button type="submit">Add</button>
-                          </form>
-                        </section>
-                        <section>
-                          <h2>Bucket List</h2>
+            <div class="flex justify-center items-center p-6">
+                <a href="/addBucketList">
+                    <button
+                        class="bg-purple-500 hover:bg-purple-700 text-white font-bold h-50 w-50 flex flex-col items-center  rounded-lg   p-6">
+                        <i class="fa fa-bookmark-o mb-2"></i>
+                        <span>Add BucketList Post</span>
+                    </button>
+                </a>
+            </div>
+         <main class="max-w-2xl  mx-auto px-4" >
+                        
+                        <section class="bg-white border border-gray-200 rounded-lg shadow-sm my-8">
+                         
                           {% if bucket_list %}
                             <ul>
                               {% for item in bucket_list %}
                                 <li>
-                                  <form action="{{ url_for('update', id=item.BucketId) }}" method="POST">
-                                    <input type="text" name="item" value="{{ item.item }}" required>
-                                    <button type="submit">Update</button>
+                                  <form >
+                                    <span class="text-gray-700 font-bold font-medium ml-1">Title:{{item.ListTitle}}</span><br>
+                                    <span class="text-gray-700 font-medium ml-1">{{item.Purpose}}</span><br>
+                                    
+                                    <span class="text-gray-700 font-medium ml-1">Creation Date:{{item.Date}}</span><br>
+                                   
                                   </form>
                                   <form action="{{ url_for('delete', id=item.BucketId) }}" method="POST">
-                                    <button type="submit">Delete</button>
+                                    <button class="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Delete</button>
                                   </form>
                                   <form action="{{ url_for('completed', id=item.BucketId) }}" method="POST">
-                                    {% if item.completed %}
-                                      <button type="button" disabled>Completed</button>
+                                    {% if item.isCompleted %}
+                                      <button class="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="button" disabled>Completed</button>
                                     {% else %}
-                                      <button type="submit">Complete</button>
+                                      <button class="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Complete</button>
                                     {% endif %}
                                   </form>
                                 </li>
@@ -166,6 +175,7 @@
                           {% endif %}
                         </section>
                       </main>
-            </div>
+                  
+        </div>
 </body>
 </html>

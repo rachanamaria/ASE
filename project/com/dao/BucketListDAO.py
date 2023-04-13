@@ -16,9 +16,13 @@ class BucketListDAO:
         db.session.delete(vo)
         db.session.commit()
     
-    def Update(self, vo):
-        
+    def Update(self):
         db.session.commit()
+
+    def UpdateComplte(self,vo):
+        db.session.add(vo)
+        db.session.commit()
+        
     
     def fetchAllBucketList(self,UserId):
         

@@ -65,9 +65,9 @@ def home():
 def friendhistory():
     return render_template('FriendHistory.html')
 
-@app.route('/bucketlist')
-def Bucketlist():
-    return render_template('BucketList.html')
+# @app.route('/bucketlist')
+# def Bucketlist():
+#     return render_template('BucketList.html')
 
 @app.route('/loadContact')
 def contact():

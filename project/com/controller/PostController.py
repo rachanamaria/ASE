@@ -1,4 +1,5 @@
 from project import app
+from project.com.dao.BucketListDAO import BucketListDAO
 from project.com.dao.TravelDAO import TravelDAO
 from project.com.vo.PostVo import PostVo
 from project.com.dao.PostDAO import PostDAO
@@ -13,6 +14,7 @@ from project.com.vo.EventVo import EventVo
 from project.com.dao.EventDAO import EventDAO
 import re
 from project.com.vo.TravelVo import TravelVo
+from project.com.vo.BucketListVo import BucketListVo
 
 
 PostDao=PostDAO()
@@ -23,6 +25,7 @@ eventVo=EventVo()
 eventDAO=EventDAO()
 travelVo=TravelVo()
 travelDAO=TravelDAO()
+bucketlistdao=BucketListDAO()
 
 @app.route('/addPostEvent')
 def addPostEvent():
@@ -37,6 +40,8 @@ def addPostTravel():
     if 'isLoggedIn'in session and session['isLoggedIn']:
         userId = session['userId']
     return render_template('AddPostTravel.html', UserId=userId)
+
+
 
 @app.route('/CreatePost', methods=['POST'])
 def CreatePost():
@@ -82,8 +87,6 @@ def addPost():
         objVo.Visibility= request.form['Visibility']
         objVo.UserId =UserId
         travelDAO.add(objVo)
-    elif vo.type=='BucketList':
-        objVo=EventVo()
     elif vo.type=='Event':
         objVo=EventVo()
         objVo.EventName=request.form['EventName']
