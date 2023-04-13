@@ -50,10 +50,11 @@
             float: right;
             width: 60%;
         }
-        .post-image  {
-	max-width: 100%;
-	margin-bottom: 10px;
-}
+
+        .post-image {
+            max-width: 100%;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
@@ -68,30 +69,35 @@
             <i class="fa fa-bars"></i>
         </a>
     </div>
-    
+
     <div id="imh" class="flex min-h-full items-center justify-center py-2 px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-            <h1 class="text-5xl font-bold  mb-1" style="
+        <div class="bg-red-100 grid grid-cols-1 md:grid-cols-2  ">
+            <div class="text-center ">
+                <h1 class="text-5xl font-bold  mb-1" style="
             color: #2A6F97;
             text-shadow: 2px 2px 4px #e1e1e1;
             ">Events Page</h1>
-        </div>
-        <form class="add-comment flex items-center" action="/events", method="post">
-            <input type="hidden" name="UserId" value='{{UserId}}'>
-            
-            <input type="hidden" name="routetype" value='EventRoute'>
-            
-            {% if page =='justhappend' %}
-            <input type="hidden" name="justhappend" value='events'>
-            <button type="submit" style="margin-left: 1em;"
-                class="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">All events</button>
+            </div>
+            <form class="add-comment  items-center  " action="/events" , method="post">
+                <input type="hidden" name="UserId" value='{{UserId}}'>
+
+                <input type="hidden" name="routetype" value='EventRoute'>
+
+                {% if page =='justhappend' %}
+                <input type="hidden" name="justhappend" value='events'>
+                <button type="submit" style="margin-left: 1em;"
+                    class="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">All
+                    events</button>
                 {% endif %}
                 {% if page =='events' %}
                 <input type="hidden" name="justhappend" value='justhappend'>
                 <button type="submit" style="margin-left: 1em;"
                     class="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">justhappend</button>
-                    {% endif %}
+                {% endif %}
             </form>
+        </div>
+
+
         {% if ln>0 %}
         {% for d in data %}
         <main class="max-w-2xl  mx-auto px-4">
@@ -99,19 +105,18 @@
                 <div class="flex items-center px-6 py-4">
                     <!-- <img class="h-12 w-12 rounded-full mr-4" src="samp2.jpeg" alt="Profile Picture"> -->
                     <input type='hidden' name='UserName' value='{{ d.post.CreatorId }}'>
-		    <div class="text-sm mb-2 flex flex-start items-center pt-1">
-                    <img class="h-10 w-10 rounded-full object-cover" src="../static/male1.png"
-                    alt="user" />
-                    <p class="text-2xl font-bold tracking-tight text-gray-900">{{ d.post.UserName}}</p>
-                </div>
+                    <div class="text-sm mb-2 flex flex-start items-center pt-1">
+                        <img class="h-10 w-10 rounded-full object-cover" src="../static/male1.png" alt="user" />
+                        <p class="text-2xl font-bold tracking-tight text-gray-900">{{ d.post.UserName}}</p>
+                    </div>
                 </div>
                 <p class="text-2xl text-center font-bold tracking-tight text-gray-900">{{ d.eventName }}</p>
                 <div class="post-image">
                     <img class="h-1/2  " src="{{d.post.PostURL}}" alt="Post Image">
                 </div>
-<div class="text-sm flex flex-start items-center pt-1">
-                <p class="text-xl  font-bold tracking-tight text-gray-900">{{ d.post.PostDescription }}</p>
-                
+                <div class="text-sm flex flex-start items-center pt-1">
+                    <p class="text-xl  font-bold tracking-tight text-gray-900">{{ d.post.PostDescription }}</p>
+
                 </div>
                 <p class="text text-sm/[12px] tracking-tight text-slate-700 ">{{ d.post.createdTime }}</p>
 

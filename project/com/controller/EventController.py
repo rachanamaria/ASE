@@ -12,6 +12,7 @@ def getEventPosts():
     userId=0
     if 'isLoggedIn'in session and session['isLoggedIn']:
         userId = session['userId']
+        print("userid",userId)
     data=eventDAO.fetchAllEvents(userId)
     justhappend=request.form['justhappend']
     # print('data..',data)   
@@ -36,7 +37,7 @@ def getEventPosts():
         diff = currentDate-i.post.createdTime
         print(diff.days)
 
-        if(diff.days <2 ):
+        if(diff.days <1 ):
             data2.append(i)
         
     print(data2)

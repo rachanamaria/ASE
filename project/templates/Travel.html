@@ -200,7 +200,24 @@
             text-shadow: 2px 2px 4px #e1e1e1;
             ">Travel Page</h1>
         </div>
-        <div class="slideshow-container">
+        
+        <form class="add-comment flex items-center p-10" action="/Travels", method="post">
+            <input type="hidden" name="UserId" value='{{UserId}}'>
+            
+            <input type="hidden" name="routetype" value='TravelRoute'>
+            
+            {% if page =='justhappend' %}
+            <input type="hidden" name="justhappend" value='travel'>
+            <button type="submit" style="margin-left: 1em;"
+                class="ml-4 mb-15 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">All Travel</button>
+                {% endif %}
+                {% if page =='travel' %}
+                <input type="hidden" name="justhappend" value='justhappend'>
+                <button type="submit" style="margin-left: 1em;"
+                    class="ml-4 mb-15 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">justhappend</button>
+                    {% endif %}
+            </form>
+        <div class="slideshow-container mt-10">
 
             <div class="mySlides">
                 <div class="numbertext">1 / 4</div>
