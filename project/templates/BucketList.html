@@ -133,7 +133,8 @@
             ">BucketList Page</h1>
             
             </div>
-            <div class="flex justify-center items-center p-6">
+            <div class=" flex flex-row justify-between">
+            <div class="flex justify-end items-center  p-6 mx-auto">
                 <a href="/addBucketList">
                     <button
                         class="bg-purple-500 hover:bg-purple-700 text-white font-bold h-50 w-50 flex flex-col items-center  rounded-lg   p-6">
@@ -142,6 +143,21 @@
                     </button>
                 </a>
             </div>
+            <section class="bg-white border border-gray-200 rounded-lg shadow-sm my-8 mt-10">
+                <span class="text-gray-700 font-bold font-medium ml-1">Completed:{{Completedcount}}</span><br>
+                <span class="text-gray-700 font-bold ml-1">InProgress:{{Inprogresscount}}</span><br>
+                
+            </section>
+            <!-- <div class="flex justify-end  items-center p-6">
+                <a href="/addBucketList">
+                    <button
+                        class="bg-purple-500 hover:bg-purple-700 text-white font-bold h-50 w-50 flex flex-col items-center  rounded-lg   p-6">
+                        <i class="fa fa-bookmark-o mb-2"></i>
+                        <span>Add BucketList Post</span>
+                    </button>
+                </a>
+            </div> -->
+        </div>
          <main class="max-w-2xl  mx-auto px-4" >
                         
                         <section class="bg-white border border-gray-200 rounded-lg shadow-sm my-8">
@@ -151,8 +167,9 @@
                               {% for item in bucket_list %}
                                 <li>
                                   <form >
+                                    <input type="hidden" name="UserId" value='{{UserId}}'>
                                     <span class="text-gray-700 font-bold font-medium ml-1">Title:{{item.ListTitle}}</span><br>
-                                    <span class="text-gray-700 font-medium ml-1">{{item.Purpose}}</span><br>
+                                    <span class="text-gray-700 font-medium ml-1">Type:{{item.Purpose}}</span><br>
                                     
                                     <span class="text-gray-700 font-medium ml-1">Creation Date:{{item.Date}}</span><br>
                                    
