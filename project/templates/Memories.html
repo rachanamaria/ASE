@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.1.2/tailwind.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.2.0/tailwind.min.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+
+    <!-- Swiper CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <title>Home</title>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+
+    </script>
+    <style>
+        div#imh {
+            display: block;
+            position: relative;
+        }
+
+        div#imh::after {
+            content: "";
+            background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+            opacity: 0.5;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .leftContent {
+            float: left;
+            width: 40%;
+            font-weight: bold;
+        }
+
+        .rightContent {
+            float: right;
+            width: 60%;
+        }
+
+        .post-image {
+            max-width: 100%;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body style="height: 100%;">
+    <div class="topnav" id="myTopnav">
+        <a href="/home" class="active">Home</a>
+        <a href="/loadContact">Contact</a>
+        <a href="/loadAbout">About</a>
+        <!-- show logout button at the right end -->
+        <a href="/" style="float:right">Logout</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+    <div id="imh" class="flex min-h-full items-center justify-center py-2 px-4 sm:px-6 lg:px-8 ">
+
+
+
+        <div class="text-center ">
+            <h1 class="text-5xl font-bold  mb-1" style="
+            color: #2A6F97;
+            text-shadow: 2px 2px 4px #e1e1e1;
+            ">Memories Page</h1>
+        </div>
+
+
+  
+
+        <h1 class="mt-10 mb-5 text-center text-3xl">Nostalgic Memories</h1>
+        <h3 class="mb-10 text-center text-xl">On this Day</h3>
+
+        
+    
+        <!-- Image gird -->
+        <div class="p-20 grid grid-cols-4 gap-5">
+            <img class="w-full h-full object-cover cursor-pointer"
+                src="https://www.kindacode.com/wp-content/uploads/2022/07/flower-4.jpeg" alt="Flower"
+                onclick="showModal('https://www.kindacode.com/wp-content/uploads/2022/07/flower-4.jpeg')" />
+    
+            <img class="w-full h-full object-cover cursor-pointer"
+                src="https://www.kindacode.com/wp-content/uploads/2022/07/flower-3.jpeg" alt="Flower"
+                onclick="showModal('https://www.kindacode.com/wp-content/uploads/2022/07/flower-3.jpeg')" />
+    
+            <img class="w-full h-full object-cover cursor-pointer"
+                src="https://www.kindacode.com/wp-content/uploads/2022/07/flower-2.jpeg" alt="Flower"
+                onclick="showModal('https://www.kindacode.com/wp-content/uploads/2022/07/flower-2.jpeg')" />
+    
+            <img class="w-full h-full object-cover cursor-pointer"
+                src="https://www.kindacode.com/wp-content/uploads/2022/07/flower-1.jpeg" alt="Flower"
+                onclick="showModal('https://www.kindacode.com/wp-content/uploads/2022/07/flower-1.jpeg')" />
+        </div>
+    
+        <!-- The Modal -->
+        <div id="modal"
+            class="hidden fixed top-0 left-0 z-80 w-screen h-screen bg-black/70 flex justify-center items-center">
+    
+            <!-- The close button -->
+            <a class="fixed z-90 top-6 right-8 text-white text-5xl font-bold" href="javascript:void(0)"
+                onclick="closeModal()">&times;</a>
+    
+            <!-- A big image will be displayed here -->
+            <img id="modal-img" class="max-w-[800px] max-h-[600px] object-cover" />
+        </div>
+
+
+          
+        </div>
+
+    
+        <script>
+            // Get the modal by id
+            var modal = document.getElementById("modal");
+    
+            // Get the modal image tag
+            var modalImg = document.getElementById("modal-img");
+    
+            // this function is called when a small image is clicked
+            function showModal(src) {
+                modal.classList.remove('hidden');
+                modalImg.src = src;
+            }
+    
+            // this function is called when the close button is clicked
+            function closeModal() {
+                modal.classList.add('hidden');
+            }
+        </script>
+</body>
+
+</html>

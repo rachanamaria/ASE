@@ -2,8 +2,6 @@ from flask import Flask,render_template, session
 from flask_sqlalchemy import SQLAlchemy
 import os
 
-
-
 UPLOAD_FOLDER = os.path.join('../project/static')
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 app = Flask(__name__)
@@ -26,7 +24,6 @@ url="mysql+pymysql://{0}:{1}@{2}:{3}/{4}".format(username, password, servername,
 app.config['SQLALCHEMY_DATABASE_URI'] = url
 app.config['SQLALCHEMY_MAX_OVERFLOW'] = 0
 db = SQLAlchemy(app)
-
 
 @app.route('/')
 def index():
@@ -69,6 +66,11 @@ def friendhistory():
 # def Bucketlist():
 #     return render_template('BucketList.html')
 
+# temp route for memories
+@app.route('/memories')
+def memories():
+    return render_template('Memories.html')
+
 @app.route('/loadContact')
 def contact():
     if 'role' in session and session['role'] == 1:
@@ -98,8 +100,5 @@ def logOut():
     session.pop('role')
     session.pop('userId')
     return index()
-
-
-
 
 import project.com  
