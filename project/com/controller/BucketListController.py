@@ -70,6 +70,7 @@ def completed(id):
     bucket_list_item = BucketListVo.query.get_or_404(id)
     bucket_list_item.isCompleted = True
     today = date.today()
+    bucket_list_item.Date=today
     # bucket_list.CompletionDate=today
     bucketlistdao.UpdateComplte(bucket_list_item)
     bucket_list = BucketListVo.query.all()

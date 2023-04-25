@@ -170,9 +170,11 @@
                                     <input type="hidden" name="UserId" value='{{UserId}}'>
                                     <span class="text-gray-700 font-bold font-medium ml-1">Title:{{item.ListTitle}}</span><br>
                                     <span class="text-gray-700 font-medium ml-1">Type:{{item.Purpose}}</span><br>
-                                    
+                                    {% if item.isCompleted %}
+                                    <span class="text-gray-700 font-medium ml-1">Completion Date:{{item.Date}}</span><br>
+                                    {% else %}
                                     <span class="text-gray-700 font-medium ml-1">Creation Date:{{item.Date}}</span><br>
-                                   
+                                    {% endif %}
                                   </form>
                                   <form action="{{ url_for('delete', id=item.BucketId) }}" method="POST">
                                     <button class="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Delete</button>
