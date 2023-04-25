@@ -62,6 +62,11 @@ def home():
 def friendhistory():
     return render_template('FriendHistory.html')
 
+@app.route('/profile')
+def profilepage():
+    name= session['username']
+    return render_template('Profile.html',profileusername= name)
+
 # @app.route('/bucketlist')
 # def Bucketlist():
 #     return render_template('BucketList.html')

@@ -11,6 +11,7 @@ import project.com.controller.RelationsController
 import project.com.controller.FamilyAncestorController
 import project.com.controller.TravelController
 import project.com.controller.BucketListController
+import project.com.controller.ProfileController
 
 
 

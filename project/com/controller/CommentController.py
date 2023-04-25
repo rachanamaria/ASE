@@ -29,6 +29,7 @@ def addComment():
     user=userDao.getByUserId(UserId)
     vo.UserName=user.UserName
     CommentDao.addComment(vo)
+    
     if routetype == "FriendRoute":
          firendPosts=PostDao.getPostByUserId(id)
          return render_template('IndividualFriend.html',person=UserId,friendName=firendPosts[0]['post'].UserName,firendPosts=firendPosts,friendid=id)
@@ -39,5 +40,8 @@ def addComment():
          return redirect('/events')
     elif routetype == "TravelRoute":
          return redirect('/Travels')
+    elif routetype == "ProfileRoute":
+         profilePosts=PostDao.getPostByUserId(id)
+         return render_template('profile.html',profileusername= user.UserName,firendPosts=profilePosts,person=UserId)
 
     return 'comented'
