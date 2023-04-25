@@ -64,13 +64,13 @@ def updateprofile():
     # 1=admin
     # 0=not approved
     # 1=approved
-    vo.FirstName =fName
+    user.FirstName =fName
     # vo.Emaild =emaild
-    vo.LastName = lName
-    vo.UserName =userName
+    user.LastName = lName
+    user.UserName =userName
     # vo.UserId = userId
-    vo.Phone=phone
-    vo.Dob =dob
+    user.Phone=phone
+    user.Dob =dob
     # print(vo)
     # password 
     # print(len(fName))
@@ -83,16 +83,16 @@ def updateprofile():
     #     return render_template('RegisterPage.html',obj=vo, error=msg)
     if len(fName)>32:
         msg ='First name exceeds lenght limit'
-        return render_template('RegisterPage.html',obj=vo, error=msg)
+        return render_template('RegisterPage.html',obj=user, error=msg)
     if len(lName)>32:
         msg ='Last name exceeds lenght limit'
-        return render_template('RegisterPage.html',obj=vo, error=msg)
+        return render_template('RegisterPage.html',obj=user, error=msg)
     if len(fName.strip())<1:
         msg ='First name is not entered'
-        return render_template('RegisterPage.html',obj=vo, error=msg)
+        return render_template('RegisterPage.html',obj=user, error=msg)
     if len(lName.strip())<1:
         msg ='Last name is not entered'
-        return render_template('RegisterPage.html',obj=vo, error=msg)
+        return render_template('RegisterPage.html',obj=user, error=msg)
     # if len(emaild)>32:
     #     msg ='Email id exceeds lenght limit'
     #     return render_template('RegisterPage.html',obj=vo, error=msg)
@@ -119,17 +119,17 @@ def updateprofile():
         msg ='Phone number should be of 10 digits.'
         return render_template('RegisterPage.html',obj=vo, error=msg)
     
-    vo.Status=0
+    user.Status=0
     ans=[]
     if(sessionusername!=userName):
-        ans=UserDao.getUserByUserName(vo.UserName)
+        ans=UserDao.getUserByUserName(user.UserName)
     if len(ans)>0:
         msg ='Please enter a different email or username, already in use!!!'
         user=UserDao.getByUserId(userId)
         return render_template('Profile.html',profileusername=user.UserName,FirstName = user.FirstName,LastName=user.LastName, Emaild=user.Emaild,UserName=user.UserName,Dob=user.Dob,Phone=user.Phone,person= user.UserId,error=msg)
     else:
         print("test")
-        UserDao.addUser(vo)
+        UserDao.addUser(user)
     
     firendPosts=PostDao.getPostByUserId(userId)
     user=UserDao.getByUserId(userId)
