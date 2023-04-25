@@ -2,7 +2,9 @@ import datetime
 from project import db
 from project.com.vo.PostVo import PostVo
 from project.com.dao.CommentDAO import CommentDAO
+from datetime import date
 
+today = date.today()
 
 
 CommentDao=CommentDAO()
@@ -78,3 +80,19 @@ class PostDAO:
         post[0].Status=1
         db.session.commit()
         return 1
+    
+    def deletePost(self, PostId):
+        
+
+        return 
+    
+    def getMemoriesPost(self,UserId):
+        comments=[]
+        requiredPost=[]
+        posts=PostVo.query.filter_by(CreatorId = UserId).all()
+        for post in posts:
+            dt=post.createdTime.date()
+            print(dt)
+            if dt.year==today.year-1 and dt.month == today.month and dt.day == today.day:
+                requiredPost.append(post)
+        return requiredPost

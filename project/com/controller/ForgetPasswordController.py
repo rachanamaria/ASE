@@ -12,6 +12,7 @@ from project.com.dao.UserDAO import UserDAO
 vo=UserVo()
 dao=UserDAO()
 
+# class ForgetPasswordController:
 def send_email(subject, body, sender, recipients, password):
     msg = MIMEText(body)
     msg['Subject'] = subject
@@ -52,3 +53,16 @@ def foregotPassword():
         flash('\nEmailId incorrect')
     return render_template('ForgetPassword.html')
     
+def notification(email,count):
+
+    # vo.Emaild=email
+    user=dao.getUserByEmailId(email)
+    if len(user)>0:
+        user=user[0]
+        subject = "Memories"
+        body = f'You have {count} memories from your last year'
+        sender = "testingase01@gmail.com"
+        recipients = [email]
+        password = "ckzmtgslgcqyifjm"
+        send_email(subject, body, sender, recipients, password)
+    return ''
