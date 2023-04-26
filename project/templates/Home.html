@@ -75,9 +75,16 @@
             </p>
         </div>
         <div class="absolute right-0 top-0 flex items-center">
-            <a href="/memories">
+            <!-- <a href="/memories"> -->
+            <!-- <a href = "/MemoriesPost"> -->
+            <form action="/MemoriesPost" method="POST"  enctype="multipart/form-data">
+                <input type="hidden" name="UserId" value="{{obj.UserId}}" />
+                <!-- submit button should be below image -->
+                <button type ="submit" style = "background-color:transparent; border:none; outline:none;">
                 <img src="https://media.baamboozle.com/uploads/images/144797/1648591059_23345_gif-url.gif" alt="Memories" class="w-1/2 h-1/2 rounded-full box-shadow hover:shadow-lg">
-            </a>
+            </button>
+                
+            </form>
         </div>
         
         

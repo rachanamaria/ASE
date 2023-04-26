@@ -86,36 +86,45 @@
             <h1 class="text-5xl font-bold  mb-1" style="
             color: #2A6F97;
             text-shadow: 2px 2px 4px #e1e1e1;
-            ">Memories Page</h1>
+            ">Memories- 1 Year Ago</h1>
         </div>
 
 
   
 
-        <h1 class="mt-10 mb-5 text-center text-3xl">Nostalgic Memories</h1>
-        <h3 class="mb-10 text-center text-xl">On this Day</h3>
+        <h1 class="mt-10 mb-5 text-center text-3xl">On this Day - 
+         
 
-        
-    
-        <!-- Image gird -->
-        <div class="p-20 grid grid-cols-4 gap-5">
-            <img class="w-full h-full object-cover cursor-pointer"
-                src="https://www.kindacode.com/wp-content/uploads/2022/07/flower-4.jpeg" alt="Flower"
-                onclick="showModal('https://www.kindacode.com/wp-content/uploads/2022/07/flower-4.jpeg')" />
-    
-            <img class="w-full h-full object-cover cursor-pointer"
-                src="https://www.kindacode.com/wp-content/uploads/2022/07/flower-3.jpeg" alt="Flower"
-                onclick="showModal('https://www.kindacode.com/wp-content/uploads/2022/07/flower-3.jpeg')" />
-    
-            <img class="w-full h-full object-cover cursor-pointer"
-                src="https://www.kindacode.com/wp-content/uploads/2022/07/flower-2.jpeg" alt="Flower"
-                onclick="showModal('https://www.kindacode.com/wp-content/uploads/2022/07/flower-2.jpeg')" />
-    
-            <img class="w-full h-full object-cover cursor-pointer"
-                src="https://www.kindacode.com/wp-content/uploads/2022/07/flower-1.jpeg" alt="Flower"
-                onclick="showModal('https://www.kindacode.com/wp-content/uploads/2022/07/flower-1.jpeg')" />
+                 <!-- from the memory object first item, show date here -->
+                 <span class="text-3xl text-blue-500 font-bold"
+                  id = "date"
+                 > 
+                </span>
+
+
+        </h1>
+        <!-- <h3 class="mb-10 text-center text-xl">On this Day</h3> -->
+
+        <!-- <div class="p-20 grid grid-cols-4 gap-5">
+            {% for memory in memories %}
+              <img class="w-full h-full object-cover cursor-pointer"
+                   src="{{ memory.PostURL }}" alt="{{ memory.PostDescription }}"
+                   onclick="showModal('{{ memory.PostURL }}')" />
+                <p class="text-center text-xl font-bold">{{ memory.PostDescription }}</p>
+            {% endfor %}
+          </div> -->
+          <div class="p-20 grid grid-cols-4 gap-5">
+            {% for memory in memories %}
+            <div>
+                <img class="w-full h-full object-cover cursor-pointer"
+                     src="{{ memory.PostURL }}" alt="{{ memory.PostDescription }}"
+                     onclick="showModal('{{ memory.PostURL }}')" />
+                <p class="text-center text-xl font-bold">{{ memory.PostDescription }}</p>
+            </div>
+            {% endfor %}
         </div>
-    
+        
+              
         <!-- The Modal -->
         <div id="modal"
             class="hidden fixed top-0 left-0 z-80 w-screen h-screen bg-black/70 flex justify-center items-center">
@@ -145,6 +154,13 @@
             function closeModal() {
                 modal.classList.add('hidden');
             }
+
+            // date 
+            var date = new Date();
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear();
+            document.getElementById("date").innerHTML = day + "/" + month + "/" + year;
         </script>
 </body>
 
